@@ -21,7 +21,16 @@ function preload() {
 Description of setup
 */
 function setup() {
-  background(127, 255, 200);
+  createCanvas(500,500);
+
+  background(150, 50, 400);
+
+ellipseMode(CORNER);
+ellipse(250,250,100,100);
+ellipse(250,250,80,80);
+ellipse(250,250,60,60);
+ellipse(250,250,40,40);
+ellipse(250,250,20,20);
 }
 
 
