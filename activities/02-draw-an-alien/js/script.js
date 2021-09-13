@@ -4,12 +4,12 @@
 Activity 02: Draw an Alien
 Jessika Forster
 
-Basic coding exercise: Making an alien using shapes and colours
+Draws an alien on the canvas
 **************************************************/
 
 // setup()
 //
-// Create a canvas
+// Draws an alien
 function setup() {
   createCanvas(640,480);
 
@@ -43,7 +43,7 @@ function setup() {
 
 // draw()
 //
-// Description of draw() goes here.
+// Does nothing
 function draw() {
 
 }
