@@ -23,13 +23,25 @@ Description of setup
 function setup() {
   createCanvas(500,500);
 
-  background(150, 50, 400);
+  background(50, 100, 250);
 
 ellipseMode(CORNER);
+
+stroke(255,255,255)
+
+fill(127,0,200, 100);
 ellipse(250,250,100,100);
+
+fill(137,0,210, 100);
 ellipse(250,250,80,80);
+
+fill(147,0,220, 100);
 ellipse(250,250,60,60);
+
+fill(157,0,230, 100);
 ellipse(250,250,40,40);
+
+fill(167,0,240, 100);
 ellipse(250,250,20,20);
 }
 
