@@ -69,7 +69,7 @@ let rect1 = {
 };
 
 /**
-Description of setup
+Create a canvas that has no stroke
 */
 function setup() {
     createCanvas(500,500);
@@ -78,18 +78,18 @@ function setup() {
 
 
 /**
-Description of draw()
+Colour changing background, squares that only have stroke and no fill that are shrinking, growing, moving left
+and right and moving down and a square at the center that is filled with no stroke that is growing and shrinking randomly
 */
 
-  // First growing square
   function draw() {
 
-// Background
+// Background that changes colour with mouse movements on the x and y axes
     background(bg.r,bg.g,bg.b);
     bg.r = map(mouseX, 0, width, 255, 0);
     bg.b = map(mouseY,0,height, 0, 255);
 
-// Rect1 movement
+// Rect1 growing and moving to the right
     noFill();
     stroke(rect1.stroke,rect1.alpha);
     strokeWeight(5);
@@ -98,7 +98,7 @@ Description of draw()
     rect(rect1.x,rect1.y,rect1.size);
     rect1.size = rect1.size + 0.75;
 
-// Rect2 movement
+// Rect2 growing and moving to the left
     noFill();
     stroke(rect2.stroke,rect2.alpha);
     strokeWeight(5);
@@ -107,7 +107,7 @@ Description of draw()
     rect(rect2.x,rect2.y,rect2.size);
     rect2.size = rect2.size + 0.75;
 
-// Rect3 movement
+// Rect3 shrinking and moving to the right
     noFill();
     stroke(rect3.stroke,rect3.alpha);
     strokeWeight(5);
@@ -116,7 +116,7 @@ Description of draw()
     rect(rect3.x,rect3.y,rect3.size);
     rect3.size = rect3.size - 0.50;
 
-// Rect4 movement
+// Rect4 shrinking and moving to the left
     noFill();
     stroke(rect4.stroke,rect4.alpha);
     strokeWeight(5);
@@ -125,7 +125,7 @@ Description of draw()
     rect(rect4.x,rect4.y,rect4.size);
     rect4.size = rect4.size - 0.50;
 
-// Rect5 movement
+// Rect5 growing and shrinking while moving from top to bottom
     noFill();
     stroke(rect5.stroke,rect5.alpha);
     strokeWeight(5);
@@ -135,7 +135,7 @@ Description of draw()
     rect5.y = rect5.y + 1;
 
 
-// Rect 6 movement
+// Rect 6 random movement
     noStroke();
     fill(rect6.fill);
     rectMode(CENTER);
