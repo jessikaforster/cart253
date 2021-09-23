@@ -2,8 +2,8 @@
 I like to move it!
 Jessika Forster
 
-The first exercise of the semester. The program should at minimum includes 3 shapes, movement,
-size changes, color changes, map(), constrain(), respond to the mouse position using mousX and mouseY
+The first exercise of the semester. The program should at minimum include 3 shapes, movement,
+size changes, color changes, map(), constrain() and respond to the mouse position using mouseX and mouseY
 */
 
 let bg = {
@@ -11,6 +11,7 @@ let bg = {
   g: 0,
   b: 0,
 };
+
 let rect1 = {
   x: 250,
   y: 250,
@@ -20,6 +21,7 @@ let rect1 = {
   alpha: 255,
   speed: 1,
 };
+
   let rect2 = {
     x: 250,
     y: 250,
@@ -135,7 +137,7 @@ and right and moving down and a square at the center that is filled with no stro
     rect5.y = rect5.y + 1;
 
 
-// Rect 6 random movement
+// Rect 6 random movement at center
     noStroke();
     fill(rect6.fill);
     rectMode(CENTER);
