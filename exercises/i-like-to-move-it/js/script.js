@@ -127,7 +127,7 @@ and right and moving down and a square at the center that is filled with no stro
     rect(rect4.x,rect4.y,rect4.size);
     rect4.size = rect4.size - 0.50;
 
-// Rect5 growing and shrinking while moving from top to bottom
+// Rect5 growing until hitting the center while moving from top to bottom
     noFill();
     stroke(rect5.stroke,rect5.alpha);
     strokeWeight(5);
