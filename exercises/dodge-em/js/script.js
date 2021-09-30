@@ -37,7 +37,6 @@ let gun = {
   y: 720,
   width: 200,
   height: 200,
-  speed: 10,
 };
 
 let bullet = {
@@ -50,7 +49,7 @@ let bullet = {
   b: 89,
   speed: 15,
   acceleration: 5,
-}
+};
 
 let alien1 = {
   x: 0,
@@ -60,7 +59,7 @@ let alien1 = {
   vx: 0,
   vy: 0,
   speed: 5,
-  acceleration: 2,
+  acceleration: 1.7,
 };
 
 let alien2 = {
@@ -91,16 +90,16 @@ function setup() {
   createCanvas(2560,1440);
 
   alien1.y = random(0,height);
-  alien1.vx = alien1.speed;
+  alien1.vx = alien1.speed * alien1.acceleration;
 
   alien2.x = random(0,width);
-  alien2.vy = alien2.speed;
+  alien2.vy = alien2.speed * alien2.acceleration;
 
   alien3.y = random(0,height);
-  alien3.vx = alien3.speed;
+  alien3.vx = alien3.speed * alien3.acceleration;
 
   alien3.x = random(0,width);
-  alien3.vy = alien3.speed;
+  alien3.vy = alien3.speed * alien3.acceleration;
 
   bullet.x = (0,width)
   bullet.speed = bullet.speed * bullet.acceleration;
@@ -128,10 +127,10 @@ if (mouseIsPressed === true) {
 };
 
 // Aliens' movement
-alien1.x = alien1.x + (alien1.vx * alien1.acceleration);
-alien2.y = alien2.y + (alien2.vy * alien2.acceleration);
-alien3.x = alien3.x + (alien3.vx * alien3.acceleration);
-alien3.y = alien3.y + (alien3.vy * alien3.acceleration);
+alien1.x = alien1.x + alien1.vx;
+alien2.y = alien2.y + alien2.vy;
+alien3.x = alien3.x + alien3.vx;
+alien3.y = alien3.y + alien3.vy;
 
 if (alien1.x > width) {
     alien1.x = 0;
