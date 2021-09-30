@@ -27,19 +27,20 @@ function preload() {
 let user = {
   x: 0,
   y: 0,
-  width: 200,
-  height: 200,
+  width: 100,
+  height: 100,
+  // acceleration: 1.5,
 };
 
 let alien1 = {
   x: 0,
   y: 0,
-  width: 300,
-  height: 300,
+  width: 400,
+  height: 400,
   vx: 0,
   vy: 0,
   speed: 5,
-  acceleration: 1.1,
+  acceleration: 2,
   size: 1.01,
 };
 
@@ -51,19 +52,19 @@ let alien2 = {
   vx: 0,
   vy: 0,
   speed: 5,
-  acceleration: 1.1,
+  acceleration: 1.5,
   size: 1.01,
 };
 
 let alien3 = {
   x: 0,
   y: 0,
-  width: 300,
-  height: 300,
+  width: 500,
+  height: 500,
   vx: 0,
   vy: 0,
   speed: 5,
-  acceleration: 1.1,
+  acceleration: 1.2,
   size: 1.01,
 };
 /**
@@ -94,15 +95,15 @@ function draw() {
   background(bg);
 
 if (mouseIsPressed === true) {
-  user.width = 100;
-} else {
   user.width = 200;
+} else {
+  user.width = 100;
 };
 
 if (mouseIsPressed === true) {
-  user.height = 100;
-} else {
   user.height = 200;
+} else {
+  user.height = 100;
 };
 
 // Aliens/ growth
@@ -140,13 +141,24 @@ if (alien3.y > height) {
 }
 
 // User movement
-user.x = mouseX;
-user.y = mouseY;
+if (mouseIsPressed === true) {
+  user.x = mouseX;
+} else {
+  user.x = width/2;
+};
+
+if (mouseIsPressed === true) {
+  user.y = mouseY;
+} else {
+  user.y = height/2;
+};
+//user.x = mouseX;
+//user.y = mouseY;
 
 // When gun catches alien
 let d1 = dist(user.x,user.y,alien1.x,alien1.y);
-  if (d1 < alien1.x/15 + user.x/15)
-  if (d1 < alien1.y/15 + user.y/15) {
+  if (d1 < alien1.x/7 + user.x/7)
+  if (d1 < alien1.y/7 + user.y/7) {
   noLoop();
   }
 
@@ -157,8 +169,8 @@ let d2 = dist(user.x,user.y,alien2.x,alien2.y);
   }
 
 let d3 = dist(user.x,user.y,alien3.x,alien3.y);
-  if (d3 < alien3.x/15 + user.x/15)
-  if (d3 < alien3.y/15 + user.y/15) {
+  if (d3 < alien3.x/7 + user.x/7)
+  if (d3 < alien3.y/7 + user.y/7) {
     noLoop();
   }
 
