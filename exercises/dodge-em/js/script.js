@@ -13,12 +13,15 @@ let userImage;
 let alien1Image;
 let alien2Image;
 let alien3Image;
+let bg;
 
 function preload() {
+  //background = loadImage("assets/images/backdrop.png");
   userImage = loadImage("assets/images/user.png");
   alien1Image = loadImage("assets/images/alien1.png");
   alien2Image = loadImage("assets/images/alien2.png");
   alien3Image = loadImage("assets/images/alien3.png");
+  bg = loadImage("assets/images/backdrop.jpg")
 }
 
 let user = {
@@ -61,7 +64,7 @@ let alien3 = {
 Description of setup
 */
 function setup() {
-  createCanvas(windowWidth,windowHeight);
+  createCanvas(2560,1440);
 
   alien1.y = random(0,height);
   alien1.vx = alien1.speed;
@@ -88,7 +91,7 @@ function setup() {
 Description of draw()
 */
 function draw() {
-  background(0);
+  background(bg);
 
 // Aliens' movement
 alien1.x = alien1.x + alien1.vx;
