@@ -10,6 +10,7 @@ and learning to display image(s).
 Description of preload
 */
 let userImage;
+let gunImage;
 let alien1Image;
 let alien2Image;
 let alien3Image;
@@ -21,7 +22,8 @@ function preload() {
   alien1Image = loadImage("assets/images/alien1.png");
   alien2Image = loadImage("assets/images/alien2.png");
   alien3Image = loadImage("assets/images/alien3.png");
-  bg = loadImage("assets/images/backdrop.jpg")
+  gunImage = loadImage("assets/images/gun.png");
+  bg = loadImage("assets/images/backdrop.jpg");
 }
 
 let user = {
@@ -30,6 +32,14 @@ let user = {
   width: 100,
   height: 100,
   // acceleration: 1.5,
+};
+
+let gun = {
+  x: 500,
+  y: 500,
+  width: 200,
+  height: 200,
+  speed: 5,
 };
 
 let alien1 = {
@@ -115,10 +125,10 @@ if (mouseIsPressed === true) {
 // alien3.height = alien3.width + alien1.size
 
 // Aliens' movement
-alien1.x = alien1.x + (alien1.vx * alien1.acceleration);
-alien2.y = alien2.y + (alien2.vy * alien2.acceleration);
-alien3.x = alien3.x + (alien3.vx * alien3.acceleration);
-alien3.y = alien3.y + (alien3.vy * alien3.acceleration);
+alien1.x = alien1.x + (alien1.vx + alien1.acceleration);
+alien2.y = alien2.y + (alien2.vy + alien2.acceleration);
+alien3.x = alien3.x + (alien3.vx + alien3.acceleration);
+alien3.y = alien3.y + (alien3.vy + alien3.acceleration);
 
 if (alien1.x > width) {
     alien1.x = 0;
@@ -155,7 +165,14 @@ if (mouseIsPressed === true) {
 //user.x = mouseX;
 //user.y = mouseY;
 
-// When gun catches alien
+// When gun touches alien
+if (keyIsPressed === true) {
+  gun.x = gun.x + gun.speed
+} else {
+  gun.x = 0;
+}
+
+// When user touches alien
 let d1 = dist(user.x,user.y,alien1.x,alien1.y);
   if (d1 < alien1.x/7 + user.x/7)
   if (d1 < alien1.y/7 + user.y/7) {
@@ -179,4 +196,5 @@ let d3 = dist(user.x,user.y,alien3.x,alien3.y);
   image(alien1Image,alien1.x,alien1.y,alien1.width,alien1.height);
   image(alien2Image,alien2.x,alien2.y,alien2.width,alien2.height);
   image(alien3Image,alien3.x,alien3.y,alien3.width,alien3.height);
+  image(gunImage,gun.x,gun.y,gun.width,gun.height);
 }
