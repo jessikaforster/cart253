@@ -93,6 +93,18 @@ Description of draw()
 function draw() {
   background(bg);
 
+if (mouseIsPressed === true) {
+  user.width = 100;
+} else {
+  user.width = 200;
+};
+
+if (mouseIsPressed === true) {
+  user.height = 100;
+} else {
+  user.height = 200;
+};
+
 // Aliens' movement
 alien1.x = alien1.x + alien1.vx;
 alien1.y = alien1.y + alien1.vy;
@@ -108,7 +120,7 @@ if (alien1.x > width) {
 
 if (alien1.y > height) {
     alien1.y = 0;
-    alien1.x = random(0,width);
+    alien1.x = random(width,0);
 }
 
 if (alien2.x > width) {
