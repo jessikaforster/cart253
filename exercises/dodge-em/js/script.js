@@ -40,7 +40,7 @@ let alien1 = {
   vy: 0,
   speed: 5,
   acceleration: 1.1,
-  size: 1.05,
+  size: 1.01,
 };
 
 let alien2 = {
@@ -52,7 +52,7 @@ let alien2 = {
   vy: 0,
   speed: 5,
   acceleration: 1.1,
-  size: 1.05,
+  size: 1.01,
 };
 
 let alien3 = {
@@ -64,7 +64,7 @@ let alien3 = {
   vy: 0,
   speed: 5,
   acceleration: 1.1,
-  size: 1.05,
+  size: 1.01,
 };
 /**
 Description of setup
@@ -74,12 +74,6 @@ function setup() {
 
   alien1.y = random(0,height);
   alien1.vx = alien1.speed;
-
-  alien1.x = random(0,width);
-  alien1.vy = alien1.speed;
-
-  alien2.y = random(0,height);
-  alien2.vx = alien2.speed;
 
   alien2.x = random(0,width);
   alien2.vy = alien2.speed;
@@ -112,17 +106,15 @@ if (mouseIsPressed === true) {
 };
 
 // Aliens/ growth
-alien1.width = alien1.width + alien1.size
-alien1.height = alien1.width + alien1.size
-alien2.width = alien2.width + alien2.size
-alien2.height = alien2.width + alien2.size
-alien3.width = alien3.width + alien1.size
-alien3.height = alien3.width + alien1.size
+// alien1.width = alien1.width + alien1.size
+// alien1.height = alien1.width + alien1.size
+// alien2.width = alien2.width + alien2.size
+// alien2.height = alien2.width + alien2.size
+// alien3.width = alien3.width + alien1.size
+// alien3.height = alien3.width + alien1.size
 
 // Aliens' movement
 alien1.x = alien1.x + (alien1.vx * alien1.acceleration);
-alien1.y = alien1.y + (alien1.vy * alien1.acceleration);
-alien2.x = alien2.x + (alien2.vx * alien2.acceleration);
 alien2.y = alien2.y + (alien2.vy * alien2.acceleration);
 alien3.x = alien3.x + (alien3.vx * alien3.acceleration);
 alien3.y = alien3.y + (alien3.vy * alien3.acceleration);
@@ -130,16 +122,6 @@ alien3.y = alien3.y + (alien3.vy * alien3.acceleration);
 if (alien1.x > width) {
     alien1.x = 0;
     alien1.y = random(0,height);
-}
-
-if (alien1.y > height) {
-    alien1.y = 0;
-    alien1.x = random(width,0);
-}
-
-if (alien2.x > width) {
-    alien2.x = 0;
-    alien2.y = random(0,height);
 }
 
 if (alien2.y > height) {
@@ -163,20 +145,20 @@ user.y = mouseY;
 
 // When gun catches alien
 let d1 = dist(user.x,user.y,alien1.x,alien1.y);
-  if (d1 < alien1.x/20 + user.x/20)
-  if (d1 < alien1.y/20 + user.y/20) {
+  if (d1 < alien1.x/15 + user.x/15)
+  if (d1 < alien1.y/15 + user.y/15) {
   noLoop();
   }
 
 let d2 = dist(user.x,user.y,alien2.x,alien2.y);
-  if (d2 < alien2.x/20 + user.x/20)
-  if (d2 < alien2.y/20 + user.y/20) {
+  if (d2 < alien2.x/15 + user.x/15)
+  if (d2 < alien2.y/15 + user.y/15) {
   noLoop();
   }
 
 let d3 = dist(user.x,user.y,alien3.x,alien3.y);
-  if (d3 < alien3.x/20 + user.x/20)
-  if (d3 < alien3.y/20 + user.y/20) {
+  if (d3 < alien3.x/15 + user.x/15)
+  if (d3 < alien3.y/15 + user.y/15) {
     noLoop();
   }
 
