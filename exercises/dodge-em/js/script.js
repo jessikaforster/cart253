@@ -34,31 +34,37 @@ let user = {
 let alien1 = {
   x: 0,
   y: 0,
-  width: 150,
-  height: 150,
+  width: 300,
+  height: 300,
   vx: 0,
   vy: 0,
   speed: 5,
+  acceleration: 1.1,
+  size: 1.05,
 };
 
 let alien2 = {
   x: 0,
   y: 0,
-  width: 150,
-  height: 150,
+  width: 300,
+  height: 300,
   vx: 0,
   vy: 0,
   speed: 5,
+  acceleration: 1.1,
+  size: 1.05,
 };
 
 let alien3 = {
   x: 0,
   y: 0,
-  width: 150,
-  height: 150,
+  width: 300,
+  height: 300,
   vx: 0,
   vy: 0,
   speed: 5,
+  acceleration: 1.1,
+  size: 1.05,
 };
 /**
 Description of setup
@@ -105,13 +111,21 @@ if (mouseIsPressed === true) {
   user.height = 200;
 };
 
+// Aliens/ growth
+alien1.width = alien1.width + alien1.size
+alien1.height = alien1.width + alien1.size
+alien2.width = alien2.width + alien2.size
+alien2.height = alien2.width + alien2.size
+alien3.width = alien3.width + alien1.size
+alien3.height = alien3.width + alien1.size
+
 // Aliens' movement
-alien1.x = alien1.x + alien1.vx;
-alien1.y = alien1.y + alien1.vy;
-alien2.x = alien2.x + alien2.vx;
-alien2.y = alien2.y + alien2.vy;
-alien3.x = alien3.x + alien3.vx;
-alien3.y = alien3.y + alien3.vy;
+alien1.x = alien1.x + (alien1.vx * alien1.acceleration);
+alien1.y = alien1.y + (alien1.vy * alien1.acceleration);
+alien2.x = alien2.x + (alien2.vx * alien2.acceleration);
+alien2.y = alien2.y + (alien2.vy * alien2.acceleration);
+alien3.x = alien3.x + (alien3.vx * alien3.acceleration);
+alien3.y = alien3.y + (alien3.vy * alien3.acceleration);
 
 if (alien1.x > width) {
     alien1.x = 0;
