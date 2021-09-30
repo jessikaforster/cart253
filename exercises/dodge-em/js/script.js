@@ -35,18 +35,18 @@ let user = {
 };
 
 let gun = {
-  x: 0,
-  y: 0,
+  x: 100,
+  y: 720,
   width: 200,
   height: 200,
   speed: 10,
 };
 
 let bullet = {
-  x: 0,
-  y: 720,
-  width: 100,
-  height: 100,
+  x: 1080,
+  y: 780,
+  width: 20,
+  height: 20,
   r: 255,
   g: 236,
   b: 89,
@@ -190,8 +190,8 @@ if (keyIsPressed === true) {
 
 // When user touches alien
 let d1 = dist(user.x,user.y,alien1.x,alien1.y);
-  if (d1 < alien1.x/7 + user.x/7)
-  if (d1 < alien1.y/7 + user.y/7) {
+  if (d1 < alien1.x/15 + user.x/15)
+  if (d1 < alien1.y/15 + user.y/15) {
   noLoop();
   }
 
@@ -202,27 +202,8 @@ let d2 = dist(user.x,user.y,alien2.x,alien2.y);
   }
 
 let d3 = dist(user.x,user.y,alien3.x,alien3.y);
-  if (d3 < alien3.x/7 + user.x/7)
-  if (d3 < alien3.y/7 + user.y/7) {
-    noLoop();
-  }
-
-  // When gun touches alien
-let d4 = dist(gun.x,gun.y,alien1.x,alien1.y);
-  if (d4 < alien1.x/7 + gun.x/7)
-  if (d4 < alien1.y/7 + gun.y/7) {
-    noLoop();
-  }
-
-let d5 = dist(gun.x,gun.y,alien2.x,alien2.y);
-  if (d5 < alien2.x/15 + gun.x/15)
-  if (d5 < alien2.y/15 + gun.y/15) {
-    noLoop();
-  }
-
-let d6 = dist(user.x,user.y,alien3.x,alien3.y);
-  if (d6 < alien3.x/7 + user.x/7)
-  if (d6 < alien3.y/7 + user.y/7) {
+  if (d3 < alien3.x/15 + user.x/15)
+  if (d3 < alien3.y/15 + user.y/15) {
     noLoop();
   }
 
