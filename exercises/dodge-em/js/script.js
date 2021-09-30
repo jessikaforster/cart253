@@ -7,7 +7,7 @@ and learning to display image(s).
 */
 
 /**
-Description of preload
+Loaded images and stated all variables
 */
 let userImage;
 let gunImage;
@@ -17,7 +17,6 @@ let alien3Image;
 let bg;
 
 function preload() {
-  //background = loadImage("assets/images/backdrop.png");
   userImage = loadImage("assets/images/user.png");
   alien1Image = loadImage("assets/images/alien1.png");
   alien2Image = loadImage("assets/images/alien2.png");
@@ -31,7 +30,6 @@ let user = {
   y: 0,
   width: 100,
   height: 100,
-  // acceleration: 1.5,
 };
 
 let gun = {
@@ -51,7 +49,7 @@ let bullet = {
   g: 236,
   b: 89,
   speed: 15,
-  acceleration: 10,
+  acceleration: 5,
 }
 
 let alien1 = {
@@ -63,7 +61,6 @@ let alien1 = {
   vy: 0,
   speed: 5,
   acceleration: 2,
-  size: 1.01,
 };
 
 let alien2 = {
@@ -75,7 +72,6 @@ let alien2 = {
   vy: 0,
   speed: 5,
   acceleration: 1.5,
-  size: 1.01,
 };
 
 let alien3 = {
@@ -87,10 +83,9 @@ let alien3 = {
   vy: 0,
   speed: 5,
   acceleration: 1.2,
-  size: 1.01,
 };
 /**
-Description of setup
+Set speed of aliens and bullet. Removed cursor from view.
 */
 function setup() {
   createCanvas(2560,1440);
@@ -108,18 +103,18 @@ function setup() {
   alien3.vy = alien3.speed;
 
   bullet.x = (0,width)
-  bullet.speed = bullet.speed + bullet.acceleration;
+  bullet.speed = bullet.speed * bullet.acceleration;
 
   noCursor();
 }
 
-
 /**
-Description of draw()
+Drew background. Added movement to all images and the ellipse. The game will stop when user touches an alien.
 */
 function draw() {
   background(bg);
 
+// User shrinks when mouse is pressed
 if (mouseIsPressed === true) {
   user.width = 200;
 } else {
@@ -132,19 +127,11 @@ if (mouseIsPressed === true) {
   user.height = 100;
 };
 
-// Aliens/ growth
-// alien1.width = alien1.width + alien1.size
-// alien1.height = alien1.width + alien1.size
-// alien2.width = alien2.width + alien2.size
-// alien2.height = alien2.width + alien2.size
-// alien3.width = alien3.width + alien1.size
-// alien3.height = alien3.width + alien1.size
-
 // Aliens' movement
-alien1.x = alien1.x + (alien1.vx + alien1.acceleration);
-alien2.y = alien2.y + (alien2.vy + alien2.acceleration);
-alien3.x = alien3.x + (alien3.vx + alien3.acceleration);
-alien3.y = alien3.y + (alien3.vy + alien3.acceleration);
+alien1.x = alien1.x + (alien1.vx * alien1.acceleration);
+alien2.y = alien2.y + (alien2.vy * alien2.acceleration);
+alien3.x = alien3.x + (alien3.vx * alien3.acceleration);
+alien3.y = alien3.y + (alien3.vy * alien3.acceleration);
 
 if (alien1.x > width) {
     alien1.x = 0;
@@ -178,10 +165,8 @@ if (mouseIsPressed === true) {
 } else {
   user.y = height/2;
 };
-//user.x = mouseX;
-//user.y = mouseY;
 
-// When gun is launched
+// When gun shoots
 if (keyIsPressed === true) {
   bullet.x = bullet.x + bullet.speed
 } else {
