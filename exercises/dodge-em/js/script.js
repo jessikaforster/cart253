@@ -31,8 +31,8 @@ let user = {
 let alien1 = {
   x: 0,
   y: 0,
-  width: 200,
-  height: 200,
+  width: 150,
+  height: 150,
   vx: 0,
   vy: 0,
   speed: 5,
@@ -41,8 +41,8 @@ let alien1 = {
 let alien2 = {
   x: 0,
   y: 0,
-  width: 200,
-  height: 200,
+  width: 150,
+  height: 150,
   vx: 0,
   vy: 0,
   speed: 5,
@@ -51,8 +51,8 @@ let alien2 = {
 let alien3 = {
   x: 0,
   y: 0,
-  width: 200,
-  height: 200,
+  width: 150,
+  height: 150,
   vx: 0,
   vy: 0,
   speed: 5,
@@ -66,12 +66,20 @@ function setup() {
   alien1.y = random(0,height);
   alien1.vx = alien1.speed;
 
+  alien1.x = random(0,width);
+  alien1.vy = alien1.speed;
+
   alien2.y = random(0,height);
   alien2.vx = alien2.speed;
+
+  alien2.x = random(0,width);
+  alien2.vy = alien2.speed;
 
   alien3.y = random(0,height);
   alien3.vx = alien3.speed;
 
+  alien3.x = random(0,width);
+  alien3.vy = alien3.speed;
   noCursor();
 }
 
@@ -95,14 +103,29 @@ if (alien1.x > width) {
     alien1.y = random(0,height);
 }
 
+if (alien1.y > height) {
+    alien1.y = 0;
+    alien1.x = random(0,width);
+}
+
 if (alien2.x > width) {
     alien2.x = 0;
     alien2.y = random(0,height);
 }
 
+if (alien2.y > height) {
+    alien2.y = 0;
+    alien2.x = random(0,width);
+}
+
 if (alien3.x > width) {
     alien3.x = 0;
     alien3.y = random(0,height);
+}
+
+if (alien3.y > height) {
+    alien3.y = 0;
+    alien3.x = random(0,width);
 }
 
 // User movement
