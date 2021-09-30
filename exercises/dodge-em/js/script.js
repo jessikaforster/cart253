@@ -133,10 +133,22 @@ user.x = mouseX;
 user.y = mouseY;
 
 // When gun catches alien
-let d = dist(user.x,user.y,alien1.x,alien1.y);
-  if (d < alien1.x/10 + user.x/10)
-  if (d < alien1.y/10 + user.y/10) {
+let d1 = dist(user.x,user.y,alien1.x,alien1.y);
+  if (d1 < alien1.x/10 + user.x/10)
+  if (d1 < alien1.y/10 + user.y/10) {
   noLoop();
+  }
+
+let d2 = dist(user.x,user.y,alien2.x,alien2.y);
+  if (d2 < alien2.x/10 + user.x/10)
+  if (d2 < alien2.y/10 + user.y/10) {
+  noLoop();
+  }
+
+let d3 = dist(user.x,user.y,alien3.x,alien3.y);
+  if (d3 < alien3.x/10 + user.x/10)
+  if (d3 < alien3.y/10 + user.y/10) {
+    noLoop();
   }
 
 // Display images
