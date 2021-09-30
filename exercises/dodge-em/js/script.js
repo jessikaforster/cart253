@@ -35,12 +35,24 @@ let user = {
 };
 
 let gun = {
-  x: 500,
-  y: 500,
+  x: 0,
+  y: 0,
   width: 200,
   height: 200,
-  speed: 5,
+  speed: 10,
 };
+
+let bullet = {
+  x: 0,
+  y: 720,
+  width: 100,
+  height: 100,
+  r: 255,
+  g: 236,
+  b: 89,
+  speed: 15,
+  acceleration: 10,
+}
 
 let alien1 = {
   x: 0,
@@ -94,6 +106,10 @@ function setup() {
 
   alien3.x = random(0,width);
   alien3.vy = alien3.speed;
+
+  bullet.x = (0,width)
+  bullet.speed = bullet.speed + bullet.acceleration;
+
   noCursor();
 }
 
@@ -165,11 +181,11 @@ if (mouseIsPressed === true) {
 //user.x = mouseX;
 //user.y = mouseY;
 
-// When gun touches alien
+// When gun is launched
 if (keyIsPressed === true) {
-  gun.x = gun.x + gun.speed
+  bullet.x = bullet.x + bullet.speed
 } else {
-  gun.x = 0;
+  bullet.x = 0;
 }
 
 // When user touches alien
@@ -190,6 +206,30 @@ let d3 = dist(user.x,user.y,alien3.x,alien3.y);
   if (d3 < alien3.y/7 + user.y/7) {
     noLoop();
   }
+
+  // When gun touches alien
+let d4 = dist(gun.x,gun.y,alien1.x,alien1.y);
+  if (d4 < alien1.x/7 + gun.x/7)
+  if (d4 < alien1.y/7 + gun.y/7) {
+    noLoop();
+  }
+
+let d5 = dist(gun.x,gun.y,alien2.x,alien2.y);
+  if (d5 < alien2.x/15 + gun.x/15)
+  if (d5 < alien2.y/15 + gun.y/15) {
+    noLoop();
+  }
+
+let d6 = dist(user.x,user.y,alien3.x,alien3.y);
+  if (d6 < alien3.x/7 + user.x/7)
+  if (d6 < alien3.y/7 + user.y/7) {
+    noLoop();
+  }
+
+// Display ellipse
+  ellipse(bullet.x,bullet.y,bullet.width,bullet.height);
+  fill(bullet.r,bullet.g,bullet.b);
+  noStroke();
 
 // Display images
   image(userImage,user.x,user.y,user.width,user.height);
