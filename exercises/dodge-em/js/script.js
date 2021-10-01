@@ -33,7 +33,7 @@ let user = {
 };
 
 let gun = {
-  x: 100,
+  x: -10,
   y: 720,
   width: 200,
   height: 200,
@@ -113,7 +113,7 @@ Drew background. Added movement to all images and the ellipse. The game will sto
 function draw() {
   background(bg);
 
-// User shrinks when mouse is pressed
+// User grows when mouse is pressed
 if (mouseIsPressed === true) {
   user.width = 200;
 } else {
@@ -191,7 +191,7 @@ let d3 = dist(user.x,user.y,alien3.x,alien3.y);
     noLoop();
   }
 
-// Display ellipse
+// Display bullet
   ellipse(bullet.x,bullet.y,bullet.width,bullet.height);
   fill(bullet.r,bullet.g,bullet.b);
   noStroke();
