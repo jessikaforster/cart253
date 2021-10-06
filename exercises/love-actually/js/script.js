@@ -24,10 +24,13 @@ function preload() {
 }
 
 let user = {
-  x: 0,
-  y: 0,
-  width: 150,
-  height: 150,
+  x: 250,
+  y: 250,
+  width: 170,
+  height: 170,
+  vx: 0,
+  vy: 0,
+  speed: 3,
 };
 
 let frog = {
@@ -98,6 +101,29 @@ else if (state === `sadness`) {
   sadness();
   }
 }
+
+function handleInput() {
+  if (keyIsDown(UP_ARROW)) {
+    user.vy = -user.speed;
+  }
+  else if (keyIsDown(DOWN_ARROW)) {
+    user.vy = user.speed;
+}
+else {
+  user.vy = 0;
+}
+
+if (keyIsDown(LEFT_ARROW)) {
+  user.vx = -user.speed;
+}
+else if (keyIsDown(RIGHT_ARROW)) {
+  user.vx = user.speed;
+}
+else {
+user.vx = 0;
+  }
+}
+
   function title() {
       push();
       displayTitle();
@@ -112,6 +138,8 @@ else if (state === `sadness`) {
 
     function simulation() {
       move();
+      handleInput();
+      userMovement();
       //setupCircle();
       display();
     }
@@ -136,9 +164,19 @@ else if (state === `sadness`) {
       pop();
     }
 
+function userMovement() {
+  user.x = user.x + user.vx;
+  user.y = user.y + user.vy;
+}
 
 function move() {
   circle1.x = circle1.x + circle1.vx;
+
+
+if (circle1.x > width) {
+  circle1.x = 0;
+  circle1.y = random(0,height);
+  }
 }
 
 // Display images
