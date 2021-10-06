@@ -164,5 +164,9 @@ function displayPoster() {
 image(ycposterImage,ycposter.x,ycposter.y,ycposter.width,ycposter.height);
 }
 
-
+function mousePressed() {
+  if (state === `title`) {
+    state = `simulation`;
+  }
+}
 }
