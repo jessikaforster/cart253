@@ -77,12 +77,6 @@ Description of setup
 */
 function setup() {
   createCanvas(500,500);
-  setupCircle();
-}
-
-function setupCircle () {
-  circle1.y = height/2
-  circle1.x = circle1.x
 }
 
 /**
@@ -91,15 +85,84 @@ Description of draw()
 function draw() {
   background(0);
 
-function move();
+if (state === `title`) {
+  title();
+}
+else if (state === `simulation`) {
+  simulation();
+}
+else if (state === `love`) {
+  love();
+}
+else if (state === `sadness`) {
+  sadness();
+  }
 
+  function title() {
+      push();
+      displayTitle();
+      textSize(64);
+      fill(200,100,100);
+      textAlign(CENTER,CENTER);
+      text(`LOVE?`,width/2,height/2);
+      pop();
+    }
+
+    function simulation() {
+      move();
+      //setupCircle();
+      display();
+    }
+
+    function love() {
+      push();
+      displayLove();
+      textSize(64);
+      fill(255,150,150);
+      textAlign(CENTER,CENTER);
+      text(`LOVE!`,width/2,height/2);
+      pop();
+    }
+
+    function sadness() {
+      push();
+      displaySadness();
+      textSize(64);
+      fill(150,150,255);
+      textAlign(CENTER,CENTER);
+      text(`:(`,width/2,height/2);
+      pop();
+    }
+
+
+function move() {
+  circle1.x = circle1.x + circle1.vx;
+}
+
+// Display images
+
+function display() {
 ellipse(circle1.x,circle1.y,circle1.size);
-fill(155,155,155);
+fill(circle1.r,circle1.g,circle1.b);
+noStroke();
 image(userImage,user.x,user.y,user.width,user.height);
-image(frogImage,frog.x,frog.y,frog.width,frog.height);
-image(sadcellImage,sadcell.x,sadcell.y,sadcell.width,sadcell.height);
-image(happycellImage,happycell.x,happycell.y,happycell.width,happycell.height);
+}
+
+function displayTitle() {
+  image(frogImage,frog.x,frog.y,frog.width,frog.height);
+}
+
+function displaySadness() {
+  image(sadcellImage,sadcell.x,sadcell.y,sadcell.width,sadcell.height);
+}
+
+function displayLove() {
+  image(happycellImage,happycell.x,happycell.y,happycell.width,happycell.height);
+}
+
+function displayPoster() {
 image(ycposterImage,ycposter.x,ycposter.y,ycposter.width,ycposter.height);
+}
 
 
 }
