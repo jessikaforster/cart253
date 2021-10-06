@@ -65,9 +65,9 @@ let ycposter = {
 let circle1 = {
   x: 0,
   y: 0,
-  r: 255,
-  g: 72,
-  b: 0,
+  r: 155,
+  g: 155,
+  b: 155,
   size: 100,
   vx: 5,
   vy: 0,
@@ -81,7 +81,7 @@ let door = {
   g: 143,
   b: 227,
   size: 200,
-}
+};
 
 let state = `title`; // Can be: title, simulation, love, sadness
 
@@ -101,13 +101,13 @@ function draw() {
 // Identifying all states
 if (state === `title`) {
   title();
-}
+  }
 else if (state === `simulation`) {
   simulation();
-}
+  }
 else if (state === `love`) {
   love();
-}
+  }
 else if (state === `sadness`) {
   sadness();
   }
@@ -123,71 +123,71 @@ function handleInput() {
   }
   else if (keyIsDown(DOWN_ARROW)) {
     user.vy = user.speed;
-}
-else {
-  user.vy = 0;
-}
+  }
+  else {
+    user.vy = 0;
+  }
 
 if (keyIsDown(LEFT_ARROW)) {
   user.vx = -user.speed;
-}
-else if (keyIsDown(RIGHT_ARROW)) {
-  user.vx = user.speed;
-}
-else {
-user.vx = 0;
+  }
+  else if (keyIsDown(RIGHT_ARROW)) {
+    user.vx = user.speed;
+  }
+  else {
+  user.vx = 0;
   }
 }
 
 // Title state
-  function title() {
-      push();
-      displayTitle();
-      textSize(30);
-      textFont(`Roboto Mono`);
-      fill(255,143,227);
-      textAlign(CENTER,CENTER);
-      text(`Make it into Yumi’s ♡`,width/2,70);
-      text(`without getting caught`,width/2,100);
-      pop();
-    }
+function title() {
+  push();
+  displayTitle();
+  textSize(30);
+  textFont(`Roboto Mono`);
+  fill(255,143,227);
+  textAlign(CENTER,CENTER);
+  text(`Make it into Yumi’s ♡`,width/2,70);
+  text(`without getting caught`,width/2,100);
+  pop();
+}
 
 // Simulation state
-    function simulation() {
-      move();
-      handleInput();
-      userMovement();
-      checkExit();
-      checkOverlap();
-      display();
+function simulation() {
+  move();
+  handleInput();
+  userMovement();
+  checkExit();
+  checkOverlap();
+  display();
     }
 
 // Love state (when character gets to other side safely)
-    function love() {
-      push();
-      displayLove();
-      textFont(`Roboto Mono`);
-      textSize(30);
-      fill(255,143,227);
-      textAlign(CENTER,CENTER);
-      text(`You made it into Yumi's ♡`,width/2,40);
-      text(`I hope your love lasts`,width/2,70);
-      text(`a lifetime!`,width/2,100);
-      pop();
-    }
+function love() {
+  push();
+  displayLove();
+  textFont(`Roboto Mono`);
+  textSize(30);
+  fill(255,143,227);
+  textAlign(CENTER,CENTER);
+  text(`You made it into Yumi's ♡`,width/2,40);
+  text(`I hope your love lasts`,width/2,70);
+  text(`a lifetime!`,width/2,100);
+  pop();
+}
 
 // Sadness state (when character gets hit by circle)
-    function sadness() {
-      push();
-      displaySadness();
-      textFont(`Roboto Mono`);
-      textSize(30);
-      fill(0,72,255);
-      textAlign(CENTER,CENTER);
-      text(`You got caught...`,width/2,70);
-      text(`Better luck next time!`,width/2,100);
-      pop();
-    }
+function sadness() {
+  push();
+  displaySadness();
+  textFont(`Roboto Mono`);
+  textSize(30);
+  fill(0,72,255);
+  textAlign(CENTER,CENTER);
+  text(`You got caught...`,width/2,70);
+  text(`Better luck next time!`,width/2,100);
+  pop();
+}
 
 // Easter egg state after you win or lose game
 function poster() {
@@ -214,14 +214,14 @@ function checkOverlap () {
       state = `sadness`;
   }
 
-  function checkExit () {
-    let d3 = dist(user.x,user.y,door.x,door.y);
-    if (d3 < user.width/10 + door.size/10)
-      state = `love`;
+function checkExit () {
+  let d3 = dist(user.x,user.y,door.x,door.y);
+  if (d3 < user.width/10 + door.size/10)
+    state = `love`;
 
-    let d4 = dist(user.x,user.y,door.x,door.y);
-    if (d4 < user.height/10 + door.size/10)
-        state = `love`;
+  let d4 = dist(user.x,user.y,door.x,door.y);
+  if (d4 < user.height/10 + door.size/10)
+      state = `love`;
   }
 
 // Movement of the user and circle
@@ -242,15 +242,15 @@ if (circle1.x > width) {
 
 // Shapes that will be displayed in simulation state
 function display() {
-push();
-fill(door.r,door.g,door.b);
-rect(door.x,door.y,door.size);
-pop();
-ellipse(circle1.x,circle1.y,circle1.size);
-fill(circle1.r,circle1.g,circle1.b);
-noStroke();
-image(userImage,user.x,user.y,user.width,user.height);
-}
+  push();
+  fill(door.r,door.g,door.b);
+  rect(door.x,door.y,door.size);
+  pop();
+  ellipse(circle1.x,circle1.y,circle1.size);
+  fill(circle1.r,circle1.g,circle1.b);
+  noStroke();
+  image(userImage,user.x,user.y,user.width,user.height);
+  }
 
 // Frog image in title state
 function displayTitle() {
