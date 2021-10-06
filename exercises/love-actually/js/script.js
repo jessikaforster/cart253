@@ -24,8 +24,8 @@ function preload() {
 }
 
 let user = {
-  x: 250,
-  y: 250,
+  x: 170,
+  y: 400,
   width: 170,
   height: 170,
   vx: 0,
@@ -73,7 +73,7 @@ let circle1 = {
   speed: 3,
 };
 
-let state = `title`; // Can be: title, simulation, love, sadness
+let state = `simulation`; // Can be: title, simulation, love, sadness
 
 /**
 Description of setup
@@ -140,6 +140,7 @@ user.vx = 0;
       move();
       handleInput();
       userMovement();
+      checkOverlap();
       //setupCircle();
       display();
     }
@@ -163,6 +164,17 @@ user.vx = 0;
       text(`:(`,width/2,height/2);
       pop();
     }
+
+function checkOverlap () {
+  let d1 = dist(user.x,user.y,circle1.x,circle1.y);
+  if (d1 < user.width/15 + circle1.size/15)
+    state = `sadness`;
+
+  let d2 = dist(user.x,user.y,circle1.x,circle1.y);
+  if (d2 < user.height/15 + circle1.size/15)
+      state = `sadness`;
+  }
+
 
 function userMovement() {
   user.x = user.x + user.vx;
