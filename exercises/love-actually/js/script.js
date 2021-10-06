@@ -55,10 +55,10 @@ let sadcell = {
 };
 
 let ycposter = {
-  x: 160,
-  y: 120,
-  width: 179,
-  height: 256,
+  x: 145,
+  y: 30,
+  width: 214.8,
+  height: 307.2,
 };
 
 let circle1 = {
@@ -82,7 +82,7 @@ let door = {
   size: 200,
 }
 
-let state = `title`; // Can be: title, simulation, love, sadness
+let state = `poster`; // Can be: title, simulation, love, sadness
 
 /**
 Description of setup
@@ -113,8 +113,6 @@ else if (state === `poster`) {
   poster();
   }
 }
-
-
 
 function handleInput() {
   if (keyIsDown(UP_ARROW)) {
@@ -171,7 +169,6 @@ user.vx = 0;
       text(`I hope your love lasts`,width/2,70);
       text(`a lifetime!`,width/2,100);
       pop();
-      showPoster();
     }
 
     function sadness() {
@@ -184,11 +181,19 @@ user.vx = 0;
       text(`You got caught...`,width/2,70);
       text(`Better luck next time!`,width/2,100);
       pop();
-      showPoster();
     }
 
 function poster() {
   displayPoster();
+  push();
+  textFont(`Roboto Mono`);
+  textSize(30);
+  fill(255);
+  textAlign(CENTER,CENTER);
+  text(`Watch Yumi's Cells every`,width/2,385);
+  text(`Friday & Saturday @`,width/2,415);
+  text(`10:50pm on tvN!`,width/2,445);
+  pop();
 }
 
 function checkOverlap () {
@@ -252,6 +257,18 @@ function displayLove() {
 
 function displayPoster() {
 image(ycposterImage,ycposter.x,ycposter.y,ycposter.width,ycposter.height);
+}
+
+function keyPressed() {
+  if (state === `sadness`) {
+    state = `poster`;
+  }
+}
+
+function keyPressed() {
+  if (state === `love`) {
+    state = `poster`;
+  }
 }
 
 function mousePressed() {
