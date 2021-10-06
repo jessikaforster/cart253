@@ -74,7 +74,7 @@ let circle1 = {
 };
 
 let door = {
-  x: 150,
+  x: 158,
   y: -190,
   r: 255,
   g: 143,
@@ -82,7 +82,7 @@ let door = {
   size: 200,
 }
 
-let state = `love`; // Can be: title, simulation, love, sadness
+let state = `title`; // Can be: title, simulation, love, sadness
 
 /**
 Description of setup
@@ -109,7 +109,12 @@ else if (state === `love`) {
 else if (state === `sadness`) {
   sadness();
   }
+else if (state === `poster`) {
+  poster();
+  }
 }
+
+
 
 function handleInput() {
   if (keyIsDown(UP_ARROW)) {
@@ -160,12 +165,13 @@ user.vx = 0;
       displayLove();
       textFont(`Roboto Mono`);
       textSize(30);
-      fill(255,150,150);
+      fill(255,143,227);
       textAlign(CENTER,CENTER);
       text(`You made it into Yumi's ♡`,width/2,40);
       text(`I hope your love lasts`,width/2,70);
       text(`a lifetime!`,width/2,100);
       pop();
+      showPoster();
     }
 
     function sadness() {
@@ -173,20 +179,25 @@ user.vx = 0;
       displaySadness();
       textFont(`Roboto Mono`);
       textSize(30);
-      fill(150,150,255);
+      fill(0,72,255);
       textAlign(CENTER,CENTER);
       text(`You got caught...`,width/2,70);
       text(`Better luck next time!`,width/2,100);
       pop();
+      showPoster();
     }
+
+function poster() {
+  displayPoster();
+}
 
 function checkOverlap () {
   let d1 = dist(user.x,user.y,circle1.x,circle1.y);
-  if (d1 < user.width/15 + circle1.size/15)
+  if (d1 < user.width/8 + circle1.size/8)
     state = `sadness`;
 
   let d2 = dist(user.x,user.y,circle1.x,circle1.y);
-  if (d2 < user.height/15 + circle1.size/15)
+  if (d2 < user.height/8 + circle1.size/8)
       state = `sadness`;
   }
 
