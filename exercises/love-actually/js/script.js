@@ -70,14 +70,20 @@ let circle1 = {
   speed: 3,
 };
 
+let state = `title`; // Can be: title, simulation, love, sadness
 
 /**
 Description of setup
 */
 function setup() {
   createCanvas(500,500);
+  setupCircle();
 }
 
+function setupCircle () {
+  circle1.y = height/2
+  circle1.x = circle1.x
+}
 
 /**
 Description of draw()
@@ -85,6 +91,10 @@ Description of draw()
 function draw() {
   background(0);
 
+function move();
+
+ellipse(circle1.x,circle1.y,circle1.size);
+fill(155,155,155);
 image(userImage,user.x,user.y,user.width,user.height);
 image(frogImage,frog.x,frog.y,frog.width,frog.height);
 image(sadcellImage,sadcell.x,sadcell.y,sadcell.width,sadcell.height);
