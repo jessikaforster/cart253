@@ -97,14 +97,16 @@ else if (state === `love`) {
 else if (state === `sadness`) {
   sadness();
   }
-
+}
   function title() {
       push();
       displayTitle();
-      textSize(64);
-      fill(200,100,100);
+      textSize(30);
+      textFont(`Roboto Mono`);
+      fill(255,143,227);
       textAlign(CENTER,CENTER);
-      text(`LOVE?`,width/2,height/2);
+      text(`Make it into Yumi’s ♡`,width/2,70);
+      text(`without getting caught`,width/2,100);
       pop();
     }
 
@@ -168,5 +170,4 @@ function mousePressed() {
   if (state === `title`) {
     state = `simulation`;
   }
-}
 }
