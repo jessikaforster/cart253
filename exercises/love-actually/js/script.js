@@ -175,10 +175,6 @@ user.vx = 0;
       pop();
     }
 
-function checkExit () {
-
-}
-
 function checkOverlap () {
   let d1 = dist(user.x,user.y,circle1.x,circle1.y);
   if (d1 < user.width/15 + circle1.size/15)
@@ -189,6 +185,15 @@ function checkOverlap () {
       state = `sadness`;
   }
 
+  function checkExit () {
+    let d3 = dist(user.x,user.y,door.x,door.y);
+    if (d3 < user.width/10 + door.size/10)
+      state = `love`;
+
+    let d4 = dist(user.x,user.y,door.x,door.y);
+    if (d4 < user.height/10 + door.size/10)
+        state = `love`;
+  }
 
 function userMovement() {
   user.x = user.x + user.vx;
