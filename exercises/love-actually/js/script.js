@@ -7,6 +7,14 @@ at least one extra function must be added and at least one extra ending is requi
 */
 
 /**
+Description of preload
+*/
+function preload() {
+
+}
+
+
+/**
 Description of setup
 */
 function setup() {
