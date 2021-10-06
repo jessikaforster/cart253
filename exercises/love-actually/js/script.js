@@ -64,9 +64,9 @@ let ycposter = {
 let circle1 = {
   x: 0,
   y: 0,
-  r: 133,
-  g: 133,
-  b: 133,
+  r: 255,
+  g: 72,
+  b: 0,
   size: 100,
   vx: 5,
   vy: 0,
@@ -82,7 +82,7 @@ let door = {
   size: 200,
 }
 
-let state = `poster`; // Can be: title, simulation, love, sadness
+let state = `title`; // Can be: title, simulation, love, sadness
 
 /**
 Description of setup
@@ -154,7 +154,6 @@ user.vx = 0;
       userMovement();
       checkExit();
       checkOverlap();
-      //setupCircle();
       display();
     }
 
@@ -198,11 +197,11 @@ function poster() {
 
 function checkOverlap () {
   let d1 = dist(user.x,user.y,circle1.x,circle1.y);
-  if (d1 < user.width/8 + circle1.size/8)
+  if (d1 < user.width/6 + circle1.size/6)
     state = `sadness`;
 
   let d2 = dist(user.x,user.y,circle1.x,circle1.y);
-  if (d2 < user.height/8 + circle1.size/8)
+  if (d2 < user.height/6 + circle1.size/6)
       state = `sadness`;
   }
 
@@ -239,7 +238,6 @@ rect(door.x,door.y,door.size);
 pop();
 ellipse(circle1.x,circle1.y,circle1.size);
 fill(circle1.r,circle1.g,circle1.b);
-noStroke();
 image(userImage,user.x,user.y,user.width,user.height);
 }
 
@@ -263,9 +261,6 @@ function keyPressed() {
   if (state === `sadness`) {
     state = `poster`;
   }
-}
-
-function keyPressed() {
   if (state === `love`) {
     state = `poster`;
   }
