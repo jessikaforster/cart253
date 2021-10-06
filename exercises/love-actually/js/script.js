@@ -23,6 +23,7 @@ function preload() {
   ycposterImage = loadImage("assets/images/ycposter.png");
 }
 
+// Identifying variables
 let user = {
   x: 170,
   y: 400,
@@ -85,18 +86,19 @@ let door = {
 let state = `title`; // Can be: title, simulation, love, sadness
 
 /**
-Description of setup
+Creating square canvas
 */
 function setup() {
   createCanvas(500,500);
 }
 
 /**
-Description of draw()
+Filling canvas with black
 */
 function draw() {
   background(0);
 
+// Identifying all states
 if (state === `title`) {
   title();
 }
@@ -114,6 +116,7 @@ else if (state === `poster`) {
   }
 }
 
+// Control of user using arrow keys
 function handleInput() {
   if (keyIsDown(UP_ARROW)) {
     user.vy = -user.speed;
@@ -136,6 +139,7 @@ user.vx = 0;
   }
 }
 
+// Title state
   function title() {
       push();
       displayTitle();
@@ -148,6 +152,7 @@ user.vx = 0;
       pop();
     }
 
+// Simulation state
     function simulation() {
       move();
       handleInput();
@@ -157,6 +162,7 @@ user.vx = 0;
       display();
     }
 
+// Love state (when character gets to other side safely)
     function love() {
       push();
       displayLove();
@@ -170,6 +176,7 @@ user.vx = 0;
       pop();
     }
 
+// Sadness state (when character gets hit by circle)
     function sadness() {
       push();
       displaySadness();
@@ -182,6 +189,7 @@ user.vx = 0;
       pop();
     }
 
+// Easter egg state after you win or lose game
 function poster() {
   displayPoster();
   push();
@@ -195,6 +203,7 @@ function poster() {
   pop();
 }
 
+// Depending on the user, one of the following states will appear
 function checkOverlap () {
   let d1 = dist(user.x,user.y,circle1.x,circle1.y);
   if (d1 < user.width/6 + circle1.size/6)
@@ -215,6 +224,7 @@ function checkOverlap () {
         state = `love`;
   }
 
+// Movement of the user and circle
 function userMovement() {
   user.x = user.x + user.vx;
   user.y = user.y + user.vy;
@@ -230,7 +240,7 @@ if (circle1.x > width) {
   }
 }
 
-// Display images
+// Shapes that will be displayed in simulation state
 function display() {
 push();
 fill(door.r,door.g,door.b);
@@ -238,25 +248,31 @@ rect(door.x,door.y,door.size);
 pop();
 ellipse(circle1.x,circle1.y,circle1.size);
 fill(circle1.r,circle1.g,circle1.b);
+noStroke();
 image(userImage,user.x,user.y,user.width,user.height);
 }
 
+// Frog image in title state
 function displayTitle() {
   image(frogImage,frog.x,frog.y,frog.width,frog.height);
 }
 
+// Image in sadness state
 function displaySadness() {
   image(sadcellImage,sadcell.x,sadcell.y,sadcell.width,sadcell.height);
 }
 
+// Image in love state
 function displayLove() {
   image(happycellImage,happycell.x,happycell.y,happycell.width,happycell.height);
 }
 
+// Image in poster state
 function displayPoster() {
 image(ycposterImage,ycposter.x,ycposter.y,ycposter.width,ycposter.height);
 }
 
+// Key to be pressed for Easter egg state to appear
 function keyPressed() {
   if (state === `sadness`) {
     state = `poster`;
@@ -266,6 +282,7 @@ function keyPressed() {
   }
 }
 
+// Clicking at the title state will begin the game
 function mousePressed() {
   if (state === `title`) {
     state = `simulation`;
