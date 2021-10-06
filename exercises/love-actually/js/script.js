@@ -73,6 +73,15 @@ let circle1 = {
   speed: 3,
 };
 
+let door = {
+  x: 150,
+  y: -190,
+  r: 255,
+  g: 143,
+  b: 227,
+  size: 200,
+}
+
 let state = `simulation`; // Can be: title, simulation, love, sadness
 
 /**
@@ -140,6 +149,7 @@ user.vx = 0;
       move();
       handleInput();
       userMovement();
+      checkExit();
       checkOverlap();
       //setupCircle();
       display();
@@ -164,6 +174,10 @@ user.vx = 0;
       text(`:(`,width/2,height/2);
       pop();
     }
+
+function checkExit () {
+
+}
 
 function checkOverlap () {
   let d1 = dist(user.x,user.y,circle1.x,circle1.y);
@@ -192,8 +206,11 @@ if (circle1.x > width) {
 }
 
 // Display images
-
 function display() {
+push();
+fill(door.r,door.g,door.b);
+rect(door.x,door.y,door.size);
+pop();
 ellipse(circle1.x,circle1.y,circle1.size);
 fill(circle1.r,circle1.g,circle1.b);
 noStroke();
