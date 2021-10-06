@@ -82,7 +82,7 @@ let door = {
   size: 200,
 }
 
-let state = `simulation`; // Can be: title, simulation, love, sadness
+let state = `love`; // Can be: title, simulation, love, sadness
 
 /**
 Description of setup
@@ -158,20 +158,25 @@ user.vx = 0;
     function love() {
       push();
       displayLove();
-      textSize(64);
+      textFont(`Roboto Mono`);
+      textSize(30);
       fill(255,150,150);
       textAlign(CENTER,CENTER);
-      text(`LOVE!`,width/2,height/2);
+      text(`You made it into Yumi's ♡`,width/2,40);
+      text(`I hope your love lasts`,width/2,70);
+      text(`a lifetime!`,width/2,100);
       pop();
     }
 
     function sadness() {
       push();
       displaySadness();
-      textSize(64);
+      textFont(`Roboto Mono`);
+      textSize(30);
       fill(150,150,255);
       textAlign(CENTER,CENTER);
-      text(`:(`,width/2,height/2);
+      text(`You got caught...`,width/2,70);
+      text(`Better luck next time!`,width/2,100);
       pop();
     }
 
