@@ -160,7 +160,7 @@ function simulation() {
   checkExit();
   checkOverlap();
   display();
-    }
+}
 
 // Love state (when character gets to other side safely)
 function love() {
@@ -211,7 +211,7 @@ function checkOverlap () {
 
   let d2 = dist(user.x,user.y,circle1.x,circle1.y);
   if (d2 < user.height/6 + circle1.size/6)
-      state = `sadness`;
+    state = `sadness`;
   }
 
 function checkExit () {
@@ -221,7 +221,7 @@ function checkExit () {
 
   let d4 = dist(user.x,user.y,door.x,door.y);
   if (d4 < user.height/10 + door.size/10)
-      state = `love`;
+    state = `love`;
   }
 
 // Movement of the user and circle
@@ -240,7 +240,7 @@ if (circle1.x > width) {
   }
 }
 
-// Shapes that will be displayed in simulation state
+// Shapes and user image that will be displayed in simulation state
 function display() {
   push();
   fill(door.r,door.g,door.b);
@@ -289,7 +289,7 @@ function displayLove() {
 
 // Image in poster state
 function displayPoster() {
-image(ycposterImage,ycposter.x,ycposter.y,ycposter.width,ycposter.height);
+  image(ycposterImage,ycposter.x,ycposter.y,ycposter.width,ycposter.height);
 }
 
 // Clicking at the title state will begin the game
