@@ -199,7 +199,7 @@ function poster() {
   textAlign(CENTER,CENTER);
   text(`Watch Yumi's Cells every`,width/2,385);
   text(`Friday & Saturday @`,width/2,415);
-  text(`10:50pm on tvN!`,width/2,445);
+  text(`10:50pm KST on tvN!`,width/2,445);
   pop();
 }
 
@@ -257,29 +257,39 @@ function displayTitle() {
   image(frogImage,frog.x,frog.y,frog.width,frog.height);
 }
 
-// Image in sadness state
+// Image in sadness state and trigger poster state when mouse is over character
 function displaySadness() {
   image(sadcellImage,sadcell.x,sadcell.y,sadcell.width,sadcell.height);
+
+  let d5 = dist(mouseX,mouseY,sadcell.x,sadcell.y);
+  if (d5 < sadcell.width / 2) {
+    state = `poster`
+  }
+
+  let d6 = dist(mouseX,mouseY,sadcell.x,sadcell.y);
+  if (d6 < sadcell.height / 2) {
+    state = `poster`
+  }
 }
 
-// Image in love state
+// Image in love state and trigger poster state when mouse is over character
 function displayLove() {
   image(happycellImage,happycell.x,happycell.y,happycell.width,happycell.height);
+
+  let d7 = dist(mouseX,mouseY,happycell.x,happycell.y);
+  if (d7 < happycell.width / 2) {
+    state = `poster`
+  }
+
+  let d8 = dist(mouseX,mouseY,happycell.x,happycell.y);
+  if (d8 < happycell.height / 2) {
+    state = `poster`
+  }
 }
 
 // Image in poster state
 function displayPoster() {
 image(ycposterImage,ycposter.x,ycposter.y,ycposter.width,ycposter.height);
-}
-
-// Key to be pressed for Easter egg state to appear
-function keyPressed() {
-  if (state === `sadness`) {
-    state = `poster`;
-  }
-  if (state === `love`) {
-    state = `poster`;
-  }
 }
 
 // Clicking at the title state will begin the game
