@@ -250,7 +250,7 @@ function display() {
   fill(circle1.r,circle1.g,circle1.b);
   noStroke();
   image(userImage,user.x,user.y,user.width,user.height);
-  }
+}
 
 // Frog image in title state
 function displayTitle() {
