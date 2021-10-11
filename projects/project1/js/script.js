@@ -18,9 +18,9 @@ let circle = {
   speed: -3,
   speedX: 0,
   speedY: 0,
-  vx: 0,
-  vy: -2,
-  gravity: 1,
+  vx: 5,
+  vy: -3,
+  gravity: 0.5,
   gravitySpeed: 0,
 }
 
@@ -46,19 +46,25 @@ Description of draw()
 function draw() {
 background(0);
 displayCircle();
-circleGravity();
 circleMovement();
+handleInput();
 }
 
-function circleGravity() {
-  circle.gravitySpeed += circle.gravity;
-  circle.x += circle.speedX;
-  circle.y += circle.speedY + circle.gravitySpeed;
+function handleInput() {
+  if (keyIsDown(67)) {
+    circle.y = circle.y - circle.vy;
+  }
+  else {
+    circle.x += circle.vx;
+    circle.y += circle.vy;
+    circle.vy += circle.gravity;
+  }
 }
 
 function circleMovement() {
-  circle.speed += circle.vy;
-  circle.y += circle.speed - circle.vy
+       circle.x += circle.vx;
+       circle.y += circle.vy;
+       circle.vy += circle.gravity;
 }
 
 function displayCircle() {
