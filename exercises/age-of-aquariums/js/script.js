@@ -149,6 +149,32 @@ if (change1 < 0.05) {
       candy.vx = random(-candy.speed, candy.speed);
       candy.vy = random(-candy.speed, candy.speed);
   }
+
+  // Move the items
+  apple.x = apple.x + apple.vx;
+  apple.y = apple.y + apple.vy;
+
+  brush.x = brush.x + brush.vx;
+  brush.y = brush.y + brush.vy;
+
+lollipop.x =lollipop.x +lollipop.vx;
+lollipop.y =lollipop.y +lollipop.vy;
+
+  candy.x = candy.x + candy.vx;
+  candy.y = candy.y + candy.vy;
+
+  // Constrain the items to the canvas
+  apple.x = constrain(apple.x, 0, width);
+  apple.y = constrain(apple.y, 0, height);
+
+  brush.x = constrain(brush.x, 0, width);
+  brush.y = constrain(brush.y, 0, height);
+
+  lollipop.x = constrain(lollipop.x, 0, width);
+  lollipop.y = constrain(lollipop.y, 0, height);
+
+  candy.x = constrain(candy.x, 0, width);
+  candy.y = constrain(candy.y, 0, height);
 }
 
 function displayItems() {
