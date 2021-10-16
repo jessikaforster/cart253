@@ -18,6 +18,7 @@ let healthImage;
 let hobbyImage;
 let covidImage;
 let schoolImage;
+let startImage;
 let bg;
 
 function preload() {
@@ -26,6 +27,7 @@ function preload() {
   hobbyImage = loadImage("assets/images/hobbies.png");
   covidImage = loadImage("assets/images/covid.png");
   schoolImage = loadImage("assets/images/school.png");
+  startImage = loadImage("assets/images/start.png");
   bg = loadImage("assets/images/background.gif");
 }
 
@@ -34,6 +36,8 @@ let family = {
   y: 0,
   width: 100,
   height: 100,
+  vy: 0,
+  vx: 0,
 };
 
 let health = {
@@ -41,6 +45,8 @@ let health = {
   y: 0,
   width: 100,
   height: 100,
+  vy: 0,
+  vx: 0,
 };
 
 let hobby = {
@@ -48,6 +54,8 @@ let hobby = {
   y: 0,
   width: 100,
   height: 100,
+  vy: 0,
+  vx: 0,
 };
 
 let covid = {
@@ -55,6 +63,8 @@ let covid = {
   y: 0,
   width: 100,
   height: 100,
+  vy: 0,
+  vx: 0,
 };
 
 let school = {
@@ -62,23 +72,18 @@ let school = {
   y: 0,
   width: 100,
   height: 100,
+  vy: 0,
+  vx: 0,
 };
 
-let circle = {
+let start = {
   x: 0,
   y: 0,
-  size: 100,
-  r: 155,
-  g: 70,
-  b: 55,
-  speed: -3,
-  speedX: 0,
-  speedY: 0,
-  vx: 5,
-  vy: -3,
-  gravity: 0.5,
-  gravitySpeed: 0,
-}
+  width: 100,
+  height: 100,
+};
+
+let state = `title`; // Can be: title, simulation, love, sadness
 
 /**
 Description of setup
@@ -93,10 +98,36 @@ Description of draw()
 */
 function draw() {
 background(bg);
-displayCircle();
 circleMovement();
 handleInput();
 displayItems();
+
+// Identifying all states
+if (state === `title`) {
+  title();
+  }
+else if (state === `simulation`) {
+  simulation();
+  }
+else if (state === `family`) {
+  family();
+  }
+else if (state === `health`) {
+  health();
+  }
+else if (state === `hobby`) {
+  hobby();
+  }
+else if (state === `covid`) {
+  covid();
+  }
+else if (state === `school`) {
+  school();
+  }
+}
+
+function title() {
+  displayStart();
 }
 
 function handleInput() {
@@ -116,16 +147,14 @@ function circleMovement() {
        circle.vy += circle.gravity;
 }
 
+function displayStart() {
+  image(startImage,start.x,start.y,windowWidth,windowHeight);
+}
+
 function displayItems() {
   image(familyImage,family.x,family.y,family.width,family.height);
   image(healthImage,health.x,health.y,health.width,health.height);
   image(hobbyImage,hobby.x,hobby.y,hobby.width,hobby.height);
   image(covidImage,covid.x,covid.y,covid.width,covid.height);
   image(schoolImage,school.x,school.y,school.width,school.height);
-}
-
-function displayCircle() {
-ellipse(circle.x,circle.y,circle.size,circle.r,circle.g,circle.b);
-circle.x = windowWidth/2;
-circle.y = windowHeight/2;
 }
