@@ -34,8 +34,8 @@ function preload() {
 let family = {
   x: 0,
   y: 0,
-  width: 100,
-  height: 100,
+  width: 250,
+  height: 250,
   vy: 0,
   vx: 0,
 };
@@ -43,8 +43,8 @@ let family = {
 let health = {
   x: 0,
   y: 0,
-  width: 100,
-  height: 100,
+  width: 250,
+  height: 250,
   vy: 0,
   vx: 0,
 };
@@ -52,8 +52,8 @@ let health = {
 let hobby = {
   x: 0,
   y: 0,
-  width: 100,
-  height: 100,
+  width: 250,
+  height: 250,
   vy: 0,
   vx: 0,
 };
@@ -61,8 +61,8 @@ let hobby = {
 let covid = {
   x: 0,
   y: 0,
-  width: 100,
-  height: 100,
+  width: 250,
+  height: 250,
   vy: 0,
   vx: 0,
 };
@@ -70,8 +70,8 @@ let covid = {
 let school = {
   x: 0,
   y: 0,
-  width: 100,
-  height: 100,
+  width: 250,
+  height: 250,
   vy: 0,
   vx: 0,
 };
@@ -89,7 +89,7 @@ let state = `title`; // Can be: title, simulation, love, sadness
 Description of setup
 */
 function setup() {
-createCanvas(windowWidth,windowHeight);
+  createCanvas(windowWidth, windowHeight);
 }
 
 
@@ -97,32 +97,23 @@ createCanvas(windowWidth,windowHeight);
 Description of draw()
 */
 function draw() {
-background(bg);
-circleMovement();
-handleInput();
-displayItems();
+  background(bg);
 
-// Identifying all states
-if (state === `title`) {
-  title();
-  }
-else if (state === `simulation`) {
-  simulation();
-  }
-else if (state === `family`) {
-  family();
-  }
-else if (state === `health`) {
-  health();
-  }
-else if (state === `hobby`) {
-  hobby();
-  }
-else if (state === `covid`) {
-  covid();
-  }
-else if (state === `school`) {
-  school();
+  // Identifying all states
+  if (state === `title`) {
+    title();
+  } else if (state === `simulation`) {
+    simulation();
+  } else if (state === `family`) {
+    family();
+  } else if (state === `health`) {
+    health();
+  } else if (state === `hobby`) {
+    hobby();
+  } else if (state === `covid`) {
+    covid();
+  } else if (state === `school`) {
+    school();
   }
 }
 
@@ -130,31 +121,79 @@ function title() {
   displayStart();
 }
 
-function handleInput() {
+function simulation() {
+  displayItems();
+  keyIsDown();
+  gravity();
+}
+
+function gravity() {
+
+}
+
+// Family controls and movement
+function keyIsDown() {
   if (keyIsDown(67)) {
-    circle.y = circle.y - circle.vy;
+    family.vy = -10;
   }
-  else {
-    circle.x += circle.vx;
-    circle.y += circle.vy;
-    circle.vy += circle.gravity;
+
+  if (keyIsDown(86)) {
+    health.vy = -10;
+  }
+
+  if (keyIsDown(66)) {
+    hobby.vy = -10;
+  }
+
+  if (keyIsDown(78)) {
+    covid.vy = -10;
+  }
+
+  if (keyIsDown(77)) {
+    school.vy = -10;
   }
 }
 
-function circleMovement() {
-       circle.x += circle.vx;
-       circle.y += circle.vy;
-       circle.vy += circle.gravity;
+function gravity() {
+  family.vy = 2;
+  family.y += family.vy;
+  family.y = constrain(family.y, 0, height);
+
+  health.vy = 2;
+  health.y += health.vy;
+  health.y = constrain(health.y, 0, height);
+
+  hobby.vy = 2;
+  hobby.y += hobby.vy;
+  hobby.y = constrain(hobby.y, 0, height);
+
+  covid.vy = 2;
+  covid.y += covid.vy;
+  covid.y = constrain(covid.y, 0, height);
+
+  school.vy = 2;
+  school.y += school.vy;
+  school.y = constrain(school.y, 0, height);
 }
+
+
+
+
 
 function displayStart() {
-  image(startImage,start.x,start.y,windowWidth,windowHeight);
+  image(startImage, start.x, start.y, windowWidth, windowHeight);
 }
 
 function displayItems() {
-  image(familyImage,family.x,family.y,family.width,family.height);
-  image(healthImage,health.x,health.y,health.width,health.height);
-  image(hobbyImage,hobby.x,hobby.y,hobby.width,hobby.height);
-  image(covidImage,covid.x,covid.y,covid.width,covid.height);
-  image(schoolImage,school.x,school.y,school.width,school.height);
+  image(familyImage, family.x, family.y, family.width, family.height);
+  image(healthImage, health.x, health.y, health.width, health.height);
+  image(hobbyImage, hobby.x, hobby.y, hobby.width, hobby.height);
+  image(covidImage, covid.x, covid.y, covid.width, covid.height);
+  image(schoolImage, school.x, school.y, school.width, school.height);
+}
+
+function mousePressed() {
+  if (state === `title`) {
+    state = `simulation`;
+  }
 }
