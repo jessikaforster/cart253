@@ -36,7 +36,7 @@ let family = {
   y: 0,
   width: 250,
   height: 250,
-  vy: 0,
+  vy: 1,
   vx: 0,
 };
 
@@ -45,7 +45,7 @@ let health = {
   y: 0,
   width: 250,
   height: 250,
-  vy: 0,
+  vy: 1,
   vx: 0,
 };
 
@@ -54,7 +54,7 @@ let hobby = {
   y: 0,
   width: 250,
   height: 250,
-  vy: 0,
+  vy: 1,
   vx: 0,
 };
 
@@ -63,7 +63,7 @@ let covid = {
   y: 0,
   width: 250,
   height: 250,
-  vy: 0,
+  vy: 1,
   vx: 0,
 };
 
@@ -72,7 +72,7 @@ let school = {
   y: 0,
   width: 250,
   height: 250,
-  vy: 0,
+  vy: 1,
   vx: 0,
 };
 
@@ -128,23 +128,18 @@ function simulation() {
 }
 
 function gravity() {
-  family.vy = 2;
   family.y += family.vy;
   family.y = constrain(family.y, 0, height);
 
-  health.vy = 2;
   health.y += health.vy;
   health.y = constrain(health.y, 0, height);
 
-  hobby.vy = 2;
   hobby.y += hobby.vy;
   hobby.y = constrain(hobby.y, 0, height);
 
-  covid.vy = 2;
   covid.y += covid.vy;
   covid.y = constrain(covid.y, 0, height);
 
-  school.vy = 2;
   school.y += school.vy;
   school.y = constrain(school.y, 0, height);
 }
@@ -164,23 +159,38 @@ function displayItems() {
 // Family controls and movement
 function handleInput() {
   if (keyIsDown(67)) {
-    family.vy = -10;
+    family.vy = -20;
+  }
+  else {
+    family.vy = 2;
   }
 
   if (keyIsDown(86)) {
-    health.vy = -10;
+    health.vy = -20;
+  }
+  else {
+    health.vy = 2;
   }
 
   if (keyIsDown(66)) {
-    hobby.vy = -10;
+    hobby.vy = -20;
+  }
+  else {
+    hobby.vy = 2;
   }
 
   if (keyIsDown(78)) {
-    covid.vy = -10;
+    covid.vy = -20;
+  }
+  else {
+    covid.vy = 2;
   }
 
   if (keyIsDown(77)) {
-    school.vy = -10;
+    school.vy = -20;
+  }
+  else {
+    school.vy = 2;
   }
 }
 
