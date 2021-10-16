@@ -8,6 +8,62 @@ author, and this description to match your project!
 
 "use strict";
 
+
+
+/**
+Description of preload
+*/
+let familyImage;
+let healthImage;
+let hobbyImage;
+let covidImage;
+let schoolImage;
+let bg;
+
+function preload() {
+  familyImage = loadImage("assets/images/family.png");
+  healthImage = loadImage("assets/images/mentalh.png");
+  hobbyImage = loadImage("assets/images/hobbies.png");
+  covidImage = loadImage("assets/images/covid.png");
+  schoolImage = loadImage("assets/images/school.png");
+  bg = loadImage("assets/images/background.gif");
+}
+
+let family = {
+  x: 0,
+  y: 0,
+  width: 100,
+  height: 100,
+};
+
+let health = {
+  x: 0,
+  y: 0,
+  width: 100,
+  height: 100,
+};
+
+let hobby = {
+  x: 0,
+  y: 0,
+  width: 100,
+  height: 100,
+};
+
+let covid = {
+  x: 0,
+  y: 0,
+  width: 100,
+  height: 100,
+};
+
+let school = {
+  x: 0,
+  y: 0,
+  width: 100,
+  height: 100,
+};
+
 let circle = {
   x: 0,
   y: 0,
@@ -25,14 +81,6 @@ let circle = {
 }
 
 /**
-Description of preload
-*/
-function preload() {
-
-}
-
-
-/**
 Description of setup
 */
 function setup() {
@@ -44,10 +92,11 @@ createCanvas(windowWidth,windowHeight);
 Description of draw()
 */
 function draw() {
-background(0);
+background(bg);
 displayCircle();
 circleMovement();
 handleInput();
+displayItems();
 }
 
 function handleInput() {
@@ -65,6 +114,14 @@ function circleMovement() {
        circle.x += circle.vx;
        circle.y += circle.vy;
        circle.vy += circle.gravity;
+}
+
+function displayItems() {
+  image(familyImage,family.x,family.y,family.width,family.height);
+  image(healthImage,health.x,health.y,health.width,health.height);
+  image(hobbyImage,hobby.x,hobby.y,hobby.width,hobby.height);
+  image(covidImage,covid.x,covid.y,covid.width,covid.height);
+  image(schoolImage,school.x,school.y,school.width,school.height);
 }
 
 function displayCircle() {
