@@ -146,79 +146,84 @@ function end2() {
   textSize(30);
   fill(255);
   textAlign(CENTER,CENTER);
-  text(`family`,width/2,385);
+  text(`health`,width/2,385);
 }
 
 function end3() {
-
+  textSize(30);
+  fill(255);
+  textAlign(CENTER,CENTER);
+  text(`hobby`,width/2,385);
 }
 
 function end4() {
-
+  textSize(30);
+  fill(255);
+  textAlign(CENTER,CENTER);
+  text(`covid`,width/2,385);
 }
 
 function end5() {
-
+  textSize(30);
+  fill(255);
+  textAlign(CENTER,CENTER);
+  text(`school`,width/2,385);
 }
 
-
-// Movement of items and gravity
 function gravity() {
   family.y += family.vy;
   family.x += family.vx;
-  family.y = constrain(family.y, 0, 1110);
-  family.x = constrain(family.x, 0, 1800);
+  family.y = constrain(family.y, 0, windowHeight);
+  family.x = constrain(family.x, 0, windowWidth);
 
   health.y += health.vy;
   health.x += health.vx;
-  health.y = constrain(health.y, 0, 1110);
-  health.x = constrain(health.x, 0, 1800);
+  health.y = constrain(health.y, 0, windowHeight);
+  health.x = constrain(health.x, 0, windowWidth);
 
   hobby.y += hobby.vy;
   hobby.x += hobby.vx;
-  hobby.y = constrain(hobby.y, 0, 1110);
-  hobby.x = constrain(hobby.x, 0, 1800);
+  hobby.y = constrain(hobby.y, 0, windowHeight);
+  hobby.x = constrain(hobby.x, 0, windowWidth);
 
   covid.y += covid.vy;
   covid.x += covid.vx;
-  covid.y = constrain(covid.y, 0, 1110);
-  covid.x = constrain(covid.x, 0, 1800);
+  covid.y = constrain(covid.y, 0, windowHeight);
+  covid.x = constrain(covid.x, 0, windowWidth);
 
   school.y += school.vy;
   school.x += school.vx;
-  school.y = constrain(school.y, 0, 1110);
-  school.x = constrain(school.x, 0, 1800);
+  school.y = constrain(school.y, 0, windowHeight);
+  school.x = constrain(school.x, 0, windowWidth);
 }
 
-
-// Random movement of items
 function randomMove() {
 
-  let change1 = random(0, 2);
+  let change1 = random(0, 1);
   if (change1 < 0.05) {
     family.vx = random(-family.speed, family.speed);
     family.vy = random(-family.speed, family.speed);
   }
 
-  let change2 = random(0, 2);
+  let change2 = random(0, 1);
   if (change2 < 0.05) {
     health.vx = random(-health.speed, health.speed);
     health.vy = random(-health.speed, health.speed);
   }
 
-  let change3 = random(0, 2);
+  let change3 = random(0, 1);
   if (change3 < 0.05) {
     hobby.vx = random(-hobby.speed, hobby.speed);
     hobby.vy = random(-hobby.speed, hobby.speed);
   }
 
-  let change4 = random(0, 2);
+  let change4 = random(0, 1);
     if (change4 < 0.05) {
       covid.vx = random(-covid.speed, covid.speed);
       covid.vy = random(-covid.speed, covid.speed);
     }
 
-  let change5 = random(0, 2);
+  let change5 = random(0, 1);
     if (change5 < 0.05) {
       school.vx = random(-school.speed, school.speed);
       school.vy = random(-school.speed, school.speed);
@@ -280,8 +285,17 @@ function checkOverlap () {
   if (family.y > 1110)
     state = `end1`;
 
-  if (family.x > 1800)
-    state = `end1`;
+  if (health.y > 1110)
+    state = `end2`;
+
+  if (hobby.y > 1110)
+    state = `end3`;
+
+  if (covid.y > 1110)
+    state = `end4`;
+
+  if (school.y > 1110)
+    state = `end5`;
   }
 
 function mousePressed() {
