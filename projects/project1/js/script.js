@@ -38,6 +38,7 @@ let family = {
   height: 250,
   vy: 1,
   vx: 0,
+  speed: 1,
 };
 
 let health = {
@@ -47,6 +48,7 @@ let health = {
   height: 250,
   vy: 1,
   vx: 0,
+  speed: 3,
 };
 
 let hobby = {
@@ -56,6 +58,7 @@ let hobby = {
   height: 250,
   vy: 1,
   vx: 0,
+  speed: 3,
 };
 
 let covid = {
@@ -65,6 +68,7 @@ let covid = {
   height: 250,
   vy: 1,
   vx: 0,
+  speed: 3,
 };
 
 let school = {
@@ -74,6 +78,7 @@ let school = {
   height: 250,
   vy: 1,
   vx: 0,
+  speed: 3,
 };
 
 let start = {
@@ -89,7 +94,7 @@ let state = `title`; // Can be: title, simulation, love, sadness
 Description of setup
 */
 function setup() {
-  createCanvas(windowWidth, windowHeight);
+  createCanvas(1800, 1110);
 }
 
 
@@ -98,22 +103,23 @@ Description of draw()
 */
 function draw() {
   background(bg);
+  // checkOverlap();
 
   // Identifying all states
   if (state === `title`) {
     title();
   } else if (state === `simulation`) {
     simulation();
-  } else if (state === `family`) {
-    family();
-  } else if (state === `health`) {
-    health();
-  } else if (state === `hobby`) {
-    hobby();
-  } else if (state === `covid`) {
-    covid();
-  } else if (state === `school`) {
-    school();
+  } else if (state === `end1`) {
+    end1();
+  } else if (state === `end2`) {
+    end2();
+  } else if (state === `end3`) {
+    end3();
+  } else if (state === `end4`) {
+    end4();
+  } else if (state === `end5`) {
+    end5();
   }
 }
 
@@ -125,23 +131,98 @@ function simulation() {
   displayItems();
   handleInput();
   gravity();
+  checkOverlap();
+  randomMove();
 }
 
+function end1() {
+textSize(30);
+fill(255);
+textAlign(CENTER,CENTER);
+text(`family`,width/2,385);
+}
+
+function end2() {
+  textSize(30);
+  fill(255);
+  textAlign(CENTER,CENTER);
+  text(`family`,width/2,385);
+}
+
+function end3() {
+
+}
+
+function end4() {
+
+}
+
+function end5() {
+
+}
+
+
+// Movement of items and gravity
 function gravity() {
   family.y += family.vy;
-  family.y = constrain(family.y, 0, height);
+  family.x += family.vx;
+  family.y = constrain(family.y, 0, 1110);
+  family.x = constrain(family.x, 0, 1800);
 
   health.y += health.vy;
-  health.y = constrain(health.y, 0, height);
+  health.x += health.vx;
+  health.y = constrain(health.y, 0, 1110);
+  health.x = constrain(health.x, 0, 1800);
 
   hobby.y += hobby.vy;
-  hobby.y = constrain(hobby.y, 0, height);
+  hobby.x += hobby.vx;
+  hobby.y = constrain(hobby.y, 0, 1110);
+  hobby.x = constrain(hobby.x, 0, 1800);
 
   covid.y += covid.vy;
-  covid.y = constrain(covid.y, 0, height);
+  covid.x += covid.vx;
+  covid.y = constrain(covid.y, 0, 1110);
+  covid.x = constrain(covid.x, 0, 1800);
 
   school.y += school.vy;
-  school.y = constrain(school.y, 0, height);
+  school.x += school.vx;
+  school.y = constrain(school.y, 0, 1110);
+  school.x = constrain(school.x, 0, 1800);
+}
+
+
+// Random movement of items
+function randomMove() {
+
+  let change1 = random(0, 2);
+  if (change1 < 0.05) {
+    family.vx = random(-family.speed, family.speed);
+    family.vy = random(-family.speed, family.speed);
+  }
+
+  let change2 = random(0, 2);
+  if (change2 < 0.05) {
+    health.vx = random(-health.speed, health.speed);
+    health.vy = random(-health.speed, health.speed);
+  }
+
+  let change3 = random(0, 2);
+  if (change3 < 0.05) {
+    hobby.vx = random(-hobby.speed, hobby.speed);
+    hobby.vy = random(-hobby.speed, hobby.speed);
+  }
+
+  let change4 = random(0, 2);
+    if (change4 < 0.05) {
+      covid.vx = random(-covid.speed, covid.speed);
+      covid.vy = random(-covid.speed, covid.speed);
+    }
+
+  let change5 = random(0, 2);
+    if (change5 < 0.05) {
+      school.vx = random(-school.speed, school.speed);
+      school.vy = random(-school.speed, school.speed);
+    }
 }
 
 function displayStart() {
@@ -193,6 +274,15 @@ function handleInput() {
     school.vy = 2;
   }
 }
+
+// Game ends when item hits floor
+function checkOverlap () {
+  if (family.y > 1110)
+    state = `end1`;
+
+  if (family.x > 1800)
+    state = `end1`;
+  }
 
 function mousePressed() {
   if (state === `title`) {
