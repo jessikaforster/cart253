@@ -14,10 +14,7 @@ Description of preload
 */
 
 let userImage;
-let candyImage1;
-let candyImage2;
-let candyImage3;
-let candyImage4;
+let candyImage;
 let lollipopImage;
 let appleImage;
 let brushImage;
@@ -25,10 +22,10 @@ let bg;
 
 function preload() {
   userImage = loadImage("assets/images/pumpkin.png");
-  candyImage1 = loadImage("assets/images/candy.png");
-  candyImage2 = loadImage("assets/images/candy.png");
-  candyImage3 = loadImage("assets/images/candy.png");
-  candyImage4 = loadImage("assets/images/candy.png");
+  candy1Image = loadImage("assets/images/candy.png");
+  candy2Image = loadImage("assets/images/candy.png");
+  candy3Image = loadImage("assets/images/candy.png");
+  candy4Image = loadImage("assets/images/candy.png");
   lollipopImage = loadImage("assets/images/lollipop.png");
   appleImage = loadImage("assets/images/apple.png");
   brushImage = loadImage("assets/images/toothbrush.png");
@@ -37,40 +34,10 @@ function preload() {
 
 // Identifying variables
 let user = {
-  x: x,
-  y: y,
+  x: 0,
+  y: 0,
   width: 300,
   height: 300,
-  vx: 0,
-  vy: 0,
-  speed: 3,
-};
-
-let lollipop = {
-  x: x,
-  y: y,
-  width: 200,
-  height: 200,
-  vx: 0,
-  vy: 0,
-  speed: 3,
-};
-
-let apple = {
-  x: x,
-  y: y,
-  width: 200,
-  height: 200,
-  vx: 0,
-  vy: 0,
-  speed: 3,
-};
-
-let brush = {
-  x: x,
-  y: y,
-  width: 200,
-  height: 200,
   vx: 0,
   vy: 0,
   speed: 3,
@@ -104,6 +71,45 @@ let candy = {
   return candy;
 }
 
+function createLollipop(x,y) {
+let lollipop = {
+  x: x,
+  y: y,
+  width: 200,
+  height: 200,
+  vx: 0,
+  vy: 0,
+  speed: 3,
+};
+  return lollipop;
+}
+
+function createApple(x,y) {
+  let apple = {
+    x: x,
+    y: y,
+    width: 200,
+    height: 200,
+    vx: 0,
+    vy: 0,
+    speed: 3,
+};
+  return apple;
+}
+
+function createBrush(x,y) {
+  let brush = {
+    x: x,
+    y: y,
+    width: 200,
+    height: 200,
+    vx: 0,
+    vy: 0,
+    speed: 3,
+};
+  return brush;
+}
+
 /**
 Description of draw()
 */
@@ -133,10 +139,16 @@ function simulation() {
   displayApple();
   displayLollipop();
   displayBrush();
-  displayCandy();
+  displayCandy(candy1);
+  displayCandy(candy2);
+  displayCandy(candy3);
+  displayCandy(candy4);
   moveApple();
   moveBrush();
-  moveCandy();
+  moveCandy(candy1);
+  moveCandy(candy2);
+  moveCandy(candy3);
+  moveCandy(candy4);
   moveLollipop();
   createCandy();
 }
@@ -207,21 +219,31 @@ function moveApple(apple) {
 }
 
 function displayUser() {
+  push();
   image(userImage, mouseX, mouseY, user.width, user.height);
+  pop();
 }
 
 function displayLollipop(lollipop) {
+  push();
   image(lollipopImage, lollipop.x, lollipop.y, lollipop.width, lollipop.height);
+  pop();
 }
 
 function displayCandy(candy) {
+  push();
   image(candyImage, candy.x, candy.y, candy.width, candy.height);
+  pop();
 }
 
 function displayApple(apple) {
+  push();
   image(appleImage, apple.x, apple.y, apple.width, apple.height);
+  pop();
 }
 
 function displayBrush(brush) {
+  push();
   image(brushImage, brush.x, brush.y, brush.width, brush.height);
+  pop();
 }
