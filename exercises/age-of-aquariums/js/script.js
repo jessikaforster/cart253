@@ -33,8 +33,8 @@ function preload() {
 let user = {
   x: 0,
   y: 0,
-  width: 200,
-  height: 200,
+  width: 300,
+  height: 300,
   vx: 0,
   vy: 0,
   speed: 3,
@@ -86,7 +86,7 @@ let state = `simulation`; // Can be: title, simulation, love, sadness
 Description of setup
 */
 function setup() {
-  createCanvas(windowWidth,windowHeight);
+  createCanvas(windowWidth, windowHeight);
 }
 
 
@@ -99,14 +99,14 @@ function draw() {
   noCursor();
 
   // Identifying all states
-if (state === `title`) {
-  title();
-} else if (state === `simulation`) {
-  simulation();
-} else if (state === `end1`) {
-  end1();
-} else if (state === `end2`) {
-  end2();
+  if (state === `title`) {
+    title();
+  } else if (state === `simulation`) {
+    simulation();
+  } else if (state === `end1`) {
+    end1();
+  } else if (state === `end2`) {
+    end2();
   }
 }
 
@@ -115,7 +115,11 @@ function title() {
 }
 
 function simulation() {
-  displayItems();
+  displayUser();
+  displayApple();
+  displayLollipop();
+  displayBrush();
+  displayCandy();
   moveItems();
 }
 
@@ -127,27 +131,27 @@ function end2() {
 
 }
 
-  // Choose whether to change direction
+// Choose whether to change direction
 function moveItems() {
   let change = random(0, 1);
   if (change < 0.05) {
     apple.vx = random(-apple.speed, apple.speed);
     apple.vy = random(-apple.speed, apple.speed);
-}
-let change1 = random(0, 1);
-if (change1 < 0.05) {
-  brush.vx = random(-brush.speed, brush.speed);
-  brush.vy = random(-brush.speed, brush.speed);
-}
+  }
+  let change1 = random(0, 1);
+  if (change1 < 0.05) {
+    brush.vx = random(-brush.speed, brush.speed);
+    brush.vy = random(-brush.speed, brush.speed);
+  }
   let change2 = random(0, 1);
   if (change2 < 0.05) {
     lollipop.vx = random(-lollipop.speed, lollipop.speed);
     lollipop.vy = random(-lollipop.speed, lollipop.speed);
-}
-    let change3 = random(0, 1);
-    if (change3 < 0.05) {
-      candy.vx = random(-candy.speed, candy.speed);
-      candy.vy = random(-candy.speed, candy.speed);
+  }
+  let change3 = random(0, 1);
+  if (change3 < 0.05) {
+    candy.vx = random(-candy.speed, candy.speed);
+    candy.vy = random(-candy.speed, candy.speed);
   }
 
   // Move the items
@@ -157,8 +161,8 @@ if (change1 < 0.05) {
   brush.x = brush.x + brush.vx;
   brush.y = brush.y + brush.vy;
 
-lollipop.x =lollipop.x +lollipop.vx;
-lollipop.y =lollipop.y +lollipop.vy;
+  lollipop.x = lollipop.x + lollipop.vx;
+  lollipop.y = lollipop.y + lollipop.vy;
 
   candy.x = candy.x + candy.vx;
   candy.y = candy.y + candy.vy;
@@ -177,10 +181,22 @@ lollipop.y =lollipop.y +lollipop.vy;
   candy.y = constrain(candy.y, 0, height);
 }
 
-function displayItems() {
+function displayUser() {
   image(userImage, mouseX, mouseY, user.width, user.height);
+}
+
+function displayLollipop() {
   image(lollipopImage, lollipop.x, lollipop.y, lollipop.width, lollipop.height);
+}
+
+function displayCandy() {
   image(candyImage, candy.x, candy.y, candy.width, candy.height);
+}
+
+function displayApple() {
   image(appleImage, apple.x, apple.y, apple.width, apple.height);
+}
+
+function displayBrush() {
   image(brushImage, brush.x, brush.y, brush.width, brush.height);
 }
