@@ -34,48 +34,48 @@ function preload() {
 let family = {
   x: 0,
   y: 0,
-  width: 250,
-  height: 250,
+  width: 300,
+  height: 300,
   vy: 1,
   vx: 0,
   speed: 1,
 };
 
 let health = {
-  x: 400,
+  x: 300,
   y: 0,
-  width: 250,
-  height: 250,
+  width: 300,
+  height: 300,
   vy: 1,
   vx: 0,
   speed: 3,
 };
 
 let hobby = {
-  x: 800,
+  x: 700,
   y: 0,
-  width: 250,
-  height: 250,
+  width: 330,
+  height: 330,
   vy: 1,
   vx: 0,
   speed: 3,
 };
 
 let covid = {
-  x: 1200,
+  x: 1100,
   y: 0,
-  width: 250,
-  height: 250,
+  width: 300,
+  height: 300,
   vy: 1,
   vx: 0,
   speed: 3,
 };
 
 let school = {
-  x: 1600,
+  x: 1500,
   y: 0,
-  width: 250,
-  height: 250,
+  width: 300,
+  height: 300,
   vy: 1,
   vx: 0,
   speed: 3,
@@ -94,7 +94,7 @@ let state = `title`; // Can be: title, simulation, love, sadness
 Description of setup
 */
 function setup() {
-  createCanvas(1800, 1110);
+  createCanvas(windowWidth, windowHeight);
 }
 
 
