@@ -37,20 +37,25 @@ function preload() {
 }
 
 function setup() {
-  createCanvas(windowWidth,windowHeight);
+  createCanvas(windowWidth, windowHeight);
 
   for (let i = 0; i < candyNum; i++) {
-    let candy = createCandy(random(0,width), random(0,height));
+    let candy = createCandy(random(0, width), random(0, height));
     candies.push(candy);
   }
 
   for (let i = 0; i < lollipopNum; i++) {
-    let lollipop = createLollipop(random(0,width), random(0,height));
+    let lollipop = createLollipop(random(0, width), random(0, height));
     lollipops.push(lollipop);
+  }
+
+  for (let i = 0; i < appleNum; i++) {
+    let apple = createApple(random(0, width), random(0, height));
+    apples.push(apple);
   }
 }
 
-function createCandy(x,y) {
+function createCandy(x, y) {
   let candy = {
     x: x,
     y: y,
@@ -58,12 +63,12 @@ function createCandy(x,y) {
     height: 100,
     vx: 0,
     vy: 0,
-    speed: 2
+    speed: 2,
   };
   return candy;
 }
 
-function createLollipop(x,y) {
+function createLollipop(x, y) {
   let lollipop = {
     x: x,
     y: y,
@@ -71,22 +76,54 @@ function createLollipop(x,y) {
     height: 100,
     vx: 0,
     vy: 0,
-    speed: 2
+    speed: 2,
   };
   return lollipop;
 }
 
+function createApple(x, y) {
+  let apple = {
+    x: x,
+    y: y,
+    width: 100,
+    height: 100,
+    vx: 0,
+    vy: 0,
+    speed: 2,
+  };
+  return apple;
+}
+
 function draw() {
   background(bg);
+  makeApple();
+  makeCandy();
+  makeLollipop();
+}
 
-
+function makeCandy() {
   for (let i = 0; i < candies.length; i++) {
     moveCandy(candies[i]);
     displayCandy(candies[i]);
-    moveLollipop(lollipops[i]);
-    displayLollipop(lollipops[i]);
+    /* moveBrush(brushes[i]);
+    displayBrush(brushes[i]); */
   }
 }
+
+function makeLollipop() {
+    for (let i = 0; i < lollipops.length; i++) {
+      moveLollipop(lollipops[i]);
+      displayLollipop(lollipops[i]);
+  }
+}
+
+function makeApple() {
+    for (let i = 0; i < apples.length; i++) {
+      moveApple(apples[i]);
+      displayApple(apples[i]);
+  }
+}
+
 
 function moveCandy(candy) {
   let change = random(0, 1);
@@ -97,8 +134,8 @@ function moveCandy(candy) {
     candy.x = candy.x + candy.vx;
     candy.y = candy.y + candy.vy;
 
-    candy.x = constrain(candy.x, 0, width);
-    candy.y = constrain(candy.y, 0, height);
+    candy.x = constrain(candy.x, 0, windowWidth);
+    candy.y = constrain(candy.y, 0, windowHeight);
   }
 }
 
@@ -111,10 +148,26 @@ function moveLollipop(lollipop) {
     lollipop.x = lollipop.x + lollipop.vx;
     lollipop.y = lollipop.y + lollipop.vy;
 
-    lollipop.x = constrain(lollipop.x, 0, width);
-    lollipop.y = constrain(lollipop.y, 0, height);
+    lollipop.x = constrain(lollipop.x, 0, windowWidth);
+    lollipop.y = constrain(lollipop.y, 0, windowHeight);
   }
 }
+
+function moveApple(apple) {
+  let change = random(0, 1);
+  if (change < 0.05) {
+    apple.vx = random(-apple.speed, apple.speed);
+    apple.vy = random(-apple.speed, apple.speed);
+
+    apple.x = apple.x + apple.vx;
+    apple.y = apple.y + apple.vy;
+
+    apple.x = constrain(apple.x, 0, windowWidth);
+    apple.y = constrain(apple.y, 0, windowHeight);
+  }
+}
+
+
 
 function displayCandy(candy) {
   push();
@@ -127,6 +180,14 @@ function displayLollipop(lollipop) {
   image(lollipopImage, lollipop.x, lollipop.y, lollipop.width, lollipop.height);
   pop();
 }
+
+function displayApple(apple) {
+  push();
+  image(appleImage, apple.x, apple.y, apple.width, apple.height);
+  pop();
+}
+
+
 
 function displayUser() {
   image(userImage, mouseX, mouseY, user.width, user.height);
