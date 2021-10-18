@@ -36,30 +36,10 @@ function preload() {
   bg = loadImage("assets/images/street.gif");
 }
 
-// let state = `title`; // Can be: title, simulation, end1, end2, end3
+let state = `simulation`; // Can be: title, simulation, end1, end2, end3
 
 function setup() {
   createCanvas(windowWidth, windowHeight);
-
-  for (let i = 0; i < candyNum; i++) {
-    let candy = createCandy(random(0, width), random(0, height));
-    candies.push(candy);
-  }
-
-  for (let i = 0; i < lollipopNum; i++) {
-    let lollipop = createLollipop(random(0, width), random(0, height));
-    lollipops.push(lollipop);
-  }
-
-  for (let i = 0; i < appleNum; i++) {
-    let apple = createApple(random(0, width), random(0, height));
-    apples.push(apple);
-  }
-
-  for (let i = 0; i < brushNum; i++) {
-    let brush = createBrush(random(0, width), random(0, height));
-    brushes.push(brush);
-  }
 }
 
 function createCandy(x, y) {
@@ -123,17 +103,9 @@ let user = {
 
 function draw() {
   background(bg);
-  makeApple();
-  makeCandy();
-  makeLollipop();
-  makeBrush();
-  displayUser();
-
-  noCursor();
-}
 
 // Identifying all states
-/*  if (state === `title`) {
+if (state === `title`) {
     title();
   }
   else if (state === `simulation`) {
@@ -146,34 +118,72 @@ function draw() {
     end2();
     }
   }
+
+function title() {
+  fill(255,143,227);
+  textAlign(CENTER,CENTER);
+  text(`start`,width/2,70);
+}
+
+function simulation() {
+  //createItems();
+  makeApple();
+  makeCandy();
+  makeLollipop();
+  makeBrush();
+  displayUser();
+  noCursor();
+  createApple();
+  createBrush();
+  createCandy();
+  createLollipop();
+}
+
+function end1() {
+  fill(255,143,227);
+  textAlign(CENTER,CENTER);
+  text(`end1`,width/2,70);
+}
+
+function end2() {
+  fill(255,143,227);
+  textAlign(CENTER,CENTER);
+  text(`end2`,width/2,70);
+}
+
+function end3() {
+  fill(255,143,227);
+  textAlign(CENTER,CENTER);
+  text(`end3`,width/2,70);
+}
+
+/* function createItems() {
+for (let i = 0; i < candyNum; i++) {
+  let candy = createCandy(random(0, width), random(0, height));
+  candies.push(candy);
+}
+
+for (let i = 0; i < lollipopNum; i++) {
+  let lollipop = createLollipop(random(0, width), random(0, height));
+  lollipops.push(lollipop);
+}
+
+for (let i = 0; i < appleNum; i++) {
+  let apple = createApple(random(0, width), random(0, height));
+  apples.push(apple);
+}
+
+for (let i = 0; i < brushNum; i++) {
+  let brush = createBrush(random(0, width), random(0, height));
+  brushes.push(brush);
+  }
 } */
 
-
+// Show candy and add movement
 function makeCandy() {
   for (let i = 0; i < candies.length; i++) {
     moveCandy(candies[i]);
     displayCandy(candies[i]);
-  }
-}
-
-function makeLollipop() {
-    for (let i = 0; i < lollipops.length; i++) {
-      moveLollipop(lollipops[i]);
-      displayLollipop(lollipops[i]);
-  }
-}
-
-function makeApple() {
-    for (let i = 0; i < apples.length; i++) {
-      moveApple(apples[i]);
-      displayApple(apples[i]);
-  }
-}
-
-function makeBrush() {
-    for (let i = 0; i < brushes.length; i++) {
-      moveBrush(brushes[i]);
-      displayBrush(brushes[i]);
   }
 }
 
@@ -197,6 +207,14 @@ function displayCandy(candy) {
   pop();
 }
 
+// Show lollipop and add movement
+function makeLollipop() {
+    for (let i = 0; i < lollipops.length; i++) {
+      moveLollipop(lollipops[i]);
+      displayLollipop(lollipops[i]);
+  }
+}
+
 function moveLollipop(lollipop) {
   let change2 = random(0, 1);
   if (change2 < 0.05) {
@@ -217,6 +235,14 @@ function displayLollipop(lollipop) {
   pop();
 }
 
+// Show apple and add movement
+function makeApple() {
+    for (let i = 0; i < apples.length; i++) {
+      moveApple(apples[i]);
+      displayApple(apples[i]);
+  }
+}
+
 function moveApple(apple) {
   let change3 = random(0, 1);
   if (change3 < 0.05) {
@@ -231,11 +257,18 @@ function moveApple(apple) {
   }
 }
 
-
 function displayApple(apple) {
   push();
   image(appleImage, apple.x, apple.y, apple.width, apple.height);
   pop();
+}
+
+// Show tooth brush and add movement
+function makeBrush() {
+    for (let i = 0; i < brushes.length; i++) {
+      moveBrush(brushes[i]);
+      displayBrush(brushes[i]);
+  }
 }
 
 function moveBrush(brush) {
@@ -258,6 +291,7 @@ function displayBrush(brush) {
   pop();
 }
 
+// Show the pumpkin user controls
 function displayUser() {
   image(userImage, mouseX, mouseY, user.width, user.height);
 }
