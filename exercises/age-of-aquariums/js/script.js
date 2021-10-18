@@ -14,16 +14,16 @@ Description of preload
 */
 let candyImage;
 let candies = [];
-let candyNum = 10;
+let candyNum = 5;
 let lollipopImage;
 let lollipops = [];
-let lollipopNum = 10;
+let lollipopNum = 5;
 let appleImage;
 let apples = [];
-let appleNum = 10;
+let appleNum = 5;
 let brushImage;
 let brushes = [];
-let brushNum = 10;
+let brushNum = 5;
 let userImage;
 let bg;
 let startImage;
@@ -144,7 +144,7 @@ function simulation() {
   createBrush();
   createCandy();
   createLollipop();
-  // checkOverlap();
+  checkOverlap();
 }
 
 function end1() {
@@ -163,6 +163,25 @@ function end3() {
   fill(255,143,227);
   textAlign(CENTER,CENTER);
   text(`end3`,width/2,70);
+}
+
+// Check if user touched apple or tooth brush
+function checkOverlap() {
+  let d1 = dist(mouseX, mouseY, apple.x, apple.y);
+  if (d1 < apple.width / 2)
+    state = `end1`;
+
+  let d2 = dist(mouseX, mouseY, apple.x, apple.y);
+  if (d2 < apple.height / 2)
+    state = `end1`;
+
+  let d3 = dist(mouseX, mouseY, brush.x, brush.y);
+  if (d3 < brush.width / 2)
+    state = `end2`;
+
+  let d4 = dist(mouseX, mouseY, brush.x, brush.y);
+  if (d4 < brush.height / 2)
+    state = `end2`;
 }
 
 function displayStart() {
@@ -308,24 +327,6 @@ function displayUser() {
   image(userImage, mouseX, mouseY, user.width, user.height);
 }
 
-// Check if user touched apple or tooth brush
-/* function checkOverlap() {
-  let d1 = dist(user.x, user.y, apple.x, apple.y);
-  if (d1 < user.width / 2 + apple.width / 2)
-    state = `end1`;
-
-  let d2 = dist(user.x, user.y, apple.x, apple.y);
-  if (d2 < user.height / 2 + apple.height / 2)
-    state = `end1`;
-
-  let d3 = dist(user.x, user.y, brush.x, brush.y);
-  if (d3 < user.width / 2 + brush.width / 2)
-    state = `end2`;
-
-  let d4 = dist(user.x, user.y, brush.x, brush.y);
-  if (d4 < user.height / 2 + brush.height / 2)
-    state = `end2`;
-} */
 
 function mousePressed() {
   if (state === `title`) {
