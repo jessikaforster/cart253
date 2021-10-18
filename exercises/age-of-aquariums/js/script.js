@@ -26,6 +26,7 @@ let brushes = [];
 let brushNum = 10;
 let userImage;
 let bg;
+let startImage;
 
 function preload() {
   userImage = loadImage("assets/images/pumpkin.png");
@@ -34,9 +35,10 @@ function preload() {
   appleImage = loadImage("assets/images/apple.png");
   brushImage = loadImage("assets/images/toothbrush.png");
   bg = loadImage("assets/images/street.gif");
+  startImage = loadImage("assets/images/start.png");
 }
 
-let state = `simulation`; // Can be: title, simulation, end1, end2, end3
+let state = `title`; // Can be: title, simulation, end1, end2, end3
 
 function setup() {
   createCanvas(windowWidth, windowHeight);
@@ -101,6 +103,13 @@ let user = {
   height: 300,
 };
 
+let start = {
+  x: 0,
+  y: 0,
+  width: 100,
+  height: 100,
+};
+
 function draw() {
   background(bg);
 
@@ -120,13 +129,11 @@ if (state === `title`) {
   }
 
 function title() {
-  fill(255,143,227);
-  textAlign(CENTER,CENTER);
-  text(`start`,width/2,70);
+  displayStart();
 }
 
 function simulation() {
-  //createItems();
+  createItems();
   makeApple();
   makeCandy();
   makeLollipop();
@@ -137,6 +144,7 @@ function simulation() {
   createBrush();
   createCandy();
   createLollipop();
+  // checkOverlap();
 }
 
 function end1() {
@@ -157,7 +165,11 @@ function end3() {
   text(`end3`,width/2,70);
 }
 
-/* function createItems() {
+function displayStart() {
+  image(startImage, start.x, start.y, windowWidth, windowHeight);
+}
+
+function createItems() {
 for (let i = 0; i < candyNum; i++) {
   let candy = createCandy(random(0, width), random(0, height));
   candies.push(candy);
@@ -177,11 +189,11 @@ for (let i = 0; i < brushNum; i++) {
   let brush = createBrush(random(0, width), random(0, height));
   brushes.push(brush);
   }
-} */
+}
 
 // Show candy and add movement
 function makeCandy() {
-  for (let i = 0; i < candies.length; i++) {
+  for (let i = 0; i < 5; i++) {
     moveCandy(candies[i]);
     displayCandy(candies[i]);
   }
@@ -209,7 +221,7 @@ function displayCandy(candy) {
 
 // Show lollipop and add movement
 function makeLollipop() {
-    for (let i = 0; i < lollipops.length; i++) {
+    for (let i = 0; i < 5; i++) {
       moveLollipop(lollipops[i]);
       displayLollipop(lollipops[i]);
   }
@@ -237,7 +249,7 @@ function displayLollipop(lollipop) {
 
 // Show apple and add movement
 function makeApple() {
-    for (let i = 0; i < apples.length; i++) {
+    for (let i = 0; i < 5; i++) {
       moveApple(apples[i]);
       displayApple(apples[i]);
   }
@@ -265,7 +277,7 @@ function displayApple(apple) {
 
 // Show tooth brush and add movement
 function makeBrush() {
-    for (let i = 0; i < brushes.length; i++) {
+    for (let i = 0; i < 5; i++) {
       moveBrush(brushes[i]);
       displayBrush(brushes[i]);
   }
@@ -294,4 +306,29 @@ function displayBrush(brush) {
 // Show the pumpkin user controls
 function displayUser() {
   image(userImage, mouseX, mouseY, user.width, user.height);
+}
+
+// Check if user touched apple or tooth brush
+/* function checkOverlap() {
+  let d1 = dist(user.x, user.y, apple.x, apple.y);
+  if (d1 < user.width / 2 + apple.width / 2)
+    state = `end1`;
+
+  let d2 = dist(user.x, user.y, apple.x, apple.y);
+  if (d2 < user.height / 2 + apple.height / 2)
+    state = `end1`;
+
+  let d3 = dist(user.x, user.y, brush.x, brush.y);
+  if (d3 < user.width / 2 + brush.width / 2)
+    state = `end2`;
+
+  let d4 = dist(user.x, user.y, brush.x, brush.y);
+  if (d4 < user.height / 2 + brush.height / 2)
+    state = `end2`;
+} */
+
+function mousePressed() {
+  if (state === `title`) {
+    state = `simulation`;
+  }
 }
