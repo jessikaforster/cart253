@@ -19,6 +19,11 @@ let hobbyImage;
 let covidImage;
 let schoolImage;
 let startImage;
+let familyendImage;
+let healthendImage;
+let hobbyendImage;
+let covidendImage;
+let schoolendImage;
 let bg;
 
 function preload() {
@@ -28,6 +33,11 @@ function preload() {
   covidImage = loadImage("assets/images/covid.png");
   schoolImage = loadImage("assets/images/school.png");
   startImage = loadImage("assets/images/start.png");
+  familyendImage = loadImage("assets/images/family-end.png");
+  healthendImage = loadImage("assets/images/health-end.png");
+  hobbyendImage = loadImage("assets/images/hobby-end.png");
+  covidendImage = loadImage("assets/images/covid-end.png");
+  schoolendImage = loadImage("assets/images/school-end.png");
   bg = loadImage("assets/images/background.gif");
 }
 
@@ -52,7 +62,7 @@ let health = {
 };
 
 let hobby = {
-  x: 700,
+  x: 800,
   y: 0,
   width: 330,
   height: 330,
@@ -62,7 +72,7 @@ let hobby = {
 };
 
 let covid = {
-  x: 1100,
+  x: 1300,
   y: 0,
   width: 300,
   height: 300,
@@ -72,7 +82,7 @@ let covid = {
 };
 
 let school = {
-  x: 1500,
+  x: 1800,
   y: 0,
   width: 300,
   height: 300,
@@ -82,6 +92,41 @@ let school = {
 };
 
 let start = {
+  x: 0,
+  y: 0,
+  width: 100,
+  height: 100,
+};
+
+let familyend = {
+  x: 0,
+  y: 0,
+  width: 100,
+  height: 100,
+};
+
+let healthend = {
+  x: 0,
+  y: 0,
+  width: 100,
+  height: 100,
+};
+
+let hobbyend = {
+  x: 0,
+  y: 0,
+  width: 100,
+  height: 100,
+};
+
+let covidend = {
+  x: 0,
+  y: 0,
+  width: 100,
+  height: 100,
+};
+
+let schoolend = {
   x: 0,
   y: 0,
   width: 100,
@@ -136,38 +181,23 @@ function simulation() {
 }
 
 function end1() {
-textSize(30);
-fill(255);
-textAlign(CENTER,CENTER);
-text(`family`,width/2,385);
+displayEnd1();
 }
 
 function end2() {
-  textSize(30);
-  fill(255);
-  textAlign(CENTER,CENTER);
-  text(`health`,width/2,385);
+  displayEnd2();
 }
 
 function end3() {
-  textSize(30);
-  fill(255);
-  textAlign(CENTER,CENTER);
-  text(`hobby`,width/2,385);
+  displayEnd3();
 }
 
 function end4() {
-  textSize(30);
-  fill(255);
-  textAlign(CENTER,CENTER);
-  text(`covid`,width/2,385);
+  displayEnd4();
 }
 
 function end5() {
-  textSize(30);
-  fill(255);
-  textAlign(CENTER,CENTER);
-  text(`school`,width/2,385);
+  displayEnd5();
 }
 
 function gravity() {
@@ -232,6 +262,26 @@ function randomMove() {
 
 function displayStart() {
   image(startImage, start.x, start.y, windowWidth, windowHeight);
+}
+
+function displayEnd1() {
+  image(familyendImage, familyend.x, familyend.y, windowWidth, windowHeight);
+}
+
+function displayEnd2() {
+  image(healthendImage, healthend.x, healthend.y, windowWidth, windowHeight);
+}
+
+function displayEnd3() {
+  image(hobbyendImage, hobbyend.x, hobbyend.y, windowWidth, windowHeight);
+}
+
+function displayEnd4() {
+  image(covidendImage, covidend.x, covidend.y, windowWidth, windowHeight);
+}
+
+function displayEnd5() {
+  image(schoolendImage, schoolend.x, schoolend.y, windowWidth, windowHeight);
 }
 
 function displayItems() {
