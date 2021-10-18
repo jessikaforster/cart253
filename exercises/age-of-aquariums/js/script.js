@@ -225,13 +225,12 @@ function moveCandy(candy) {
   if (change1 < 0.05) {
     candy.vx = random(-candy.speed, candy.speed);
     candy.vy = random(-candy.speed, candy.speed);
-
+}
     candy.x = candy.x + candy.vx;
     candy.y = candy.y + candy.vy;
 
     candy.x = constrain(candy.x, 0, width);
     candy.y = constrain(candy.y, 0, height);
-  }
 }
 
 function displayCandy(candy) {
@@ -253,13 +252,12 @@ function moveLollipop(lollipop) {
   if (change2 < 0.05) {
     lollipop.vx = random(-lollipop.speed, lollipop.speed);
     lollipop.vy = random(-lollipop.speed, lollipop.speed);
-
+}
     lollipop.x = lollipop.x + lollipop.vx;
     lollipop.y = lollipop.y + lollipop.vy;
 
     lollipop.x = constrain(lollipop.x, 0, width);
     lollipop.y = constrain(lollipop.y, 0, height);
-  }
 }
 
 function displayLollipop(lollipop) {
@@ -281,13 +279,12 @@ function moveApple(apple) {
   if (change3 < 0.05) {
     apple.vx = random(-apple.speed, apple.speed);
     apple.vy = random(-apple.speed, apple.speed);
-
+}
     apple.x = apple.x + apple.vx;
     apple.y = apple.y + apple.vy;
 
     apple.x = constrain(apple.x, 0, width);
     apple.y = constrain(apple.y, 0, height);
-  }
 }
 
 function displayApple(apple) {
@@ -309,13 +306,12 @@ function moveBrush(brush) {
   if (change4 < 0.05) {
     brush.vx = random(-brush.speed, brush.speed);
     brush.vy = random(-brush.speed, brush.speed);
-
+}
     brush.x = brush.x + brush.vx;
     brush.y = brush.y + brush.vy;
 
     brush.x = constrain(brush.x, 0, width);
     brush.y = constrain(brush.y, 0, height);
-  }
 }
 
 function displayBrush(brush) {
