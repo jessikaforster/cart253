@@ -36,6 +36,8 @@ function preload() {
   bg = loadImage("assets/images/street.gif");
 }
 
+// let state = `title`; // Can be: title, simulation, end1, end2, end3
+
 function setup() {
   createCanvas(windowWidth, windowHeight);
 
@@ -112,13 +114,40 @@ function createBrush(x, y) {
   return brush;
 }
 
+let user = {
+  x: 0,
+  y: 0,
+  width: 300,
+  height: 300,
+};
+
 function draw() {
   background(bg);
   makeApple();
   makeCandy();
   makeLollipop();
   makeBrush();
+  displayUser();
+
+  noCursor();
 }
+
+// Identifying all states
+/*  if (state === `title`) {
+    title();
+  }
+  else if (state === `simulation`) {
+    simulation();
+  }
+  else if (state === `end1`) {
+    end1();
+  }
+  else if (state === `end2`) {
+    end2();
+    }
+  }
+} */
+
 
 function makeCandy() {
   for (let i = 0; i < candies.length; i++) {
@@ -149,58 +178,16 @@ function makeBrush() {
 }
 
 function moveCandy(candy) {
-  let change = random(0, 1);
-  if (change < 0.05) {
+  let change1 = random(0, 1);
+  if (change1 < 0.05) {
     candy.vx = random(-candy.speed, candy.speed);
     candy.vy = random(-candy.speed, candy.speed);
 
     candy.x = candy.x + candy.vx;
     candy.y = candy.y + candy.vy;
 
-    candy.x = constrain(candy.x, 0, windowWidth);
-    candy.y = constrain(candy.y, 0, windowHeight);
-  }
-}
-
-function moveLollipop(lollipop) {
-  let change = random(0, 1);
-  if (change < 0.05) {
-    lollipop.vx = random(-lollipop.speed, lollipop.speed);
-    lollipop.vy = random(-lollipop.speed, lollipop.speed);
-
-    lollipop.x = lollipop.x + lollipop.vx;
-    lollipop.y = lollipop.y + lollipop.vy;
-
-    lollipop.x = constrain(lollipop.x, 0, windowWidth);
-    lollipop.y = constrain(lollipop.y, 0, windowHeight);
-  }
-}
-
-function moveApple(apple) {
-  let change = random(0, 1);
-  if (change < 0.05) {
-    apple.vx = random(-apple.speed, apple.speed);
-    apple.vy = random(-apple.speed, apple.speed);
-
-    apple.x = apple.x + apple.vx;
-    apple.y = apple.y + apple.vy;
-
-    apple.x = constrain(apple.x, 0, windowWidth);
-    apple.y = constrain(apple.y, 0, windowHeight);
-  }
-}
-
-function moveBrush(brush) {
-  let change = random(0, 1);
-  if (change < 0.05) {
-    brush.vx = random(-brush.speed, brush.speed);
-    brush.vy = random(-brush.speed, brush.speed);
-
-    brush.x = brush.x + brush.vx;
-    brush.y = brush.y + brush.vy;
-
-    brush.x = constrain(brush.x, 0, windowWidth);
-    brush.y = constrain(brush.y, 0, windowHeight);
+    candy.x = constrain(candy.x, 0, width);
+    candy.y = constrain(candy.y, 0, height);
   }
 }
 
@@ -210,11 +197,40 @@ function displayCandy(candy) {
   pop();
 }
 
+function moveLollipop(lollipop) {
+  let change2 = random(0, 1);
+  if (change2 < 0.05) {
+    lollipop.vx = random(-lollipop.speed, lollipop.speed);
+    lollipop.vy = random(-lollipop.speed, lollipop.speed);
+
+    lollipop.x = lollipop.x + lollipop.vx;
+    lollipop.y = lollipop.y + lollipop.vy;
+
+    lollipop.x = constrain(lollipop.x, 0, width);
+    lollipop.y = constrain(lollipop.y, 0, height);
+  }
+}
+
 function displayLollipop(lollipop) {
   push();
   image(lollipopImage, lollipop.x, lollipop.y, lollipop.width, lollipop.height);
   pop();
 }
+
+function moveApple(apple) {
+  let change3 = random(0, 1);
+  if (change3 < 0.05) {
+    apple.vx = random(-apple.speed, apple.speed);
+    apple.vy = random(-apple.speed, apple.speed);
+
+    apple.x = apple.x + apple.vx;
+    apple.y = apple.y + apple.vy;
+
+    apple.x = constrain(apple.x, 0, width);
+    apple.y = constrain(apple.y, 0, height);
+  }
+}
+
 
 function displayApple(apple) {
   push();
@@ -222,13 +238,25 @@ function displayApple(apple) {
   pop();
 }
 
+function moveBrush(brush) {
+  let change4 = random(0, 1);
+  if (change4 < 0.05) {
+    brush.vx = random(-brush.speed, brush.speed);
+    brush.vy = random(-brush.speed, brush.speed);
+
+    brush.x = brush.x + brush.vx;
+    brush.y = brush.y + brush.vy;
+
+    brush.x = constrain(brush.x, 0, width);
+    brush.y = constrain(brush.y, 0, height);
+  }
+}
+
 function displayBrush(brush) {
   push();
   image(brushImage, brush.x, brush.y, brush.width, brush.height);
   pop();
 }
-
-
 
 function displayUser() {
   image(userImage, mouseX, mouseY, user.width, user.height);
