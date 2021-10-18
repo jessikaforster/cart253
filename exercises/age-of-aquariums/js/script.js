@@ -53,6 +53,11 @@ function setup() {
     let apple = createApple(random(0, width), random(0, height));
     apples.push(apple);
   }
+
+  for (let i = 0; i < brushNum; i++) {
+    let brush = createBrush(random(0, width), random(0, height));
+    brushes.push(brush);
+  }
 }
 
 function createCandy(x, y) {
@@ -94,19 +99,31 @@ function createApple(x, y) {
   return apple;
 }
 
+function createBrush(x, y) {
+  let brush = {
+    x: x,
+    y: y,
+    width: 100,
+    height: 100,
+    vx: 0,
+    vy: 0,
+    speed: 2,
+  };
+  return brush;
+}
+
 function draw() {
   background(bg);
   makeApple();
   makeCandy();
   makeLollipop();
+  makeBrush();
 }
 
 function makeCandy() {
   for (let i = 0; i < candies.length; i++) {
     moveCandy(candies[i]);
     displayCandy(candies[i]);
-    /* moveBrush(brushes[i]);
-    displayBrush(brushes[i]); */
   }
 }
 
@@ -124,6 +141,12 @@ function makeApple() {
   }
 }
 
+function makeBrush() {
+    for (let i = 0; i < brushes.length; i++) {
+      moveBrush(brushes[i]);
+      displayBrush(brushes[i]);
+  }
+}
 
 function moveCandy(candy) {
   let change = random(0, 1);
@@ -167,7 +190,19 @@ function moveApple(apple) {
   }
 }
 
+function moveBrush(brush) {
+  let change = random(0, 1);
+  if (change < 0.05) {
+    brush.vx = random(-brush.speed, brush.speed);
+    brush.vy = random(-brush.speed, brush.speed);
 
+    brush.x = brush.x + brush.vx;
+    brush.y = brush.y + brush.vy;
+
+    brush.x = constrain(brush.x, 0, windowWidth);
+    brush.y = constrain(brush.y, 0, windowHeight);
+  }
+}
 
 function displayCandy(candy) {
   push();
@@ -184,6 +219,12 @@ function displayLollipop(lollipop) {
 function displayApple(apple) {
   push();
   image(appleImage, apple.x, apple.y, apple.width, apple.height);
+  pop();
+}
+
+function displayBrush(brush) {
+  push();
+  image(brushImage, brush.x, brush.y, brush.width, brush.height);
   pop();
 }
 
