@@ -144,7 +144,7 @@ function simulation() {
   createBrush();
   createCandy();
   createLollipop();
-  checkOverlap();
+  // checkOverlap();
 }
 
 function end1() {
@@ -166,7 +166,7 @@ function end3() {
 }
 
 // Check if user touched apple or tooth brush
-function checkOverlap() {
+/* function checkOverlap() {
   let d1 = dist(mouseX, mouseY, apple.x, apple.y);
   if (d1 < apple.width / 2)
     state = `end1`;
@@ -182,12 +182,14 @@ function checkOverlap() {
   let d4 = dist(mouseX, mouseY, brush.x, brush.y);
   if (d4 < brush.height / 2)
     state = `end2`;
-}
+} */
 
+// Show start image
 function displayStart() {
   image(startImage, start.x, start.y, windowWidth, windowHeight);
 }
 
+// Create candy, lollipop, apple, tooth brushes
 function createItems() {
 for (let i = 0; i < candyNum; i++) {
   let candy = createCandy(random(0, width), random(0, height));
