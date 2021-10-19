@@ -9,7 +9,7 @@ endings.
 
 "use strict";
 
-// Defining all images
+// Defining all images and adding arrays
 let candies = [];
 let candyNum = 10;
 let candyImage;
@@ -171,11 +171,10 @@ let candyend = {
   height: 100,
 };
 
-// Adding background image and all states
+// Adding background image and identifying all states
 function draw() {
   background(bg);
 
-  // Identifying all states
   if (state === `title`) {
     title();
   } else if (state === `simulation`) {
@@ -223,7 +222,7 @@ function end3() {
   displayEnd3();
 }
 
-// All functions related to candy (purple candy)
+// All functions related to candy (purple candy): create, move, check for overlap to be eaten and display
 function makeCandy() {
   for (let i = 0; i < candies.length; i++) {
     moveCandy(candies[i]);
@@ -270,7 +269,7 @@ function displayCandy(candy) {
   }
 }
 
-// All functions related to candy2 (lollipop)
+// All functions related to candy2 (lollipop): create, move, check for overlap to be eaten and display
 function makeCandy2() {
   for (let i = 0; i < candies2.length; i++) {
     moveCandy2(candies2[i]);
@@ -317,7 +316,7 @@ function displayCandy2(candy2) {
   }
 }
 
-// All functions related to candy3 (yellow candy)
+// All functions related to candy3 (yellow candy): move, check for overlap and display
 function moveCandy3() {
   let change = random(0, 1);
   if (change < 0.05) {
@@ -348,7 +347,7 @@ function displayCandy3() {
   pop();
 }
 
-// All functions related to toothbrush
+// All functions related to toothbrush: create, move, check for overlap and display
 function makeBrush() {
   for (let i = 0; i < brushes.length; i++) {
     moveBrush(brushes[i]);
@@ -387,7 +386,7 @@ function displayBrush(brush) {
   pop();
 }
 
-// All functions related to apple
+// All functions related to apple: create, move, check for overlap and display
 function makeApple() {
   for (let i = 0; i < apples.length; i++) {
     moveApple(apples[i]);
