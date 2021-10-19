@@ -6,6 +6,7 @@ let candyImage;
 let candies2 = [];
 let candy2Num = 10;
 let lollipopImage;
+let chocolateImage;
 let bg;
 
 // Our user, to move with the mouse
@@ -19,6 +20,7 @@ function preload() {
     bg = loadImage("assets/images/street.gif");
     candyImage = loadImage("assets/images/candy.png");
     lollipopImage = loadImage("assets/images/lollipop.png");
+    chocolateImage = loadImage("assets/images/chocolate.png");
   }
 
 let state = `simulation`; // Can be: title, simulation, end1, end2
@@ -67,7 +69,8 @@ function createCandy2(x,y) {
 let candy3 = {
   x: 100,
   y: 100,
-  size: 50,
+  width: 100,
+  height: 100,
   vx: 0,
   vy: 0,
   speed: 2,
@@ -214,8 +217,12 @@ function checkCandy2(candy2) {
 }
 
 function checkCandy3() {
-    let d = dist(user.x, user.y, candy3.x, candy3.y);
-    if (d < user.size / 2 + candy3.size / 2)
+    let d1 = dist(user.x, user.y, candy3.x, candy3.y);
+    if (d1 < user.size / 2 + candy3.width / 2)
+        state = `end2`;
+
+    let d2 = dist(user.x, user.y, candy3.x, candy3.y);
+    if (d2 < user.size / 2 + candy3.height / 2)
         state = `end2`;
   }
 
@@ -245,9 +252,7 @@ function displayCandy2(candy2) {
 }
 
 function displayCandy3() {
-    push();
-    fill(144,0,255);
-    noStroke();
-    ellipse(candy3.x,candy3.y,candy3.size);
-    pop();
+  push();
+  image(chocolateImage, candy3.x, candy3.y, candy3.width, candy3.height);
+  pop();
 }
