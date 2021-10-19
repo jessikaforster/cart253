@@ -18,6 +18,7 @@ let bg;
 let startImage;
 let appleendImage;
 let brushendImage;
+let candyendImage;
 
 // Our user, to move with the mouse
 let user = {
@@ -36,8 +37,9 @@ function preload() {
   appleImage = loadImage("assets/images/apple.png");
   brushImage = loadImage("assets/images/toothbrush.png");
   startImage = loadImage("assets/images/start.png");
-  appleendImage = loadImage("assets/images/end1.png");
-  brushendImage = loadImage("assets/images/end2.png");
+  brushendImage = loadImage("assets/images/end1.png");
+  candyendImage = loadImage("assets/images/end2.png");
+  appleendImage = loadImage("assets/images/end3.png");
 }
 
 let state = `title`; // Can be: title, simulation, end1, end2
@@ -150,6 +152,12 @@ let brushend = {
   height: 100,
 };
 
+let candyend = {
+  x: 0,
+  y: 0,
+  width: 100,
+  height: 100,
+};
 
 function draw() {
   background(bg);
@@ -192,9 +200,7 @@ function end1() {
 }
 
 function end2() {
-  fill(255);
-  textAlign(CENTER, CENTER);
-  text(`Watch Yumi's Cells every`, width / 2, 385);
+  displayEnd2();
 }
 
 function end3() {
@@ -422,7 +428,7 @@ function displayEnd1() {
 }
 
 function displayEnd2() {
-
+  image(candyendImage, candyend.x, candyend.y, windowWidth, windowHeight);
 }
 
 function displayEnd3() {
