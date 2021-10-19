@@ -58,6 +58,15 @@ function createCandy2(x,y) {
   return candy2;
 }
 
+let candy3 = {
+  x: 100,
+  y: 100,
+  size: 50,
+  vx: 0,
+  vy: 0,
+  speed: 2,
+}
+
 function draw() {
   background(bg);
 
@@ -86,6 +95,9 @@ function simulation() {
   displayUser();
   makeCandy();
   makeCandy2();
+  displayCandy3();
+  checkCandy3();
+  moveCandy3();
 }
 
 
@@ -94,7 +106,9 @@ function end1() {
 }
 
 function end2() {
-
+  fill(255);
+    textAlign(CENTER,CENTER);
+    text(`Watch Yumi's Cells every`,width/2,385);
 }
 
 function makeCandy() {
@@ -141,6 +155,20 @@ function moveCandy2(candy2) {
   candy2.y = constrain(candy2.y, 0, height);
 }
 
+function moveCandy3() {
+  let change = random(0, 1);
+  if (change < 0.05) {
+    candy3.vx = random(-candy3.speed, candy3.speed);
+    candy3.vy = random(-candy3.speed, candy3.speed);
+  }
+
+  candy3.x = candy3.x + candy3.vx;
+  candy3.y = candy3.y + candy3.vy;
+
+  candy3.x = constrain(candy3.x, 0, width);
+  candy3.y = constrain(candy3.y, 0, height);
+}
+
 // Sets the user position to the mouse position
 function moveUser() {
   user.x = mouseX;
@@ -164,6 +192,12 @@ function checkCandy2(candy2) {
     }
   }
 }
+
+function checkCandy3() {
+    let d = dist(user.x, user.y, candy3.x, candy3.y);
+    if (d < user.size / 2 + candy3.size / 2)
+        state = `end2`;
+  }
 
 // Draw the user as a circle
 function displayUser() {
@@ -192,4 +226,12 @@ function displayCandy2(candy2) {
     ellipse(candy2.x,candy2.y,candy2.size);
     pop();
   }
+}
+
+function displayCandy3() {
+    push();
+    fill(144,0,255);
+    noStroke();
+    ellipse(candy3.x,candy3.y,candy3.size);
+    pop();
 }
