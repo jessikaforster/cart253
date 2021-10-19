@@ -2,6 +2,8 @@
 
 let candies = [];
 let candyNum = 10;
+let candies2 = [];
+let candy2Num = 10;
 let bg;
 
 // Our user, to move with the mouse
@@ -23,6 +25,10 @@ function setup() {
   for (let i = 0; i < candyNum; i++) {
     let candy = createCandy(random(0,width), random(0,height));
     candies.push(candy);
+}
+  for (let i = 0; i < candy2Num; i++) {
+    let candy2 = createCandy2(random(0,width), random(0,height));
+    candies2.push(candy2);
   }
 }
 
@@ -37,6 +43,19 @@ function createCandy(x,y) {
     eaten: false,
   };
   return candy;
+}
+
+function createCandy2(x,y) {
+  let candy2 = {
+    x: x,
+    y: y,
+    size: 50,
+    vx: 0,
+    vy: 0,
+    speed: 2,
+    eaten: false,
+  };
+  return candy2;
 }
 
 function draw() {
@@ -66,6 +85,7 @@ function simulation() {
   moveUser();
   displayUser();
   makeCandy();
+  makeCandy2();
 }
 
 
@@ -85,6 +105,14 @@ for (let i = 0; i < candies.length; i++) {
   }
 }
 
+function makeCandy2() {
+for (let i = 0; i < candies2.length; i++) {
+  moveCandy2(candies2[i]);
+  displayCandy2(candies2[i]);
+  checkCandy2(candies2[i]);
+  }
+}
+
 function moveCandy(candy) {
   let change = random(0, 1);
   if (change < 0.05) {
@@ -99,6 +127,20 @@ function moveCandy(candy) {
   candy.y = constrain(candy.y, 0, height);
 }
 
+function moveCandy2(candy2) {
+  let change = random(0, 1);
+  if (change < 0.05) {
+    candy2.vx = random(-candy2.speed, candy2.speed);
+    candy2.vy = random(-candy2.speed, candy2.speed);
+  }
+
+  candy2.x = candy2.x + candy2.vx;
+  candy2.y = candy2.y + candy2.vy;
+
+  candy2.x = constrain(candy2.x, 0, width);
+  candy2.y = constrain(candy2.y, 0, height);
+}
+
 // Sets the user position to the mouse position
 function moveUser() {
   user.x = mouseX;
@@ -110,6 +152,15 @@ function checkCandy(candy) {
     let d = dist(user.x, user.y, candy.x, candy.y);
     if (d < user.size / 2 + candy.size / 2) {
       candy.eaten = true;
+    }
+  }
+}
+
+function checkCandy2(candy2) {
+  if (!candy2.eaten) {
+    let d = dist(user.x, user.y, candy2.x, candy2.y);
+    if (d < user.size / 2 + candy2.size / 2) {
+      candy2.eaten = true;
     }
   }
 }
@@ -129,6 +180,16 @@ function displayCandy(candy) {
     fill(0,217,255);
     noStroke();
     ellipse(candy.x,candy.y,candy.size);
+    pop();
+  }
+}
+
+function displayCandy2(candy2) {
+  if (!candy2.eaten){
+    push();
+    fill(255,0,195);
+    noStroke();
+    ellipse(candy2.x,candy2.y,candy2.size);
     pop();
   }
 }
