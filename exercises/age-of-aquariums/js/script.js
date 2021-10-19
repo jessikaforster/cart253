@@ -2,8 +2,10 @@
 
 let candies = [];
 let candyNum = 10;
+let candyImage;
 let candies2 = [];
 let candy2Num = 10;
+let lollipopImage;
 let bg;
 
 // Our user, to move with the mouse
@@ -15,6 +17,8 @@ let user = {
 
 function preload() {
     bg = loadImage("assets/images/street.gif");
+    candyImage = loadImage("assets/images/candy.png");
+    lollipopImage = loadImage("assets/images/lollipop.png");
   }
 
 let state = `simulation`; // Can be: title, simulation, end1, end2
@@ -36,7 +40,8 @@ function createCandy(x,y) {
   let candy = {
     x: x,
     y: y,
-    size: 50,
+    width: 100,
+    height: 100,
     vx: 0,
     vy: 0,
     speed: 2,
@@ -49,7 +54,8 @@ function createCandy2(x,y) {
   let candy2 = {
     x: x,
     y: y,
-    size: 50,
+    width: 100,
+    height: 100,
     vx: 0,
     vy: 0,
     speed: 2,
@@ -178,7 +184,14 @@ function moveUser() {
 function checkCandy(candy) {
   if (!candy.eaten) {
     let d = dist(user.x, user.y, candy.x, candy.y);
-    if (d < user.size / 2 + candy.size / 2) {
+    if (d < user.size / 2 + candy.width / 2) {
+      candy.eaten = true;
+    }
+  }
+
+  if (!candy.eaten) {
+    let d = dist(user.x, user.y, candy.x, candy.y);
+    if (d < user.size / 2 + candy.height / 2) {
       candy.eaten = true;
     }
   }
@@ -187,7 +200,14 @@ function checkCandy(candy) {
 function checkCandy2(candy2) {
   if (!candy2.eaten) {
     let d = dist(user.x, user.y, candy2.x, candy2.y);
-    if (d < user.size / 2 + candy2.size / 2) {
+    if (d < user.size / 2 + candy2.width / 2) {
+      candy2.eaten = true;
+    }
+  }
+
+  if (!candy2.eaten) {
+    let d = dist(user.x, user.y, candy2.x, candy2.y);
+    if (d < user.size / 2 + candy2.height / 2) {
       candy2.eaten = true;
     }
   }
@@ -211,9 +231,7 @@ function displayUser() {
 function displayCandy(candy) {
   if (!candy.eaten){
     push();
-    fill(0,217,255);
-    noStroke();
-    ellipse(candy.x,candy.y,candy.size);
+    image(candyImage, candy.x, candy.y, candy.width, candy.height);
     pop();
   }
 }
@@ -221,9 +239,7 @@ function displayCandy(candy) {
 function displayCandy2(candy2) {
   if (!candy2.eaten){
     push();
-    fill(255,0,195);
-    noStroke();
-    ellipse(candy2.x,candy2.y,candy2.size);
+    image(lollipopImage, candy2.x, candy2.y, candy2.width, candy2.height);
     pop();
   }
 }
