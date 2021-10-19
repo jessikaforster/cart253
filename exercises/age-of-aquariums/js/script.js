@@ -15,7 +15,7 @@ function preload() {
     bg = loadImage("assets/images/street.gif");
   }
 
-let state = `title`; // Can be: title, simulation, end1, end2
+let state = `simulation`; // Can be: title, simulation, end1, end2
 
 function setup() {
   createCanvas(windowWidth, windowHeight);
@@ -55,17 +55,34 @@ if (state === `title`) {
   else if (state === `end2`) {
     end2();
     }
-  
+}
 
+function title() {
 
-  for (let i = 0; i < candies.length; i++) {
-    moveCandy(candies[i]);
-    displayCandy(candies[i]);
-    checkCandy(candies[i]);
-  }
+}
+
+function simulation() {
   // Move the user (with the mouse)
   moveUser();
   displayUser();
+  makeCandy();
+}
+
+
+function end1() {
+
+}
+
+function end2() {
+
+}
+
+function makeCandy() {
+for (let i = 0; i < candies.length; i++) {
+  moveCandy(candies[i]);
+  displayCandy(candies[i]);
+  checkCandy(candies[i]);
+  }
 }
 
 function moveCandy(candy) {
@@ -100,7 +117,8 @@ function checkCandy(candy) {
 // Draw the user as a circle
 function displayUser() {
   push();
-  fill(255);
+  fill(255,115,0);
+  noStroke();
   ellipse(user.x, user.y, user.size);
   pop();
 }
@@ -108,7 +126,8 @@ function displayUser() {
 function displayCandy(candy) {
   if (!candy.eaten){
     push();
-    fill(255,100,100);
+    fill(0,217,255);
+    noStroke();
     ellipse(candy.x,candy.y,candy.size);
     pop();
   }
