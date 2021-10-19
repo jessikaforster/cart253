@@ -7,21 +7,24 @@ let candies2 = [];
 let candy2Num = 10;
 let lollipopImage;
 let chocolateImage;
+let pumpkinImage;
 let bg;
 
 // Our user, to move with the mouse
 let user = {
   x: 0,
   y: 0,
-  size: 100
-};
+  width: 300,
+  height: 300,
+}
 
 function preload() {
-    bg = loadImage("assets/images/street.gif");
-    candyImage = loadImage("assets/images/candy.png");
-    lollipopImage = loadImage("assets/images/lollipop.png");
-    chocolateImage = loadImage("assets/images/chocolate.png");
-  }
+  bg = loadImage("assets/images/street.gif");
+  candyImage = loadImage("assets/images/candy.png");
+  lollipopImage = loadImage("assets/images/lollipop.png");
+  chocolateImage = loadImage("assets/images/chocolate.png");
+  pumpkinImage = loadImage("assets/images/pumpkin.png");
+}
 
 let state = `simulation`; // Can be: title, simulation, end1, end2
 
@@ -29,16 +32,16 @@ function setup() {
   createCanvas(windowWidth, windowHeight);
 
   for (let i = 0; i < candyNum; i++) {
-    let candy = createCandy(random(0,width), random(0,height));
+    let candy = createCandy(random(0, width), random(0, height));
     candies.push(candy);
-}
+  }
   for (let i = 0; i < candy2Num; i++) {
-    let candy2 = createCandy2(random(0,width), random(0,height));
+    let candy2 = createCandy2(random(0, width), random(0, height));
     candies2.push(candy2);
   }
 }
 
-function createCandy(x,y) {
+function createCandy(x, y) {
   let candy = {
     x: x,
     y: y,
@@ -52,7 +55,7 @@ function createCandy(x,y) {
   return candy;
 }
 
-function createCandy2(x,y) {
+function createCandy2(x, y) {
   let candy2 = {
     x: x,
     y: y,
@@ -80,18 +83,17 @@ function draw() {
   background(bg);
 
   // Identifying all states
-if (state === `title`) {
+  if (state === `title`) {
     title();
-  }
-  else if (state === `simulation`) {
+  } else if (state === `simulation`) {
     simulation();
-  }
-  else if (state === `end1`) {
+  } else if (state === `end1`) {
     end1();
-  }
-  else if (state === `end2`) {
+  } else if (state === `end2`) {
     end2();
-    }
+  } else if (state === `end2`) {
+    end2();
+  }
 }
 
 function title() {
@@ -107,6 +109,7 @@ function simulation() {
   displayCandy3();
   checkCandy3();
   moveCandy3();
+  noCursor();
 }
 
 
@@ -116,23 +119,23 @@ function end1() {
 
 function end2() {
   fill(255);
-    textAlign(CENTER,CENTER);
-    text(`Watch Yumi's Cells every`,width/2,385);
+  textAlign(CENTER, CENTER);
+  text(`Watch Yumi's Cells every`, width / 2, 385);
 }
 
 function makeCandy() {
-for (let i = 0; i < candies.length; i++) {
-  moveCandy(candies[i]);
-  displayCandy(candies[i]);
-  checkCandy(candies[i]);
+  for (let i = 0; i < candies.length; i++) {
+    moveCandy(candies[i]);
+    displayCandy(candies[i]);
+    checkCandy(candies[i]);
   }
 }
 
 function makeCandy2() {
-for (let i = 0; i < candies2.length; i++) {
-  moveCandy2(candies2[i]);
-  displayCandy2(candies2[i]);
-  checkCandy2(candies2[i]);
+  for (let i = 0; i < candies2.length; i++) {
+    moveCandy2(candies2[i]);
+    displayCandy2(candies2[i]);
+    checkCandy2(candies2[i]);
   }
 }
 
@@ -187,14 +190,14 @@ function moveUser() {
 function checkCandy(candy) {
   if (!candy.eaten) {
     let d = dist(user.x, user.y, candy.x, candy.y);
-    if (d < user.size / 2 + candy.width / 2) {
+    if (d < user.width / 2 + candy.width / 2) {
       candy.eaten = true;
     }
   }
 
   if (!candy.eaten) {
     let d = dist(user.x, user.y, candy.x, candy.y);
-    if (d < user.size / 2 + candy.height / 2) {
+    if (d < user.height / 2 + candy.height / 2) {
       candy.eaten = true;
     }
   }
@@ -203,40 +206,38 @@ function checkCandy(candy) {
 function checkCandy2(candy2) {
   if (!candy2.eaten) {
     let d = dist(user.x, user.y, candy2.x, candy2.y);
-    if (d < user.size / 2 + candy2.width / 2) {
+    if (d < user.width / 2 + candy2.width / 2) {
       candy2.eaten = true;
     }
   }
 
   if (!candy2.eaten) {
     let d = dist(user.x, user.y, candy2.x, candy2.y);
-    if (d < user.size / 2 + candy2.height / 2) {
+    if (d < user.height / 2 + candy2.height / 2) {
       candy2.eaten = true;
     }
   }
 }
 
 function checkCandy3() {
-    let d1 = dist(user.x, user.y, candy3.x, candy3.y);
-    if (d1 < user.size / 2 + candy3.width / 2)
-        state = `end2`;
+  let d1 = dist(user.x, user.y, candy3.x, candy3.y);
+  if (d1 < user.width / 2 + candy3.width / 2)
+    state = `end2`;
 
-    let d2 = dist(user.x, user.y, candy3.x, candy3.y);
-    if (d2 < user.size / 2 + candy3.height / 2)
-        state = `end2`;
-  }
+  let d2 = dist(user.x, user.y, candy3.x, candy3.y);
+  if (d2 < user.height / 2 + candy3.height / 2)
+    state = `end2`;
+}
 
 // Draw the user as a circle
 function displayUser() {
   push();
-  fill(255,115,0);
-  noStroke();
-  ellipse(user.x, user.y, user.size);
+  image(pumpkinImage, user.x, user.y, user.width, user.height);
   pop();
 }
 
 function displayCandy(candy) {
-  if (!candy.eaten){
+  if (!candy.eaten) {
     push();
     image(candyImage, candy.x, candy.y, candy.width, candy.height);
     pop();
@@ -244,7 +245,7 @@ function displayCandy(candy) {
 }
 
 function displayCandy2(candy2) {
-  if (!candy2.eaten){
+  if (!candy2.eaten) {
     push();
     image(lollipopImage, candy2.x, candy2.y, candy2.width, candy2.height);
     pop();
