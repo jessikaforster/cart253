@@ -15,6 +15,9 @@ let lollipopImage;
 let chocolateImage;
 let pumpkinImage;
 let bg;
+let startImage;
+let appleendImage;
+let brushendImage;
 
 // Our user, to move with the mouse
 let user = {
@@ -32,9 +35,12 @@ function preload() {
   pumpkinImage = loadImage("assets/images/pumpkin.png");
   appleImage = loadImage("assets/images/apple.png");
   brushImage = loadImage("assets/images/toothbrush.png");
+  startImage = loadImage("assets/images/start.png");
+  appleendImage = loadImage("assets/images/end1.png");
+  brushendImage = loadImage("assets/images/end2.png");
 }
 
-let state = `simulation`; // Can be: title, simulation, end1, end2
+let state = `title`; // Can be: title, simulation, end1, end2
 
 function setup() {
   createCanvas(windowWidth, windowHeight);
@@ -123,6 +129,28 @@ let candy3 = {
   speed: 2,
 }
 
+let start = {
+  x: 0,
+  y: 0,
+  width: 100,
+  height: 100,
+};
+
+let appleend = {
+  x: 0,
+  y: 0,
+  width: 100,
+  height: 100,
+};
+
+let brushend = {
+  x: 0,
+  y: 0,
+  width: 100,
+  height: 100,
+};
+
+
 function draw() {
   background(bg);
 
@@ -135,13 +163,13 @@ function draw() {
     end1();
   } else if (state === `end2`) {
     end2();
-  } else if (state === `end2`) {
-    end2();
+  } else if (state === `end3`) {
+    end3();
   }
 }
 
 function title() {
-
+  displayStart();
 }
 
 function simulation() {
@@ -160,13 +188,17 @@ function simulation() {
 
 
 function end1() {
-
+  displayEnd1();
 }
 
 function end2() {
   fill(255);
   textAlign(CENTER, CENTER);
   text(`Watch Yumi's Cells every`, width / 2, 385);
+}
+
+function end3() {
+  displayEnd3();
 }
 
 function makeCandy() {
@@ -378,4 +410,27 @@ function displayApple(apple) {
   push();
   image(appleImage, apple.x, apple.y, apple.width, apple.height);
   pop();
+}
+
+// Show start and end images
+function displayStart() {
+  image(startImage, start.x, start.y, windowWidth, windowHeight);
+}
+
+function displayEnd1() {
+  image(brushendImage, brushend.x, brushend.y, windowWidth, windowHeight);
+}
+
+function displayEnd2() {
+
+}
+
+function displayEnd3() {
+  image(appleendImage, appleend.x, appleend.y, windowWidth, windowHeight);
+}
+
+function mousePressed() {
+  if (state === `title`) {
+    state = `simulation`;
+  }
 }
