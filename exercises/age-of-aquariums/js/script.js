@@ -8,6 +8,12 @@ endings.
 */
 let candies1 = []
 let candy1Size = 10;
+let candies2 = []
+let candy2Size = 10;
+let candies3 = []
+let candy3Size = 10;
+let enemies = []
+let enemySize = 10;
 let bg;
 
 function preload() {
@@ -17,6 +23,8 @@ function preload() {
 function setup() {
   createCanvas(windowWidth, windowHeight);
 }
+
+let state = `title`; // Can be: title, simulation, end1, end2
 
 // User that will be moved using the mouse
 let user = {
@@ -75,4 +83,18 @@ let enemy = {
 
 function draw() {
   background(bg);
-}
+
+// Identifying all states
+if (state === `title`) {
+    title();
+  }
+  else if (state === `simulation`) {
+    simulation();
+  }
+  else if (state === `end1`) {
+    end1();
+  }
+  else if (state === `end2`) {
+    end2();
+    }
+  }
