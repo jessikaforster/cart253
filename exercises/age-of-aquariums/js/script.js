@@ -27,6 +27,8 @@ let brushNum = 5;
 let userImage;
 let bg;
 let startImage;
+let appleendImage;
+let brushendImage;
 
 function preload() {
   userImage = loadImage("assets/images/pumpkin.png");
@@ -36,9 +38,11 @@ function preload() {
   brushImage = loadImage("assets/images/toothbrush.png");
   bg = loadImage("assets/images/street.gif");
   startImage = loadImage("assets/images/start.png");
+  appleendImage = loadImage("assets/images/end1.png");
+  brushendImage = loadImage("assets/images/end2.png");
 }
 
-let state = `title`; // Can be: title, simulation, end1, end2, end3
+let state = `end2`; // Can be: title, simulation, end1, end2, end3
 
 function setup() {
   createCanvas(windowWidth, windowHeight);
@@ -110,6 +114,20 @@ let start = {
   height: 100,
 };
 
+let appleend = {
+  x: 0,
+  y: 0,
+  width: 100,
+  height: 100,
+};
+
+let brushend = {
+  x: 0,
+  y: 0,
+  width: 100,
+  height: 100,
+};
+
 function draw() {
   background(bg);
 
@@ -148,15 +166,11 @@ function simulation() {
 }
 
 function end1() {
-  fill(255,143,227);
-  textAlign(CENTER,CENTER);
-  text(`end1`,width/2,70);
+  displayAppleend();
 }
 
 function end2() {
-  fill(255,143,227);
-  textAlign(CENTER,CENTER);
-  text(`end2`,width/2,70);
+  displayBrushend();
 }
 
 function end3() {
@@ -184,9 +198,17 @@ function end3() {
     state = `end2`;
 } */
 
-// Show start image
+// Show start and end images
 function displayStart() {
   image(startImage, start.x, start.y, windowWidth, windowHeight);
+}
+
+function displayAppleend() {
+  image(appleendImage, appleend.x, appleend.y, windowWidth, windowHeight);
+}
+
+function displayBrushend() {
+  image(brushendImage, brushend.x, brushend.y, windowWidth, windowHeight);
 }
 
 // Create candy, lollipop, apple, tooth brushes
