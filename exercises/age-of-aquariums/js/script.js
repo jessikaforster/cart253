@@ -2,6 +2,7 @@
 
 let candies = [];
 let candyNum = 10;
+let bg;
 
 // Our user, to move with the mouse
 let user = {
@@ -9,6 +10,12 @@ let user = {
   y: 0,
   size: 100
 };
+
+function preload() {
+    bg = loadImage("assets/images/street.gif");
+  }
+
+let state = `title`; // Can be: title, simulation, end1, end2
 
 function setup() {
   createCanvas(windowWidth, windowHeight);
@@ -27,20 +34,38 @@ function createCandy(x,y) {
     vx: 0,
     vy: 0,
     speed: 2,
-    eaten: false
+    eaten: false,
   };
   return candy;
 }
 
 function draw() {
-  background(0);
+  background(bg);
+
+  // Identifying all states
+if (state === `title`) {
+    title();
+  }
+  else if (state === `simulation`) {
+    simulation();
+  }
+  else if (state === `end1`) {
+    end1();
+  }
+  else if (state === `end2`) {
+    end2();
+    }
+  
+
 
   for (let i = 0; i < candies.length; i++) {
     moveCandy(candies[i]);
     displayCandy(candies[i]);
+    checkCandy(candies[i]);
   }
   // Move the user (with the mouse)
   moveUser();
+  displayUser();
 }
 
 function moveCandy(candy) {
