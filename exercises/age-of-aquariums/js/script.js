@@ -5,6 +5,12 @@ let candyNum = 10;
 let candyImage;
 let candies2 = [];
 let candy2Num = 10;
+let appleImage;
+let apples = [];
+let appleNum = 3;
+let brushImage;
+let brushes = [];
+let brushNum = 3;
 let lollipopImage;
 let chocolateImage;
 let pumpkinImage;
@@ -24,6 +30,8 @@ function preload() {
   lollipopImage = loadImage("assets/images/lollipop.png");
   chocolateImage = loadImage("assets/images/chocolate.png");
   pumpkinImage = loadImage("assets/images/pumpkin.png");
+  appleImage = loadImage("assets/images/apple.png");
+  brushImage = loadImage("assets/images/toothbrush.png");
 }
 
 let state = `simulation`; // Can be: title, simulation, end1, end2
@@ -38,6 +46,16 @@ function setup() {
   for (let i = 0; i < candy2Num; i++) {
     let candy2 = createCandy2(random(0, width), random(0, height));
     candies2.push(candy2);
+  }
+
+  for (let i = 0; i < brushNum; i++) {
+    let brush = createBrush(random(0, width), random(0, height));
+    brushes.push(brush);
+  }
+
+  for (let i = 0; i < appleNum; i++) {
+    let apple = createApple(random(0, width), random(0, height));
+    apples.push(apple);
   }
 }
 
@@ -67,6 +85,32 @@ function createCandy2(x, y) {
     eaten: false,
   };
   return candy2;
+}
+
+function createBrush(x, y) {
+  let brush = {
+    x: x,
+    y: y,
+    width: 100,
+    height: 100,
+    vx: 0,
+    vy: 0,
+    speed: 2,
+  };
+  return brush;
+}
+
+function createApple(x, y) {
+  let apple = {
+    x: x,
+    y: y,
+    width: 100,
+    height: 100,
+    vx: 0,
+    vy: 0,
+    speed: 2,
+  };
+  return apple;
 }
 
 let candy3 = {
@@ -110,6 +154,8 @@ function simulation() {
   checkCandy3();
   moveCandy3();
   noCursor();
+  makeApple();
+  makeBrush();
 }
 
 
@@ -136,6 +182,22 @@ function makeCandy2() {
     moveCandy2(candies2[i]);
     displayCandy2(candies2[i]);
     checkCandy2(candies2[i]);
+  }
+}
+
+function makeBrush() {
+  for (let i = 0; i < brushes.length; i++) {
+    moveBrush(brushes[i]);
+    displayBrush(brushes[i]);
+    checkBrush(brushes[i]);
+  }
+}
+
+function makeApple() {
+  for (let i = 0; i < apples.length; i++) {
+    moveApple(apples[i]);
+    displayApple(apples[i]);
+    checkApple(apples[i]);
   }
 }
 
@@ -181,6 +243,34 @@ function moveCandy3() {
   candy3.y = constrain(candy3.y, 0, height);
 }
 
+function moveBrush(brush) {
+  let change = random(0, 1);
+  if (change < 0.05) {
+    brush.vx = random(-brush.speed, brush.speed);
+    brush.vy = random(-brush.speed, brush.speed);
+  }
+
+  brush.x = brush.x + brush.vx;
+  brush.y = brush.y + brush.vy;
+
+  brush.x = constrain(brush.x, 0, width);
+  brush.y = constrain(brush.y, 0, height);
+}
+
+function moveApple(apple) {
+  let change = random(0, 1);
+  if (change < 0.05) {
+    apple.vx = random(-apple.speed, apple.speed);
+    apple.vy = random(-apple.speed, apple.speed);
+  }
+
+  apple.x = apple.x + apple.vx;
+  apple.y = apple.y + apple.vy;
+
+  apple.x = constrain(apple.x, 0, width);
+  apple.y = constrain(apple.y, 0, height);
+}
+
 // Sets the user position to the mouse position
 function moveUser() {
   user.x = mouseX;
@@ -219,14 +309,34 @@ function checkCandy2(candy2) {
   }
 }
 
+function checkBrush(brush) {
+  let d1 = dist(user.x, user.y, brush.x, brush.y);
+  if (d1 < user.width / 2 + brush.width / 2)
+    state = `end1`;
+
+  let d2 = dist(user.x, user.y, brush.x, brush.y);
+  if (d2 < user.height / 2 + brush.height / 2)
+    state = `end1`;
+}
+
 function checkCandy3() {
-  let d1 = dist(user.x, user.y, candy3.x, candy3.y);
-  if (d1 < user.width / 2 + candy3.width / 2)
+  let d3 = dist(user.x, user.y, candy3.x, candy3.y);
+  if (d3 < user.width / 2 + candy3.width / 2)
     state = `end2`;
 
-  let d2 = dist(user.x, user.y, candy3.x, candy3.y);
-  if (d2 < user.height / 2 + candy3.height / 2)
+  let d4 = dist(user.x, user.y, candy3.x, candy3.y);
+  if (d4 < user.height / 2 + candy3.height / 2)
     state = `end2`;
+}
+
+function checkApple(apple) {
+  let d5 = dist(user.x, user.y, apple.x, apple.y);
+  if (d5 < user.width / 2 + apple.width / 2)
+    state = `end3`;
+
+  let d6 = dist(user.x, user.y, apple.x, apple.y);
+  if (d6 < user.height / 2 + apple.height / 2)
+    state = `end3`;
 }
 
 // Draw the user as a circle
@@ -255,5 +365,17 @@ function displayCandy2(candy2) {
 function displayCandy3() {
   push();
   image(chocolateImage, candy3.x, candy3.y, candy3.width, candy3.height);
+  pop();
+}
+
+function displayBrush(brush) {
+  push();
+  image(brushImage, brush.x, brush.y, brush.width, brush.height);
+  pop();
+}
+
+function displayApple(apple) {
+  push();
+  image(appleImage, apple.x, apple.y, apple.width, apple.height);
   pop();
 }
