@@ -1,5 +1,15 @@
+/**
+Age of Aquariums
+Jessika Forster
+
+Exercise to practice adding a user-controlled shape (or image), making the user interact with the fish
+(or whatever they are in your simulation), changing the fish (or whatever) creation and adding at least 2
+endings.
+*/
+
 "use strict";
 
+// Defining all images
 let candies = [];
 let candyNum = 10;
 let candyImage;
@@ -20,14 +30,7 @@ let appleendImage;
 let brushendImage;
 let candyendImage;
 
-// Our user, to move with the mouse
-let user = {
-  x: 0,
-  y: 0,
-  width: 300,
-  height: 300,
-}
-
+// Loading all images
 function preload() {
   bg = loadImage("assets/images/street.gif");
   candyImage = loadImage("assets/images/candy.png");
@@ -42,8 +45,9 @@ function preload() {
   appleendImage = loadImage("assets/images/end3.png");
 }
 
-let state = `title`; // Can be: title, simulation, end1, end2
+let state = `title`; // Can be: title, simulation, end1, end2, end3
 
+// Creating canvas and adding all floating items
 function setup() {
   createCanvas(windowWidth, windowHeight);
 
@@ -65,6 +69,14 @@ function setup() {
     let apple = createApple(random(0, width), random(0, height));
     apples.push(apple);
   }
+}
+
+// Defining all variables
+let user = {
+  x: 0,
+  y: 0,
+  width: 300,
+  height: 300,
 }
 
 function createCandy(x, y) {
@@ -159,6 +171,7 @@ let candyend = {
   height: 100,
 };
 
+// Adding background image and all states
 function draw() {
   background(bg);
 
@@ -176,12 +189,13 @@ function draw() {
   }
 }
 
+// Starting state
 function title() {
   displayStart();
 }
 
+// Game playing state
 function simulation() {
-  // Move the user (with the mouse)
   moveUser();
   displayUser();
   makeCandy();
@@ -194,48 +208,27 @@ function simulation() {
   makeBrush();
 }
 
-
+// Toothbrush ending
 function end1() {
   displayEnd1();
 }
 
+// Candy ending
 function end2() {
   displayEnd2();
 }
 
+// Apple ending
 function end3() {
   displayEnd3();
 }
 
+// All functions related to candy (purple candy)
 function makeCandy() {
   for (let i = 0; i < candies.length; i++) {
     moveCandy(candies[i]);
     displayCandy(candies[i]);
     checkCandy(candies[i]);
-  }
-}
-
-function makeCandy2() {
-  for (let i = 0; i < candies2.length; i++) {
-    moveCandy2(candies2[i]);
-    displayCandy2(candies2[i]);
-    checkCandy2(candies2[i]);
-  }
-}
-
-function makeBrush() {
-  for (let i = 0; i < brushes.length; i++) {
-    moveBrush(brushes[i]);
-    displayBrush(brushes[i]);
-    checkBrush(brushes[i]);
-  }
-}
-
-function makeApple() {
-  for (let i = 0; i < apples.length; i++) {
-    moveApple(apples[i]);
-    displayApple(apples[i]);
-    checkApple(apples[i]);
   }
 }
 
@@ -251,68 +244,6 @@ function moveCandy(candy) {
 
   candy.x = constrain(candy.x, 0, width);
   candy.y = constrain(candy.y, 0, height);
-}
-
-function moveCandy2(candy2) {
-  let change = random(0, 1);
-  if (change < 0.05) {
-    candy2.vx = random(-candy2.speed, candy2.speed);
-    candy2.vy = random(-candy2.speed, candy2.speed);
-  }
-
-  candy2.x = candy2.x + candy2.vx;
-  candy2.y = candy2.y + candy2.vy;
-
-  candy2.x = constrain(candy2.x, 0, width);
-  candy2.y = constrain(candy2.y, 0, height);
-}
-
-function moveCandy3() {
-  let change = random(0, 1);
-  if (change < 0.05) {
-    candy3.vx = random(-candy3.speed, candy3.speed);
-    candy3.vy = random(-candy3.speed, candy3.speed);
-  }
-
-  candy3.x = candy3.x + candy3.vx;
-  candy3.y = candy3.y + candy3.vy;
-
-  candy3.x = constrain(candy3.x, 0, width);
-  candy3.y = constrain(candy3.y, 0, height);
-}
-
-function moveBrush(brush) {
-  let change = random(0, 1);
-  if (change < 0.05) {
-    brush.vx = random(-brush.speed, brush.speed);
-    brush.vy = random(-brush.speed, brush.speed);
-  }
-
-  brush.x = brush.x + brush.vx;
-  brush.y = brush.y + brush.vy;
-
-  brush.x = constrain(brush.x, 0, width);
-  brush.y = constrain(brush.y, 0, height);
-}
-
-function moveApple(apple) {
-  let change = random(0, 1);
-  if (change < 0.05) {
-    apple.vx = random(-apple.speed, apple.speed);
-    apple.vy = random(-apple.speed, apple.speed);
-  }
-
-  apple.x = apple.x + apple.vx;
-  apple.y = apple.y + apple.vy;
-
-  apple.x = constrain(apple.x, 0, width);
-  apple.y = constrain(apple.y, 0, height);
-}
-
-// Sets the user position to the mouse position
-function moveUser() {
-  user.x = mouseX;
-  user.y = mouseY;
 }
 
 function checkCandy(candy) {
@@ -331,6 +262,37 @@ function checkCandy(candy) {
   }
 }
 
+function displayCandy(candy) {
+  if (!candy.eaten) {
+    push();
+    image(candyImage, candy.x, candy.y, candy.width, candy.height);
+    pop();
+  }
+}
+
+// All functions related to candy2 (lollipop)
+function makeCandy2() {
+  for (let i = 0; i < candies2.length; i++) {
+    moveCandy2(candies2[i]);
+    displayCandy2(candies2[i]);
+    checkCandy2(candies2[i]);
+  }
+}
+
+function moveCandy2(candy2) {
+  let change = random(0, 1);
+  if (change < 0.05) {
+    candy2.vx = random(-candy2.speed, candy2.speed);
+    candy2.vy = random(-candy2.speed, candy2.speed);
+  }
+
+  candy2.x = candy2.x + candy2.vx;
+  candy2.y = candy2.y + candy2.vy;
+
+  candy2.x = constrain(candy2.x, 0, width);
+  candy2.y = constrain(candy2.y, 0, height);
+}
+
 function checkCandy2(candy2) {
   if (!candy2.eaten) {
     let d = dist(user.x, user.y, candy2.x, candy2.y);
@@ -347,14 +309,27 @@ function checkCandy2(candy2) {
   }
 }
 
-function checkBrush(brush) {
-  let d1 = dist(user.x, user.y, brush.x, brush.y);
-  if (d1 < user.width / 2 + brush.width / 2)
-    state = `end1`;
+function displayCandy2(candy2) {
+  if (!candy2.eaten) {
+    push();
+    image(lollipopImage, candy2.x, candy2.y, candy2.width, candy2.height);
+    pop();
+  }
+}
 
-  let d2 = dist(user.x, user.y, brush.x, brush.y);
-  if (d2 < user.height / 2 + brush.height / 2)
-    state = `end1`;
+// All functions related to candy3 (yellow candy)
+function moveCandy3() {
+  let change = random(0, 1);
+  if (change < 0.05) {
+    candy3.vx = random(-candy3.speed, candy3.speed);
+    candy3.vy = random(-candy3.speed, candy3.speed);
+  }
+
+  candy3.x = candy3.x + candy3.vx;
+  candy3.y = candy3.y + candy3.vy;
+
+  candy3.x = constrain(candy3.x, 0, width);
+  candy3.y = constrain(candy3.y, 0, height);
 }
 
 function checkCandy3() {
@@ -367,6 +342,74 @@ function checkCandy3() {
     state = `end2`;
 }
 
+function displayCandy3() {
+  push();
+  image(chocolateImage, candy3.x, candy3.y, candy3.width, candy3.height);
+  pop();
+}
+
+// All functions related to toothbrush
+function makeBrush() {
+  for (let i = 0; i < brushes.length; i++) {
+    moveBrush(brushes[i]);
+    displayBrush(brushes[i]);
+    checkBrush(brushes[i]);
+  }
+}
+
+function moveBrush(brush) {
+  let change = random(0, 1);
+  if (change < 0.05) {
+    brush.vx = random(-brush.speed, brush.speed);
+    brush.vy = random(-brush.speed, brush.speed);
+  }
+
+  brush.x = brush.x + brush.vx;
+  brush.y = brush.y + brush.vy;
+
+  brush.x = constrain(brush.x, 0, width);
+  brush.y = constrain(brush.y, 0, height);
+}
+
+function checkBrush(brush) {
+  let d1 = dist(user.x, user.y, brush.x, brush.y);
+  if (d1 < user.width / 2 + brush.width / 2)
+    state = `end1`;
+
+  let d2 = dist(user.x, user.y, brush.x, brush.y);
+  if (d2 < user.height / 2 + brush.height / 2)
+    state = `end1`;
+}
+
+function displayBrush(brush) {
+  push();
+  image(brushImage, brush.x, brush.y, brush.width, brush.height);
+  pop();
+}
+
+// All functions related to apple
+function makeApple() {
+  for (let i = 0; i < apples.length; i++) {
+    moveApple(apples[i]);
+    displayApple(apples[i]);
+    checkApple(apples[i]);
+  }
+}
+
+function moveApple(apple) {
+  let change = random(0, 1);
+  if (change < 0.05) {
+    apple.vx = random(-apple.speed, apple.speed);
+    apple.vy = random(-apple.speed, apple.speed);
+  }
+
+  apple.x = apple.x + apple.vx;
+  apple.y = apple.y + apple.vy;
+
+  apple.x = constrain(apple.x, 0, width);
+  apple.y = constrain(apple.y, 0, height);
+}
+
 function checkApple(apple) {
   let d5 = dist(user.x, user.y, apple.x, apple.y);
   if (d5 < user.width / 2 + apple.width / 2)
@@ -377,44 +420,21 @@ function checkApple(apple) {
     state = `end3`;
 }
 
-// Draw the user as a circle
-function displayUser() {
-  push();
-  image(pumpkinImage, user.x, user.y, user.width, user.height);
-  pop();
-}
-
-function displayCandy(candy) {
-  if (!candy.eaten) {
-    push();
-    image(candyImage, candy.x, candy.y, candy.width, candy.height);
-    pop();
-  }
-}
-
-function displayCandy2(candy2) {
-  if (!candy2.eaten) {
-    push();
-    image(lollipopImage, candy2.x, candy2.y, candy2.width, candy2.height);
-    pop();
-  }
-}
-
-function displayCandy3() {
-  push();
-  image(chocolateImage, candy3.x, candy3.y, candy3.width, candy3.height);
-  pop();
-}
-
-function displayBrush(brush) {
-  push();
-  image(brushImage, brush.x, brush.y, brush.width, brush.height);
-  pop();
-}
-
 function displayApple(apple) {
   push();
   image(appleImage, apple.x, apple.y, apple.width, apple.height);
+  pop();
+}
+
+// Set the user position to the mouse position and display user
+function moveUser() {
+  user.x = mouseX;
+  user.y = mouseY;
+}
+
+function displayUser() {
+  push();
+  image(pumpkinImage, user.x, user.y, user.width, user.height);
   pop();
 }
 
@@ -435,6 +455,7 @@ function displayEnd3() {
   image(appleendImage, appleend.x, appleend.y, windowWidth, windowHeight);
 }
 
+// Mouse pressed begins game from title state
 function mousePressed() {
   if (state === `title`) {
     state = `simulation`;
