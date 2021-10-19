@@ -1,5 +1,8 @@
 "use strict";
 
+let candies = [];
+let candyNum = 10;
+
 // Our user, to move with the mouse
 let user = {
   x: 0,
@@ -7,23 +10,13 @@ let user = {
   size: 100
 };
 
-// Foods
-let candy1;
-let candy2;
-let candy3;
-let candy4;
-let candy5;
-let candy6;
-
 function setup() {
   createCanvas(windowWidth, windowHeight);
 
-  candy1 = createCandy(250,windowHeight/2);
-  candy2 = createCandy(350,windowHeight/2);
-  candy3 = createCandy(450,windowHeight/2);
-  candy4 = createCandy(550,windowHeight/2);
-  candy5 = createCandy(650,windowHeight/2);
-  candy6 = createCandy(750,windowHeight/2);
+  for (let i = 0; i < candyNum; i++) {
+    let candy = createCandy(random(0,width), random(0,height));
+    candies.push(candy);
+  }
 }
 
 function createCandy(x,y) {
@@ -31,6 +24,9 @@ function createCandy(x,y) {
     x: x,
     y: y,
     size: 50,
+    vx: 0,
+    vy: 0,
+    speed: 2,
     eaten: false
   };
   return candy;
@@ -39,25 +35,26 @@ function createCandy(x,y) {
 function draw() {
   background(0);
 
+  for (let i = 0; i < candies.length; i++) {
+    moveCandy(candies[i]);
+    displayCandy(candies[i]);
+  }
   // Move the user (with the mouse)
   moveUser();
+}
 
-  // Check whether the user has eaten either food
-  checkCandy(candy1);
-  checkCandy(candy2);
-  checkCandy(candy3);
-  checkCandy(candy4);
-  checkCandy(candy5);
-  checkCandy(candy6);
+function moveCandy(candy) {
+  let change = random(0, 1);
+  if (change < 0.05) {
+    candy.vx = random(-candy.speed, candy.speed);
+    candy.vy = random(-candy.speed, candy.speed);
+  }
 
-  // Display the user and foods
-  displayUser();
-  displayCandy(candy1);
-  displayCandy(candy2);
-  displayCandy(candy3);
-  displayCandy(candy4);
-  displayCandy(candy5);
-  displayCandy(candy6);
+  candy.x = candy.x + candy.vx;
+  candy.y = candy.y + candy.vy;
+
+  candy.x = constrain(candy.x, 0, width);
+  candy.y = constrain(candy.y, 0, height);
 }
 
 // Sets the user position to the mouse position
