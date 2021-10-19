@@ -42,7 +42,7 @@ function preload() {
   brushendImage = loadImage("assets/images/end2.png");
 }
 
-let state = `end2`; // Can be: title, simulation, end1, end2, end3
+let state = `title`; // Can be: title, simulation, end1, end2, end3
 
 function setup() {
   createCanvas(windowWidth, windowHeight);
@@ -57,6 +57,7 @@ function createCandy(x, y) {
     vx: 0,
     vy: 0,
     speed: 2,
+    eaten: false,
   };
   return candy;
 }
@@ -70,6 +71,7 @@ function createLollipop(x, y) {
     vx: 0,
     vy: 0,
     speed: 2,
+    eaten: false,
   };
   return lollipop;
 }
@@ -162,6 +164,8 @@ function simulation() {
   createBrush();
   createCandy();
   createLollipop();
+  moveUser();
+  checkCandy();
   // checkOverlap();
 }
 
@@ -197,6 +201,15 @@ function end3() {
   if (d4 < brush.height / 2)
     state = `end2`;
 } */
+
+function checkCandy(candy) {
+  if (!candy.eaten) {
+    let d = dist(user.x, user.y, candy.x, candy.y);
+    if (d < user.size / 2 + candy.size / 2) {
+      candy.eaten = true;
+      }
+    }
+}
 
 // Show start and end images
 function displayStart() {
@@ -256,9 +269,11 @@ function moveCandy(candy) {
 }
 
 function displayCandy(candy) {
+  if (!candy.eaten){
   push();
   image(candyImage, candy.x, candy.y, candy.width, candy.height);
   pop();
+  }
 }
 
 // Show lollipop and add movement
@@ -344,7 +359,12 @@ function displayBrush(brush) {
 
 // Show the pumpkin user controls
 function displayUser() {
-  image(userImage, mouseX, mouseY, user.width, user.height);
+  image(userImage, user.x, user.y, user.width, user.height);
+}
+
+function moveUser() {
+  user.x = mouseX;
+  user.y = mouseY;
 }
 
 
