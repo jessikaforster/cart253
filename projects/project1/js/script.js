@@ -13,6 +13,7 @@ author, and this description to match your project!
 /**
 Description of preload
 */
+let newsSFX;
 let familyImage;
 let healthImage;
 let hobbyImage;
@@ -39,6 +40,7 @@ function preload() {
   covidendImage = loadImage("assets/images/covid-end.png");
   schoolendImage = loadImage("assets/images/school-end.png");
   bg = loadImage("assets/images/background.gif");
+  newsSFX = loadSound("assets/sounds/news.wav");
 }
 
 let family = {
@@ -359,4 +361,5 @@ function mousePressed() {
   if (state === `title`) {
     state = `simulation`;
   }
+  newsSFX.loop();
 }
