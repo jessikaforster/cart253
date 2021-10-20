@@ -14,6 +14,7 @@ author, and this description to match your project!
 Description of preload
 */
 let newsSFX;
+let upSFX;
 let familyImage;
 let healthImage;
 let hobbyImage;
@@ -40,6 +41,7 @@ function preload() {
   covidendImage = loadImage("assets/images/covid-end.png");
   schoolendImage = loadImage("assets/images/school-end.png");
   bg = loadImage("assets/images/background.gif");
+  upSFX = loadSound("assets/sounds/up.wav");
   newsSFX = loadSound("assets/sounds/news.wav");
 }
 
@@ -187,6 +189,7 @@ function simulation() {
   gravity();
   checkOverlap();
   randomMove();
+  playSound();
 }
 
 function end1() {
@@ -336,6 +339,13 @@ function handleInput() {
   }
   else {
     school.vy = 2 * 1.5;
+  }
+}
+
+// Play sound when key is pressed
+function playSound() {
+  if (keyIsPressed === true) {
+    upSFX.loop();
   }
 }
 
