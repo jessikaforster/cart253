@@ -44,50 +44,55 @@ function preload() {
 let family = {
   x: 0,
   y: 0,
-  width: 300,
-  height: 300,
+  width: 400,
+  height: 400,
   vy: 1,
   vx: 0,
+  ay: 0.8,
   speed: 1,
 };
 
 let health = {
-  x: 300,
+  x: 500,
   y: 0,
-  width: 300,
-  height: 300,
+  width: 400,
+  height: 400,
   vy: 1,
   vx: 0,
+  ay: 0.2,
   speed: 3,
 };
 
 let hobby = {
-  x: 800,
+  x: 900,
   y: 0,
-  width: 330,
-  height: 330,
+  width: 430,
+  height: 430,
   vy: 1,
   vx: 0,
+  ay: 1.5,
   speed: 3,
 };
 
 let covid = {
   x: 1300,
   y: 0,
-  width: 300,
-  height: 300,
+  width: 400,
+  height: 400,
   vy: 1,
   vx: 0,
+  ay: 1.2,
   speed: 3,
 };
 
 let school = {
-  x: 1800,
+  x: 1700,
   y: 0,
   width: 300,
   height: 300,
   vy: 1,
   vx: 0,
+  ay: 0.5,
   speed: 3,
 };
 
@@ -163,6 +168,8 @@ function draw() {
     end3();
   } else if (state === `end4`) {
     end4();
+  } else if (state === `end5`) {
+    end5();
   } else if (state === `end5`) {
     end5();
   }
@@ -295,35 +302,35 @@ function displayItems() {
 // Family controls and movement
 function handleInput() {
   if (keyIsDown(67)) {
-    family.vy = -20;
+    family.vy = -20 * family.ay;
   }
   else {
     family.vy = 2;
   }
 
   if (keyIsDown(86)) {
-    health.vy = -20;
+    health.vy = -20 * health.ay;
   }
   else {
     health.vy = 2;
   }
 
   if (keyIsDown(66)) {
-    hobby.vy = -20;
+    hobby.vy = -20 * hobby.ay;
   }
   else {
     hobby.vy = 2;
   }
 
   if (keyIsDown(78)) {
-    covid.vy = -20;
+    covid.vy = -20 * covid.ay;
   }
   else {
     covid.vy = 2;
   }
 
   if (keyIsDown(77)) {
-    school.vy = -20;
+    school.vy = -20 * school.ay;
   }
   else {
     school.vy = 2;
@@ -331,7 +338,7 @@ function handleInput() {
 }
 
 // Game ends when item hits floor
-function checkOverlap () {
+function checkOverlap() {
   if (family.y > 1110)
     state = `end1`;
 
@@ -347,6 +354,12 @@ function checkOverlap () {
   if (school.y > 1110)
     state = `end5`;
   }
+
+function keyIsDown() {
+  if (state === `end1`) {
+    state = `title`;
+  }
+}
 
 function mousePressed() {
   if (state === `title`) {
