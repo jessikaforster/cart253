@@ -48,7 +48,7 @@ let family = {
   height: 400,
   vy: 1,
   vx: 0,
-  ay: 0.8,
+  ay: 0.7,
   speed: 1,
 };
 
@@ -70,7 +70,7 @@ let hobby = {
   height: 430,
   vy: 1,
   vx: 0,
-  ay: 1.5,
+  ay: 1.2,
   speed: 3,
 };
 
@@ -81,7 +81,7 @@ let covid = {
   height: 400,
   vy: 1,
   vx: 0,
-  ay: 1.2,
+  ay: 1,
   speed: 3,
 };
 
@@ -92,7 +92,7 @@ let school = {
   height: 300,
   vy: 1,
   vx: 0,
-  ay: 0.5,
+  ay: 0.4,
   speed: 3,
 };
 
@@ -305,14 +305,14 @@ function handleInput() {
     family.vy = -20 * family.ay;
   }
   else {
-    family.vy = 2;
+    family.vy = 2 * 1.2;
   }
 
   if (keyIsDown(86)) {
     health.vy = -20 * health.ay;
   }
   else {
-    health.vy = 2;
+    health.vy = 2 * 1.7;
   }
 
   if (keyIsDown(66)) {
@@ -326,14 +326,14 @@ function handleInput() {
     covid.vy = -20 * covid.ay;
   }
   else {
-    covid.vy = 2;
+    covid.vy = 2 * 1.3;
   }
 
   if (keyIsDown(77)) {
     school.vy = -20 * school.ay;
   }
   else {
-    school.vy = 2;
+    school.vy = 2 * 1.5;
   }
 }
 
@@ -354,12 +354,6 @@ function checkOverlap() {
   if (school.y > 1110)
     state = `end5`;
   }
-
-function keyIsDown() {
-  if (state === `end1`) {
-    state = `title`;
-  }
-}
 
 function mousePressed() {
   if (state === `title`) {
