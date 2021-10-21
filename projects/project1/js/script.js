@@ -42,6 +42,7 @@ function preload() {
   newsSFX = loadSound("assets/sounds/news.wav");
 }
 
+// Identifying all variables
 let family = {
   x: 0,
   y: 0,
@@ -67,8 +68,8 @@ let health = {
 let hobby = {
   x: 900,
   y: 0,
-  width: 430,
-  height: 430,
+  width: 450,
+  height: 450,
   vy: 1,
   vx: 0,
   ay: 1.2,
@@ -89,8 +90,8 @@ let covid = {
 let school = {
   x: 1700,
   y: 0,
-  width: 300,
-  height: 300,
+  width: 350,
+  height: 350,
   vy: 1,
   vx: 0,
   ay: 0.4,
@@ -145,7 +146,6 @@ let state = `title`; // Can be: title, simulation, end1, end2, end3, end4, end5
 function setup() {
   createCanvas(windowWidth, windowHeight);
 }
-
 
 // Displaying background gif and identifying all states
 function draw() {
@@ -214,27 +214,27 @@ function gravity() {
   family.y += family.vy;
   family.x += family.vx;
   family.y = constrain(family.y, 0, windowHeight);
-  family.x = constrain(family.x, 0, windowWidth);
+  family.x = constrain(family.x, 0, 1800);
 
   health.y += health.vy;
   health.x += health.vx;
   health.y = constrain(health.y, 0, windowHeight);
-  health.x = constrain(health.x, 0, windowWidth);
+  health.x = constrain(health.x, 0, 1800);
 
   hobby.y += hobby.vy;
   hobby.x += hobby.vx;
   hobby.y = constrain(hobby.y, 0, windowHeight);
-  hobby.x = constrain(hobby.x, 0, windowWidth);
+  hobby.x = constrain(hobby.x, 0, 1800);
 
   covid.y += covid.vy;
   covid.x += covid.vx;
   covid.y = constrain(covid.y, 0, windowHeight);
-  covid.x = constrain(covid.x, 0, windowWidth);
+  covid.x = constrain(covid.x, 0, 1800);
 
   school.y += school.vy;
   school.x += school.vx;
   school.y = constrain(school.y, 0, windowHeight);
-  school.x = constrain(school.x, 0, windowWidth);
+  school.x = constrain(school.x, 0, 1800);
 }
 
 // Random movement applied to all user-controlled items
@@ -304,18 +304,18 @@ function displayItems() {
   image(schoolImage, school.x, school.y, school.width, school.height);
 }
 
-// Family (heart) controls and movement
+// When C, V, B, N, M keys are pressed, the corresponding user-controlled items move up
 function handleInput() {
   if (keyIsDown(67)) {
-    family.vy = -20 * family.ay;
+    family.vy = -15 * family.ay;
   } else {
-    family.vy = 2 * 1.2;
+    family.vy = 4 * 1.2;
   }
 
   if (keyIsDown(86)) {
     health.vy = -20 * health.ay;
   } else {
-    health.vy = 2 * 1.7;
+    health.vy = 6 * 1.7;
   }
 
   if (keyIsDown(66)) {
@@ -325,15 +325,15 @@ function handleInput() {
   }
 
   if (keyIsDown(78)) {
-    covid.vy = -20 * covid.ay;
+    covid.vy = -15 * covid.ay;
   } else {
-    covid.vy = 2 * 1.3;
+    covid.vy = 3 * 1.3;
   }
 
   if (keyIsDown(77)) {
     school.vy = -20 * school.ay;
   } else {
-    school.vy = 2 * 1.5;
+    school.vy = 5 * 1.5;
   }
 }
 
@@ -393,7 +393,7 @@ function reset() {
   school.y = 0;
 }
 
-// When mouse is pressed, state changes from title to simulation and music begins playing
+// When mouse is pressed, state changes from title to simulation and sound begins playing
 function mousePressed() {
   if (state === `title`) {
     state = `simulation`;
