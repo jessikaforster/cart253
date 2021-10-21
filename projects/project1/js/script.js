@@ -214,27 +214,27 @@ function gravity() {
   family.y += family.vy;
   family.x += family.vx;
   family.y = constrain(family.y, 0, windowHeight);
-  family.x = constrain(family.x, 0, 1800);
+  family.x = constrain(family.x, 0, windowWidth);
 
   health.y += health.vy;
   health.x += health.vx;
   health.y = constrain(health.y, 0, windowHeight);
-  health.x = constrain(health.x, 0, 1800);
+  health.x = constrain(health.x, 0, windowWidth);
 
   hobby.y += hobby.vy;
   hobby.x += hobby.vx;
   hobby.y = constrain(hobby.y, 0, windowHeight);
-  hobby.x = constrain(hobby.x, 0, 1800);
+  hobby.x = constrain(hobby.x, 0, windowWidth);
 
   covid.y += covid.vy;
   covid.x += covid.vx;
   covid.y = constrain(covid.y, 0, windowHeight);
-  covid.x = constrain(covid.x, 0, 1800);
+  covid.x = constrain(covid.x, 0, windowWidth);
 
   school.y += school.vy;
   school.x += school.vx;
   school.y = constrain(school.y, 0, windowHeight);
-  school.x = constrain(school.x, 0, 1800);
+  school.x = constrain(school.x, 0, windowWidth);
 }
 
 // Random movement applied to all user-controlled items
