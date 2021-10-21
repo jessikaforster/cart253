@@ -91,24 +91,3 @@ function displayFood(food) {
     pop();
   }
 }
-
-// Draw food1 as a circle
-function displayFood1() {
-  // We don't want to display food1 if it's been eaten
-  if (!food1.eaten) {
-    push();
-    fill(255, 100, 100);
-    ellipse(food1.x, food1.y, food1.size);
-    pop();
-  }
-}
-
-// As above but for food2
-function displayFood2() {
-  if (!food2.eaten) {
-    push();
-    fill(255, 100, 100);
-    ellipse(food2.x, food2.y, food2.size);
-    pop();
-  }
-}

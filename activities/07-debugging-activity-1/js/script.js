@@ -1,30 +1,35 @@
 "use strict";
 
+let candyImage;
 let school = [];
 let schoolSize = 10;
 
+function preload() {
+  candyImage = loadImage("assets/images/candy.png");
+}
 
 function setup() {
   createCanvas(600, 600);
 
   for (let i = 0; i < schoolSize; i++) {
-    let fish = createFish(random(0,width), random(0,height));
-    school.push(fish);
+    let candy = createCandy(random(0,width), random(0,height));
+    school.push(candy);
   }
 }
 
 // createFish(x,y)
 // Creates a new JavaScript Object describing a fish and returns it
-function createFish(x, y) {
-  let fish = {
+function createCandy(x, y) {
+  let candy = {
     x: x,
     y: y,
-    size: 50,
+    width: 100,
+    height: 100,
     vx: 0,
     vy: 0,
     speed: 2
   };
-  return fish;
+  return candy;
 }
 
 // draw()
@@ -33,49 +38,39 @@ function draw() {
   background(0);
 
   for (let i = 0; i < school.length; i++) {
-    moveFish(school[i]);
-    displayFish(school[i]);
+    moveCandy(school[i]);
+    displayCandy(school[i]);
   }
 }
 
 // moveFish(fish)
 // Chooses whether the provided fish changes direction and moves it
-function moveFish(fish) {
+function moveCandy(candy) {
   // Choose whether to change direction
   let change = random(0, 1);
   if (change < 0.05) {
-    fish.vx = random(-fish.speed, fish.speed);
-    fish.vy = random(-fish.speed, fish.speed);
+    candy.vx = random(-candy.speed, candy.speed);
+    candy.vy = random(-candy.speed, candy.speed);
   }
 
   // Move the fish
-  fish.x = fish.x + fish.vx;
-  fish.y = fish.y + fish.vy;
+  candy.x = candy.x + candy.vx;
+  candy.y = candy.y + candy.vy;
 
   // Constrain the fish to the canvas
-  fish.x = constrain(fish.x, 0, width);
-  fish.y = constrain(fish.y, 0, height);
+  candy.x = constrain(candy.x, 0, width);
+  candy.y = constrain(candy.y, 0, height);
 }
 
 // displayFish(fish)
 // Displays the provided fish on the canvas
-function displayFish(fish) {
+function displayCandy(candy) {
   push();
-  fill(200, 100, 100);
-  noStroke();
-  ellipse(fish.x, fish.y, fish.size);
-  pop();
-}
-
-function displayFish(fish) {
-  push();
-  fill(200, 100, 100);
-  noStroke();
-  ellipse(fish.x, fish.y, fish.size);
+  image(candyImage, candy.x, candy.y, candy.width, candy.height);
   pop();
 }
 
 function mousePressed() {
-  let fish = createFish(mouseX,mouseY);
-  school.push(fish);
+  let candy = createCandy(mouseX,mouseY);
+  school.push(candy);
 }
