@@ -157,7 +157,6 @@ Description of draw()
 */
 function draw() {
   background(bg);
-  // checkOverlap();
 
   // Identifying all states
   if (state === `title`) {
