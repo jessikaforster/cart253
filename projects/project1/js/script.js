@@ -2,17 +2,14 @@
 Project 1
 Jessika Forster
 
-This is a template. You must fill in the title,
-author, and this description to match your project!
+1st CART 253 project. The objectives are to work on a larger programming project, handle different forms of user
+input, organizing code with functions, making things interesting with conditionals and variables and combining
+aesthetics, interaction and concept.
 */
 
 "use strict";
 
-
-
-/**
-Description of preload
-*/
+// Loading all images and sounds into code
 let newsSFX;
 let upSFX;
 let familyImage;
@@ -142,23 +139,18 @@ let schoolend = {
   height: 100,
 };
 
-let state = `title`; // Can be: title, simulation, love, sadness
+let state = `title`; // Can be: title, simulation, end1, end2, end3, end4, end5
 
-/**
-Description of setup
-*/
+// Setting up canvas size
 function setup() {
   createCanvas(windowWidth, windowHeight);
 }
 
 
-/**
-Description of draw()
-*/
+// Displaying background gif and identifying all states
 function draw() {
   background(bg);
 
-  // Identifying all states
   if (state === `title`) {
     title();
   } else if (state === `simulation`) {
@@ -178,10 +170,12 @@ function draw() {
   }
 }
 
+// Starting state, title
 function title() {
   displayStart();
 }
 
+// Game playing state
 function simulation() {
   displayItems();
   handleInput();
@@ -190,26 +184,32 @@ function simulation() {
   randomMove();
 }
 
+// End triggered by family (heart) hitting the bottom
 function end1() {
   displayEnd1();
 }
 
+// End triggered by mental health (brain) hitting the bottom
 function end2() {
   displayEnd2();
 }
 
+// End triggered by hobbies (paint palette) hitting the bottom
 function end3() {
   displayEnd3();
 }
 
+// End triggered by COVID-19 (blue virus) hitting the bottom
 function end4() {
   displayEnd4();
 }
 
+// End triggered by school (books) hitting the bottom
 function end5() {
   displayEnd5();
 }
 
+// Gravity being applied to all user-controlled items
 function gravity() {
   family.y += family.vy;
   family.x += family.vx;
@@ -237,6 +237,7 @@ function gravity() {
   school.x = constrain(school.x, 0, windowWidth);
 }
 
+// Random movement applied to all user-controlled items
 function randomMove() {
 
   let change1 = random(0, 1);
@@ -270,6 +271,7 @@ function randomMove() {
   }
 }
 
+// Display start image, all ending images and all user-controlled items
 function displayStart() {
   image(startImage, start.x, start.y, windowWidth, windowHeight);
 }
@@ -302,7 +304,7 @@ function displayItems() {
   image(schoolImage, school.x, school.y, school.width, school.height);
 }
 
-// Family controls and movement
+// Family (heart) controls and movement
 function handleInput() {
   if (keyIsDown(67)) {
     family.vy = -20 * family.ay;
@@ -335,7 +337,7 @@ function handleInput() {
   }
 }
 
-// Game ends when item hits floor
+// Game ends when item hits floor and end state is triggered
 function checkOverlap() {
   if (family.y > 1110)
     state = `end1`;
@@ -353,8 +355,11 @@ function checkOverlap() {
     state = `end5`;
 }
 
+/* When any of the control keys are pressed, a sound effect is triggered and when the spacebar is pressed,
+the title state is triggered and the game resets */
 function keyPressed() {
   if (keyCode === 32) {
+    reset();
     state = `title`
   }
   if (keyCode === 67) {
@@ -374,6 +379,21 @@ function keyPressed() {
   }
 }
 
+// Function to restart game when spacebar is pressed
+function reset() {
+  family.x = 0;
+  family.y = 0;
+  health.x = 500;
+  health.y = 0;
+  hobby.x = 900;
+  hobby.y = 0;
+  covid.x = 1300;
+  covid.y = 0;
+  school.x = 1700;
+  school.y = 0;
+}
+
+// When mouse is pressed, state changes from title to simulation and music begins playing
 function mousePressed() {
   if (state === `title`) {
     state = `simulation`;
