@@ -41,8 +41,8 @@ function preload() {
   covidendImage = loadImage("assets/images/covid-end.png");
   schoolendImage = loadImage("assets/images/school-end.png");
   bg = loadImage("assets/images/background.gif");
-  upSFX = loadSound("assets/sounds/up.mp3");
-  newsSFX = loadSound("assets/sounds/news.mp3");
+  // upSFX = loadSound("assets/sounds/up.mp3");
+  newsSFX = loadSound("assets/sounds/news.wav");
 }
 
 let family = {
@@ -189,7 +189,6 @@ function simulation() {
   gravity();
   checkOverlap();
   randomMove();
-  keyPressed();
 }
 
 function end1() {
@@ -340,11 +339,6 @@ function handleInput() {
   else {
     school.vy = 2 * 1.5;
   }
-}
-
-// Play sound when key is pressed
-function keyPressed() {
-    upSFX.play();
 }
 
 // Game ends when item hits floor
