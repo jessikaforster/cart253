@@ -41,7 +41,7 @@ function preload() {
   covidendImage = loadImage("assets/images/covid-end.png");
   schoolendImage = loadImage("assets/images/school-end.png");
   bg = loadImage("assets/images/background.gif");
-  // upSFX = loadSound("assets/sounds/up.mp3");
+  upSFX = loadSound("assets/sounds/up.wav");
   newsSFX = loadSound("assets/sounds/news.wav");
 }
 
@@ -189,32 +189,26 @@ function simulation() {
   gravity();
   checkOverlap();
   randomMove();
-  mousePressed();
 }
 
 function end1() {
-displayEnd1();
-keyPressed();
+  displayEnd1();
 }
 
 function end2() {
   displayEnd2();
-  keyPressed();
 }
 
 function end3() {
   displayEnd3();
-  keyPressed();
 }
 
 function end4() {
   displayEnd4();
-  keyPressed();
 }
 
 function end5() {
   displayEnd5();
-  keyPressed();
 }
 
 function gravity() {
@@ -265,16 +259,16 @@ function randomMove() {
   }
 
   let change4 = random(0, 1);
-    if (change4 < 0.05) {
-      covid.vx = random(-covid.speed, covid.speed);
-      covid.vy = random(-covid.speed, covid.speed);
-    }
+  if (change4 < 0.05) {
+    covid.vx = random(-covid.speed, covid.speed);
+    covid.vy = random(-covid.speed, covid.speed);
+  }
 
   let change5 = random(0, 1);
-    if (change5 < 0.05) {
-      school.vx = random(-school.speed, school.speed);
-      school.vy = random(-school.speed, school.speed);
-    }
+  if (change5 < 0.05) {
+    school.vx = random(-school.speed, school.speed);
+    school.vy = random(-school.speed, school.speed);
+  }
 }
 
 function displayStart() {
@@ -313,36 +307,31 @@ function displayItems() {
 function handleInput() {
   if (keyIsDown(67)) {
     family.vy = -20 * family.ay;
-  }
-  else {
+  } else {
     family.vy = 2 * 1.2;
   }
 
   if (keyIsDown(86)) {
     health.vy = -20 * health.ay;
-  }
-  else {
+  } else {
     health.vy = 2 * 1.7;
   }
 
   if (keyIsDown(66)) {
     hobby.vy = -20 * hobby.ay;
-  }
-  else {
+  } else {
     hobby.vy = 2;
   }
 
   if (keyIsDown(78)) {
     covid.vy = -20 * covid.ay;
-  }
-  else {
+  } else {
     covid.vy = 2 * 1.3;
   }
 
   if (keyIsDown(77)) {
     school.vy = -20 * school.ay;
-  }
-  else {
+  } else {
     school.vy = 2 * 1.5;
   }
 }
@@ -363,18 +352,32 @@ function checkOverlap() {
 
   if (school.y > 1110)
     state = `end5`;
-  }
+}
 
-  function keyPressed() {
-    if (keyCode === 32) {
-      state = `title`
-    }
+function keyPressed() {
+  if (keyCode === 32) {
+    state = `title`
   }
+  if (keyCode === 67) {
+    upSFX.play();
+  }
+  if (keyCode === 86) {
+    upSFX.play();
+  }
+  if (keyCode === 66) {
+    upSFX.play();
+  }
+  if (keyCode === 78) {
+    upSFX.play();
+  }
+  if (keyCode === 77) {
+    upSFX.play();
+  }
+}
 
 function mousePressed() {
   if (state === `title`) {
     state = `simulation`;
   }
-
   newsSFX.loop();
 }
