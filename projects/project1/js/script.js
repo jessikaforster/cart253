@@ -189,26 +189,32 @@ function simulation() {
   gravity();
   checkOverlap();
   randomMove();
+  mousePressed();
 }
 
 function end1() {
 displayEnd1();
+keyPressed();
 }
 
 function end2() {
   displayEnd2();
+  keyPressed();
 }
 
 function end3() {
   displayEnd3();
+  keyPressed();
 }
 
 function end4() {
   displayEnd4();
+  keyPressed();
 }
 
 function end5() {
   displayEnd5();
+  keyPressed();
 }
 
 function gravity() {
@@ -359,9 +365,16 @@ function checkOverlap() {
     state = `end5`;
   }
 
+  function keyPressed() {
+    if (keyCode === 32) {
+      state = `title`
+    }
+  }
+
 function mousePressed() {
   if (state === `title`) {
     state = `simulation`;
   }
+
   newsSFX.loop();
 }
