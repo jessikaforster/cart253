@@ -271,7 +271,7 @@ height: 500,
 Description of draw()
 */
 function draw() {
-  background(0);
+  background(0,9,135);
 
   for (let i = 0; i < 100; i++) {
     let x = random(0,width);
