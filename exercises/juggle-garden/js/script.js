@@ -22,7 +22,7 @@ let happySongs = [];
 let sunImage = undefined;
 let cloudImage = undefined;
 
-let hs1Image = undefined;
+/* let hs1Image = undefined;
 let hs2Image = undefined;
 let hs3Image = undefined;
 let hs4Image = undefined;
@@ -42,7 +42,10 @@ let ss6Image = undefined;
 let ss7Image = undefined;
 let ss8Image = undefined;
 let ss9Image = undefined;
-let ss10Image = undefined;
+let ss10Image = undefined; */
+
+let images = [];
+let displayImage;
 
 let paddle;
 
@@ -53,27 +56,9 @@ function preload() {
   sunImage = loadImage("assets/images/sun.png");
   cloudImage = loadImage("assets/images/cloud.png");
 
-  hs1Image = loadImage("assets/images/hs1.png");
-  hs2Image = loadImage("assets/images/hs2.png");
-  hs3Image = loadImage("assets/images/hs3.png");
-  hs4Image = loadImage("assets/images/hs4.png");
-  hs5Image = loadImage("assets/images/hs5.png");
-  hs6Image = loadImage("assets/images/hs6.png");
-  hs7Image = loadImage("assets/images/hs7.png");
-  hs8Image = loadImage("assets/images/hs8.png");
-  hs9Image = loadImage("assets/images/hs9.png");
-  hs10Image = loadImage("assets/images/hs10.png");
-
-  ss1Image = loadImage("assets/images/ss1.png");
-  ss2Image = loadImage("assets/images/ss2.png");
-  ss3Image = loadImage("assets/images/ss3.png");
-  ss4Image = loadImage("assets/images/ss4.png");
-  ss5Image = loadImage("assets/images/ss5.png");
-  ss6Image = loadImage("assets/images/ss6.png");
-  ss7Image = loadImage("assets/images/ss7.png");
-  ss8Image = loadImage("assets/images/ss8.png");
-  ss9Image = loadImage("assets/images/ss9.png");
-  ss10Image = loadImage("assets/images/ss10.png");
+  for (let i = 0; i < 10; i++) {
+    images[i] = loadImage(`assets/image/song-${i}.png`);
+  }
 }
 
 let state = `simulation`; // Can be: title, simulation, end1, end2
@@ -107,6 +92,11 @@ Description of draw()
 function draw() {
   background(0, 9, 135);
 
+  push();
+  imageMode(CENTER);
+  image(displayImage,1200,740);
+  pop();
+
   for (let i = 0; i < 100; i++) {
     let x = random(0, width);
     let y = random(0, height);
@@ -137,18 +127,16 @@ function simulation() {
 }
 
 function end1() {
-  // random(sadSongs);
-  setupSadSongs();
-  addSadSong();
-  displayRandomSadSong();
+  displayImage = random(images);
+  /* setupSadSongs();
+  displayRandomSadSong(); */
 }
 
 function end2() {
-  // random(happySongs);
-  setupHappySongs();
-  addHappySong();
+  displayImage = random(images);
+  /* setupHappySongs();
   displayRandomHappySong();
-  /* fill(255);
+  fill(255);
   textSize(80);
   textFont('Amatic SC');
   text(`end2`, width/1.6, height/2.1); */
@@ -180,7 +168,7 @@ function createSuns() {
   }
 }
 
-function setupSadSongs() {
+/* function setupSadSongs() {
   addSadSong(`Hypnosis`, `Taemin`, ss1Image);
   addSadSong(`You Were Beautiful`, `DAY6`, ss2Image);
   addSadSong(`Say Yes`, `Seventeen`, ss3Image);
@@ -236,4 +224,4 @@ function displayRandomHappySong() {
   title(randomHappySong.title, width / 1, 6, height / 2, 1);
   artist(randomHappySong.artist, width / 1.6, height / 1.8);
   image(randomHappySong.image, width / 3.8, height / 3.5);
-}
+} */
