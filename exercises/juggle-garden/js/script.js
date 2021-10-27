@@ -29,6 +29,7 @@ sunImage = loadImage("assets/images/sun.png");
 cloudImage = loadImage("assets/images/cloud.png");
 }
 
+let state = `simulation`; // Can be: title, simulation, end1, end2
 
 /**
 Description of setup
@@ -53,6 +54,30 @@ Description of draw()
 function draw() {
   background(0);
 
+  if (state === `title`) {
+    title();
+  } else if (state === `simulation`) {
+    simulation();
+  } else if (state === `end1`) {
+    end1();
+  } else if (state === `end2`) {
+    end2();
+    }
+  }
+
+function title() {
+
+}
+
+function simulation() {
   paddle.move();
   paddle.display();
+}
+
+function end1() {
+
+}
+
+function end2() {
+
 }
