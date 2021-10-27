@@ -22,7 +22,7 @@ let happySongs = [];
 let sunImage = undefined;
 let cloudImage = undefined;
 
-/* let hs1Image = undefined;
+let hs1Image = undefined;
 let hs2Image = undefined;
 let hs3Image = undefined;
 let hs4Image = undefined;
@@ -42,7 +42,7 @@ let ss6Image = undefined;
 let ss7Image = undefined;
 let ss8Image = undefined;
 let ss9Image = undefined;
-let ss10Image = undefined; */
+let ss10Image = undefined;
 
 let images = [];
 let displayImage;
@@ -55,10 +55,6 @@ Description of preload
 function preload() {
   sunImage = loadImage("assets/images/sun.png");
   cloudImage = loadImage("assets/images/cloud.png");
-
-  for (let i = 0; i < 10; i++) {
-    images[i] = loadImage(`assets/image/song-${i}.png`);
-  }
 }
 
 let state = `simulation`; // Can be: title, simulation, end1, end2
@@ -68,6 +64,8 @@ Description of setup
 */
 function setup() {
   createCanvas(windowWidth, windowHeight);
+
+  displayImage = random(images);
 
   paddle = new Paddle(600, 20);
 
@@ -91,11 +89,6 @@ Description of draw()
 */
 function draw() {
   background(0, 9, 135);
-
-  push();
-  imageMode(CENTER);
-  image(displayImage,1200,740);
-  pop();
 
   for (let i = 0; i < 100; i++) {
     let x = random(0, width);
@@ -127,16 +120,14 @@ function simulation() {
 }
 
 function end1() {
-  displayImage = random(images);
-  /* setupSadSongs();
-  displayRandomSadSong(); */
+  setupSadSongs();
+  displayRandomSadSong();
 }
 
 function end2() {
-  displayImage = random(images);
-  /* setupHappySongs();
+  setupHappySongs();
   displayRandomHappySong();
-  fill(255);
+  /* fill(255);
   textSize(80);
   textFont('Amatic SC');
   text(`end2`, width/1.6, height/2.1); */
@@ -168,7 +159,8 @@ function createSuns() {
   }
 }
 
-/* function setupSadSongs() {
+
+function setupSadSongs() {
   addSadSong(`Hypnosis`, `Taemin`, ss1Image);
   addSadSong(`You Were Beautiful`, `DAY6`, ss2Image);
   addSadSong(`Say Yes`, `Seventeen`, ss3Image);
@@ -224,4 +216,4 @@ function displayRandomHappySong() {
   title(randomHappySong.title, width / 1, 6, height / 2, 1);
   artist(randomHappySong.artist, width / 1.6, height / 1.8);
   image(randomHappySong.image, width / 3.8, height / 3.5);
-} */
+} 
