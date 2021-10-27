@@ -32,6 +32,11 @@ class Cloud {
     }
   }
 
+  check() {
+    if (this.y > height)
+      state = `end1`;
+    }
+
   bounce(paddle) {
       if (this.x > paddle.x - paddle.width / 2 &&
         this.x < paddle.x + paddle.width / 2 &&

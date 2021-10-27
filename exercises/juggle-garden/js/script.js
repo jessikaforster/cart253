@@ -98,7 +98,7 @@ function setup() {
   }
 }
 
-let ss1 = {
+/* let ss1 = {
 x: 0,
 y: 0,
 width: 500,
@@ -236,7 +236,7 @@ x: 0,
 y: 0,
 width: 500,
 height: 500,
-}
+} */
 
 /**
 Description of draw()
@@ -264,15 +264,21 @@ function simulation() {
   paddle.display();
   createClouds();
   createSuns();
-  displaySs1();
+  // displaySs1();
 }
 
 function end1() {
-
+  fill(255);
+  textSize(80);
+  textFont('Amatic SC');
+  text(`end1`, width/1.6, height/2.1);
 }
 
 function end2() {
-
+  fill(255);
+  textSize(80);
+  textFont('Amatic SC');
+  text(`end2`, width/1.6, height/2.1);
 }
 
 function createClouds() {
@@ -283,6 +289,7 @@ for (let i = 0; i < clouds.length; i++) {
   cloud.move();
   cloud.bounce(paddle);
   cloud.display();
+  cloud.check();
     }
   }
 }
@@ -295,11 +302,12 @@ for (let i = 0; i < suns.length; i++) {
   sun.move();
   sun.bounce(paddle);
   sun.display();
+  sun.check();
     }
   }
 }
 
-function displayHs1() {
+/* function displayHs1() {
 image(hs1Image, windowWidth/3.8, windowHeight/3.5, hs1.width, hs1.height);
 push();
 fill(255);
@@ -517,4 +525,4 @@ textFont('Amatic SC');
 text(`Dear Name`, width/1.6, height/2.1);
 text(`IU`, width/1.6, height/1.8);
 pop();
-}
+} */

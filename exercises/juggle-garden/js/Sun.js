@@ -32,6 +32,11 @@ class Sun {
     }
   }
 
+  check() {
+    if (this.y > height)
+      state = `end2`;
+    }
+
   bounce(paddle) {
       if (this.x > paddle.x - paddle.width / 2 &&
         this.x < paddle.x + paddle.width / 2 &&
