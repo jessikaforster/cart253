@@ -19,6 +19,8 @@ let numClouds = 10;
 let sunImage = undefined;
 let cloudImage = undefined;
 
+let ss1Image;
+
 let paddle;
 
 /**
@@ -27,6 +29,30 @@ Description of preload
 function preload() {
 sunImage = loadImage("assets/images/sun.png");
 cloudImage = loadImage("assets/images/cloud.png");
+
+ss1Image = loadImage("assets/images/ss1.png");
+
+/* hs1Image = loadImage("assets/images/hs1.png");
+hs2Image = loadImage("assets/images/hs2.png");
+hs3Image = loadImage("assets/images/hs3.png");
+hs4Image = loadImage("assets/images/hs4.png");
+hs5Image = loadImage("assets/images/hs5.png");
+hs6Image = loadImage("assets/images/hs6.png");
+hs7Image = loadImage("assets/images/hs7.png");
+hs8Image = loadImage("assets/images/hs8.png");
+hs9Image = loadImage("assets/images/hs9.png");
+hs10Image = loadImage("assets/images/hs10.png");
+
+
+ss2Image = loadImage("assets/images/ss2.png");
+ss3Image = loadImage("assets/images/ss3.png");
+ss4Image = loadImage("assets/images/ss4.png");
+ss5Image = loadImage("assets/images/ss5.png");
+ss6Image = loadImage("assets/images/ss6.png");
+ss7Image = loadImage("assets/images/ss7.png");
+ss8Image = loadImage("assets/images/ss8.png");
+ss9Image = loadImage("assets/images/ss9.png");
+ss10Image = loadImage("assets/images/ss10.png"); */
 }
 
 let state = `simulation`; // Can be: title, simulation, end1, end2
@@ -54,6 +80,12 @@ function setup() {
   }
 }
 
+let ss1 = {
+x: 0,
+y: 0,
+width: 500,
+height: 500,
+}
 
 /**
 Description of draw()
@@ -81,6 +113,7 @@ function simulation() {
   paddle.display();
   createClouds();
   createSuns();
+  displaySs1();
 }
 
 function end1() {
@@ -114,3 +147,83 @@ for (let i = 0; i < suns.length; i++) {
     }
   }
 }
+
+/* function displayHs1() {
+
+}
+
+function displayHs2() {
+
+}
+
+function displayHs3() {
+
+}
+
+function displayHs4() {
+
+}
+
+function displayHs5() {
+
+}
+
+function displayHs6() {
+
+}
+
+function displayHs7() {
+
+}
+
+function displayHs8() {
+
+}
+
+function displayHs9() {
+
+}
+
+function displayHs10() {
+
+} */
+
+function displaySs1() {
+  image(ss1Image, width/3, height/2, ss1.width, ss1.height);
+}
+
+/* function displaySs2() {
+
+}
+
+function displaySs3() {
+
+}
+
+function displaySs4() {
+
+}
+
+function displaySs5() {
+
+}
+
+function displaySs6() {
+
+}
+
+function displaySs7() {
+
+}
+
+function displaySs8() {
+
+}
+
+function displaySs9() {
+
+}
+
+function displaySs10() {
+
+} */
