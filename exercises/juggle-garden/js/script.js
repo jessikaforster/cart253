@@ -43,6 +43,35 @@ let ss10Image;
 
 let paddle;
 
+/* let happySongs = [
+  displayHs1(),
+  displayHs2(),
+  displayHs3(),
+  displayHs4(),
+  displayHs5(),
+  displayHs6(),
+  displayHs7(),
+  displayHs8(),
+  displayHs9(),
+  displayHs10()
+];
+
+
+let sadSongs = [
+  displaySs1(),
+  displaySs2(),
+  displaySs3(),
+  displaySs4(),
+  displaySs5(),
+  displaySs6(),
+  displaySs7(),
+  displaySs8(),
+  displayHs9(),
+  displaySs10()
+];
+
+let currentIndex = 0; */
+
 /**
 Description of preload
 */
@@ -98,7 +127,7 @@ function setup() {
   }
 }
 
-/* let ss1 = {
+let ss1 = {
 x: 0,
 y: 0,
 width: 500,
@@ -236,13 +265,20 @@ x: 0,
 y: 0,
 width: 500,
 height: 500,
-} */
+}
 
 /**
 Description of draw()
 */
 function draw() {
   background(0);
+
+  for (let i = 0; i < 100; i++) {
+    let x = random(0,width);
+    let y = random(0, height);
+    stroke(255);
+    point(x,y);
+  }
 
   if (state === `title`) {
     title();
@@ -268,6 +304,7 @@ function simulation() {
 }
 
 function end1() {
+  // random(sadSongs);
   fill(255);
   textSize(80);
   textFont('Amatic SC');
@@ -275,6 +312,7 @@ function end1() {
 }
 
 function end2() {
+  // random(happySongs);
   fill(255);
   textSize(80);
   textFont('Amatic SC');
@@ -307,7 +345,7 @@ for (let i = 0; i < suns.length; i++) {
   }
 }
 
-/* function displayHs1() {
+function displayHs1() {
 image(hs1Image, windowWidth/3.8, windowHeight/3.5, hs1.width, hs1.height);
 push();
 fill(255);
@@ -525,4 +563,4 @@ textFont('Amatic SC');
 text(`Dear Name`, width/1.6, height/2.1);
 text(`IU`, width/1.6, height/1.8);
 pop();
-} */
+}
