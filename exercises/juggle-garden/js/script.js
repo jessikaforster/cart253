@@ -9,7 +9,7 @@ another form of user-control, a new class and objects and at least 2 endings.
 
 "use strict";
 
-
+let gravityForce = 0.0025;
 
 let suns = [];
 let numSuns = 10;
@@ -72,6 +72,7 @@ function title() {
 function simulation() {
   paddle.move();
   paddle.display();
+  createClouds();
 }
 
 function end1() {
@@ -80,4 +81,16 @@ function end1() {
 
 function end2() {
 
+}
+
+function createClouds() {
+for (let i = 0; i < clouds.length; i++) {
+  let cloud = clouds[i];
+  if (cloud.active) {
+  cloud.gravity(gravityForce);
+  cloud.move();
+  cloud.bounce(paddle);
+  cloud.display();
+    }
+  }
 }
