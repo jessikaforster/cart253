@@ -37,13 +37,20 @@ Description of setup
 function setup() {
   createCanvas(windowWidth, windowHeight);
 
-  paddle = new Paddle(300, 20);
+  paddle = new Paddle(600, 20);
 
   for (let i = 0; i < numClouds; i++) {
   let x = random(0, width);
   let y = random(-400, -100);
   let cloud = new Cloud(x, y, cloudImage);
   clouds.push(cloud);
+  }
+
+  for (let i = 0; i < numSuns; i++) {
+  let x = random(0, width);
+  let y = random(-400, -100);
+  let sun = new Sun(x, y, sunImage);
+  suns.push(sun);
   }
 }
 
@@ -73,6 +80,7 @@ function simulation() {
   paddle.move();
   paddle.display();
   createClouds();
+  createSuns();
 }
 
 function end1() {
@@ -91,6 +99,18 @@ for (let i = 0; i < clouds.length; i++) {
   cloud.move();
   cloud.bounce(paddle);
   cloud.display();
+    }
+  }
+}
+
+function createSuns() {
+for (let i = 0; i < suns.length; i++) {
+  let sun = suns[i];
+  if (sun.active) {
+  sun.gravity(gravityForce);
+  sun.move();
+  sun.bounce(paddle);
+  sun.display();
     }
   }
 }
