@@ -22,7 +22,7 @@ let happySongs = [];
 let sunImage = undefined;
 let cloudImage = undefined;
 
-let hs1Image = undefined;
+/* let hs1Image = undefined;
 let hs2Image = undefined;
 let hs3Image = undefined;
 let hs4Image = undefined;
@@ -45,7 +45,7 @@ let ss9Image = undefined;
 let ss10Image = undefined;
 
 let images = [];
-let displayImage;
+let displayImage; */
 
 let paddle;
 
@@ -55,6 +55,29 @@ Description of preload
 function preload() {
   sunImage = loadImage("assets/images/sun.png");
   cloudImage = loadImage("assets/images/cloud.png");
+
+  /* hs1Image = loadImage("assets/images/hs1.png");
+  hs2Image = loadImage("assets/images/hs2.png");
+  hs3Image = loadImage("assets/images/hs3.png");
+  hs4Image = loadImage("assets/images/hs4.png");
+  hs5Image = loadImage("assets/images/hs5.png");
+  hs6Image = loadImage("assets/images/hs6.png");
+  hs7Image = loadImage("assets/images/hs7.png");
+  hs8Image = loadImage("assets/images/hs8.png");
+  hs9Image = loadImage("assets/images/hs9.png");
+  hs10Image = loadImage("assets/images/hs10.png");
+
+  ss1Image = loadImage("assets/images/ss1.png");
+  ss2Image = loadImage("assets/images/ss2.png");
+  ss3Image = loadImage("assets/images/ss3.png");
+  ss4Image = loadImage("assets/images/ss4.png");
+  ss5Image = loadImage("assets/images/ss5.png");
+  ss6Image = loadImage("assets/images/ss6.png");
+  ss7Image = loadImage("assets/images/ss7.png");
+  ss8Image = loadImage("assets/images/ss8.png");
+  ss9Image = loadImage("assets/images/ss9.png");
+  ss10Image = loadImage("assets/images/ss10.png"); */
+
 }
 
 let state = `simulation`; // Can be: title, simulation, end1, end2
@@ -95,7 +118,7 @@ function draw() {
     let y = random(0, height);
     stroke(255);
     point(x, y);
-    }
+  }
 
   if (state === `title`) {
     title();
@@ -120,17 +143,23 @@ function simulation() {
 }
 
 function end1() {
-  setupSadSongs();
+  /* setupSadSongs();
   displayRandomSadSong();
+  randomSadSong(); */
+  fill(255);
+  textSize(80);
+  textFont('Amatic SC');
+  text(`end1`, width/1.6, height/2.1);
 }
 
 function end2() {
-  setupHappySongs();
+  /* setupHappySongs();
   displayRandomHappySong();
-  /* fill(255);
+  randomHappySong(); */
+  fill(255);
   textSize(80);
   textFont('Amatic SC');
-  text(`end2`, width/1.6, height/2.1); */
+  text(`end2`, width/1.6, height/2.1);
 }
 
 function createClouds() {
@@ -160,33 +189,33 @@ function createSuns() {
 }
 
 
-function setupSadSongs() {
-  addSadSong(`Hypnosis`, `Taemin`, ss1Image);
-  addSadSong(`You Were Beautiful`, `DAY6`, ss2Image);
-  addSadSong(`Say Yes`, `Seventeen`, ss3Image);
-  addSadSong(`Selene 6.23`, `SHINee`, ss4Image);
-  addSadSong(`Eighteen (End Of My Life)`, `Key`, ss5Image);
-  addSadSong(`Wave`, `GOT7`, ss6Image);
-  addSadSong(`Day & Night`, `Jung Seung Hwan`, ss7Image);
-  addSadSong(`Wish`, `Choi Yuree`, ss8Image);
-  addSadSong(`Dear Name`, `IU`, ss9Image);
-  addSadSong(`I Will Go To You Like The First Snow`, `Ailee`, ss10Image);
+/* function setupSadSongs() {
+  randomSadSong(`Hypnosis`, `Taemin`, ss1Image);
+  randomSadSong(`You Were Beautiful`, `DAY6`, ss2Image);
+  randomSadSong(`Say Yes`, `Seventeen`, ss3Image);
+  randomSadSong(`Selene 6.23`, `SHINee`, ss4Image);
+  randomSadSong(`Eighteen (End Of My Life)`, `Key`, ss5Image);
+  randomSadSong(`Wave`, `GOT7`, ss6Image);
+  randomSadSong(`Day & Night`, `Jung Seung Hwan`, ss7Image);
+  randomSadSong(`Wish`, `Choi Yuree`, ss8Image);
+  randomSadSong(`Dear Name`, `IU`, ss9Image);
+  randomSadSong(`I Will Go To You Like The First Snow`, `Ailee`, ss10Image);
 }
 
 function setupHappySongs() {
-  addHappySong(`Weekend`, `Taeyeon`, hs1Image);
-  addHappySong(`Rose`, `D.O.`, hs2Image);
-  addHappySong(`She Is`, `Jonghyun`, hs3Image);
-  addHappySong(`Blue Hour`, `Tomorrow X Together`, hs4Image);
-  addHappySong(`The One`, `EXO-CBX`, hs5Image);
-  addHappySong(`Tempo`, `EXO`, hs6Image);
-  addHappySong(`Snap Shoot`, `Seventeen`, hs7Image);
-  addHappySong(`Thursday`, `GOT7`, hs8Image);
-  addHappySong(`Married To The Music`, `SHINee`, hs9Image);
-  addHappySong(`riBBon`, `BamBam`, hs10Image);
+  randomHappySong(`Weekend`, `Taeyeon`, hs1Image);
+  randomHappySong(`Rose`, `D.O.`, hs2Image);
+  randomHappySong(`She Is`, `Jonghyun`, hs3Image);
+  randomHappySong(`Blue Hour`, `Tomorrow X Together`, hs4Image);
+  randomHappySong(`The One`, `EXO-CBX`, hs5Image);
+  randomHappySong(`Tempo`, `EXO`, hs6Image);
+  randomHappySong(`Snap Shoot`, `Seventeen`, hs7Image);
+  randomHappySong(`Thursday`, `GOT7`, hs8Image);
+  randomHappySong(`Married To The Music`, `SHINee`, hs9Image);
+  randomHappySong(`riBBon`, `BamBam`, hs10Image);
 }
 
-function addSadSong(title, artist, image) {
+function randomSadSong(title, artist, image) {
   let sadSong = {
     title: title,
     artist: artist,
@@ -195,7 +224,7 @@ function addSadSong(title, artist, image) {
   sadSongs.push(sadSong)
 }
 
-function addHappySong(title, artist, image) {
+function randomHappySong(title, artist, image) {
   let happySong = {
     title: title,
     artist: artist,
@@ -205,15 +234,28 @@ function addHappySong(title, artist, image) {
 }
 
 function displayRandomSadSong() {
+
+  let displayText = `${randomHappySong.title}
+  ${randomHappySong.artist}`;
+  text(displayText, 0, 0);
+  image(randomHappySong.image, 200, 200, 200, 200);
+
   let randomSadSong = random(sadSongs);
   title(randomSadSong.title, width / 1, 6, height / 2, 1);
   artist(randomSadSong.artist, width / 1.6, height / 1.8);
-  image(randomSadSong.image, width / 3.8, height / 3.5);
+  image(randomSadSong.image, width / 3.8, height / 3.5); 
 }
 
 function displayRandomHappySong() {
-  let randomHappySong = random(happySongs);
+
+  let displayText = `${randomHappySong.title}
+  ${randomHappySong.artist}`;
+  text(displayText, 0, 0);
+  image(randomHappySong.image, 100, 100, 200, 200);
+  // Obviously the positioning is nonsense
+
+  /* let randomHappySong = random(happySongs);
   title(randomHappySong.title, width / 1, 6, height / 2, 1);
   artist(randomHappySong.artist, width / 1.6, height / 1.8);
-  image(randomHappySong.image, width / 3.8, height / 3.5);
+  image(randomHappySong.image, width / 3.8, height / 3.5); */
 }
