@@ -13,10 +13,10 @@ class Paddle {
 
   display() {
     push();
-    fill(255)
+    fill(0, 153, 255)
     noStroke();
     rectMode(CENTER);
-    rect(this.x, this.y, this.width, this.height);
+    ellipse(this.x, this.y, this.width, this.height);
     pop();
   }
 

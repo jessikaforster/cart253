@@ -38,7 +38,7 @@ Description of setup
 function setup() {
   createCanvas(windowWidth, windowHeight);
 
-  paddle = new Paddle(600, 20);
+  paddle = new Paddle(800, 30);
 
   for (let i = 0; i < numClouds; i++) {
     let x = random(0, width);
@@ -112,7 +112,7 @@ function createClouds() {
       cloud.move();
       cloud.bounce(paddle);
       cloud.display();
-      //cloud.check();
+      cloud.check();
     }
   }
 }
@@ -125,7 +125,7 @@ function createSuns() {
       sun.move();
       sun.bounce(paddle);
       sun.display();
-      //sun.check();
+      sun.check();
     }
   }
 }
