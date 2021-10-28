@@ -12,9 +12,9 @@ another form of user-control, a new class and objects and at least 2 endings.
 let gravityForce = 0.0025;
 
 let suns = [];
-let numSuns = 5;
+let numSuns = 1;
 let clouds = [];
-let numClouds = 5;
+let numClouds = 1;
 
 let sunImage = undefined;
 let cloudImage = undefined;
@@ -130,9 +130,25 @@ function createSuns() {
   }
 }
 
-function mousePressed() {
+function keyPressed() {
+  if (keyCode === 83) {
+    let x = mouseX;
+    let y = mouseY;
+    let sun = new Sun(x, y, sunImage);
+    suns.push(sun);
+  }
+
+  if (keyCode === 67) {
+    let x = mouseX;
+    let y = mouseY;
+    let cloud = new Cloud(x, y, cloudImage);
+    clouds.push(cloud);
+  }
+}
+
+/* function mousePressed() {
   let x = mouseX;
   let y = mouseY;
   let cloud = new Cloud(x, y, cloudImage);
   clouds.push(cloud);
-}
+} */

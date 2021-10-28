@@ -8,7 +8,7 @@ class Cloud {
     this.ax = 0;
     this.ay = 0;
     this.maxSpeed = 10;
-    this.size = 80;
+    this.size = 300;
     this.active = true;
     this.image = image;
   }
@@ -54,7 +54,7 @@ class Cloud {
 
 display() {
   push();
-  // imageMode(CENTER);
+  imageMode(CENTER);
   image(this.image,this.x,this.y, this.size, this.size);
   pop();
   }

@@ -128,15 +128,7 @@ function handleInput() {
     user.vy = 0;
   }
 
-if (keyIsDown(LEFT_ARROW)) {
-  user.vx = -user.speed;
-  }
-  else if (keyIsDown(RIGHT_ARROW)) {
-    user.vx = user.speed;
-  }
-  else {
-  user.vx = 0;
-  }
+
 }
 
 // Title state
