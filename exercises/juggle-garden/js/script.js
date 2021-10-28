@@ -25,6 +25,10 @@ let splashSFX = undefined;
 let rainSFX;
 let thunderSFX = undefined;
 
+let startImage;
+let gif1Image;
+let gif2Image;
+
 /**
 Description of preload
 */
@@ -32,10 +36,35 @@ function preload() {
   sunImage = loadImage("assets/images/sun.png");
   cloudImage = loadImage("assets/images/cloud.png");
 
+  startImage = loadImage("assets/images/start.gif");
+  gif1Image = loadImage("assets/images/end1.gif");
+  gif2Image = loadImage("assets/images/end2.gif");
+
   rainSFX = loadSound("assets/sounds/rain.wav");
   splashSFX = loadSound("assets/sounds/splash.wav");
   thunderSFX = loadSound("assets/sounds/thunder.wav");
 }
+
+let start = {
+  x: undefined,
+  y: undefined,
+  width: 720,
+  height: 444,
+};
+
+let gif1 = {
+  x: undefined,
+  y: undefined,
+  width: 720,
+  height: 444,
+};
+
+let gif2 = {
+  x: undefined,
+  y: undefined,
+  width: 720,
+  height: 444,
+};
 
 let state = `title`; // Can be: title, simulation, end1, end2
 
@@ -96,6 +125,7 @@ function title() {
   text(`Press 'C' to add clouds`, windowWidth/2, windowHeight/2);
   text(`Press 'S' to add suns`, windowWidth/2, windowHeight/1.8);
   text(`Click to start`, windowWidth/2, windowHeight/1.5);
+  displayStart();
 }
 
 function simulation() {
@@ -112,6 +142,7 @@ function end1() {
   textFont('Special Elite');
   text(`It was being kept under control, but now`, windowWidth/2, windowHeight/2.2);
   text(`the fog is stopping you from going out… Stay safe!`, windowWidth/2, windowHeight/1.8);
+  displayEnd1();
 }
 
 function end2() {
@@ -121,6 +152,7 @@ function end2() {
   textFont('Special Elite');
   text(`You couldn’t manage to keep the sun up,`,windowWidth/2, windowHeight/2.2);
   text(`another gloomy day ahead… Keep yourself busy inside!`,windowWidth/2, windowHeight/1.8);
+  displayEnd2();
 }
 
 function createClouds() {
@@ -172,4 +204,19 @@ function mousePressed() {
     state = `simulation`;
   }
   rainSFX.loop();
+}
+
+function displayStart() {
+  image(startImage,width/2,height/2,start.width,start.height);
+  imageMode(CENTER,CENTER);
+}
+
+function displayGif1() {
+  image(gif1Image,width/2,height/2,gif1.width,gif1.height);
+  imageMode(CENTER,CENTER);
+}
+
+function displayGif2() {
+  image(gif2Image,width/2,height/2,gif2.width,gif2.height);
+  imageMode(CENTER,CENTER);
 }

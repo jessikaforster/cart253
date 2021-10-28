@@ -452,6 +452,7 @@ function displayEnd2() {
 
 function displayEnd3() {
   image(appleendImage, appleend.x, appleend.y, windowWidth, windowHeight);
+  imageMode(CENTER,CENTER);
 }
 
 // Mouse pressed begins game from title state
