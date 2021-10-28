@@ -37,7 +37,7 @@ function preload() {
   thunderSFX = loadSound("assets/sounds/thunder.wav");
 }
 
-let state = `simulation`; // Can be: title, simulation, end1, end2
+let state = `title`; // Can be: title, simulation, end1, end2
 
 /**
 Description of setup
@@ -87,7 +87,15 @@ function draw() {
 }
 
 function title() {
-
+  fill(255);
+  textSize(40);
+  textAlign(CENTER, CENTER);
+  textFont('Special Elite');
+  text(`The Weather is in Your Hands`, windowWidth/2, windowHeight/4);
+  text(`Control the puddle with the mouse to keep the items in the air`, windowWidth/2, windowHeight/3);
+  text(`Press 'C' to add clouds`, windowWidth/2, windowHeight/2);
+  text(`Press 'S' to add suns`, windowWidth/2, windowHeight/1.8);
+  text(`Click to start`, windowWidth/2, windowHeight/1.5);
 }
 
 function simulation() {
@@ -99,16 +107,20 @@ function simulation() {
 
 function end1() {
   fill(255);
-  textSize(80);
-  textFont('Amatic SC');
-  text(`end1`, width/2, height/2);
+  textSize(40);
+  textAlign(CENTER, CENTER);
+  textFont('Special Elite');
+  text(`It was being kept under control, but now`, windowWidth/2, windowHeight/2.2);
+  text(`the fog is stopping you from going out… Stay safe!`, windowWidth/2, windowHeight/1.8);
 }
 
 function end2() {
   fill(255);
-  textSize(80);
-  textFont('Amatic SC');
-  text(`end2`,width/2, height/2);
+  textSize(40);
+  textAlign(CENTER, CENTER);
+  textFont('Special Elite');
+  text(`You couldn’t manage to keep the sun up,`,windowWidth/2, windowHeight/2.2);
+  text(`another gloomy day ahead… Keep yourself busy inside!`,windowWidth/2, windowHeight/1.8);
 }
 
 function createClouds() {
@@ -156,5 +168,8 @@ function keyPressed() {
 }
 
 function mousePressed() {
+  if (state === `title`) {
+    state = `simulation`;
+  }
   rainSFX.loop();
 }
