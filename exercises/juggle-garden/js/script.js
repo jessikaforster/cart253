@@ -216,4 +216,4 @@ function displayRandomHappySong() {
   title(randomHappySong.title, width / 1, 6, height / 2, 1);
   artist(randomHappySong.artist, width / 1.6, height / 1.8);
   image(randomHappySong.image, width / 3.8, height / 3.5);
-} 
+}
