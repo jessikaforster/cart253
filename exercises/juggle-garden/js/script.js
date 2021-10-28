@@ -21,6 +21,10 @@ let cloudImage = undefined;
 
 let paddle;
 
+let splashSFX = undefined;
+let rainSFX;
+let thunderSFX = undefined;
+
 /**
 Description of preload
 */
@@ -28,6 +32,9 @@ function preload() {
   sunImage = loadImage("assets/images/sun.png");
   cloudImage = loadImage("assets/images/cloud.png");
 
+  rainSFX = loadSound("assets/sounds/rain.wav");
+  splashSFX = loadSound("assets/sounds/splash.wav");
+  thunderSFX = loadSound("assets/sounds/thunder.wav");
 }
 
 let state = `simulation`; // Can be: title, simulation, end1, end2
@@ -43,14 +50,14 @@ function setup() {
   for (let i = 0; i < numClouds; i++) {
     let x = random(0, width);
     let y = random(-400, -100);
-    let cloud = new Cloud(x, y, cloudImage);
+    let cloud = new Cloud(x, y, cloudImage, splashSFX, thunderSFX);
     clouds.push(cloud);
   }
 
   for (let i = 0; i < numSuns; i++) {
     let x = random(0, width);
     let y = random(-400, -100);
-    let sun = new Sun(x, y, sunImage);
+    let sun = new Sun(x, y, sunImage, splashSFX, thunderSFX);
     suns.push(sun);
   }
 }
@@ -94,14 +101,14 @@ function end1() {
   fill(255);
   textSize(80);
   textFont('Amatic SC');
-  text(`end1`, width/1.6, height/2.1);
+  text(`end1`, width/2, height/2);
 }
 
 function end2() {
   fill(255);
   textSize(80);
   textFont('Amatic SC');
-  text(`end2`, width/1.6, height/2.1);
+  text(`end2`,width/2, height/2);
 }
 
 function createClouds() {
@@ -113,6 +120,7 @@ function createClouds() {
       cloud.bounce(paddle);
       cloud.display();
       cloud.check();
+      cloud.sound();
     }
   }
 }
@@ -126,6 +134,7 @@ function createSuns() {
       sun.bounce(paddle);
       sun.display();
       sun.check();
+      sun.sound();
     }
   }
 }
@@ -134,21 +143,18 @@ function keyPressed() {
   if (keyCode === 83) {
     let x = mouseX;
     let y = mouseY;
-    let sun = new Sun(x, y, sunImage);
+    let sun = new Sun(x, y, sunImage, splashSFX, thunderSFX);
     suns.push(sun);
   }
 
   if (keyCode === 67) {
     let x = mouseX;
     let y = mouseY;
-    let cloud = new Cloud(x, y, cloudImage);
+    let cloud = new Cloud(x, y, cloudImage, splashSFX, thunderSFX);
     clouds.push(cloud);
   }
 }
 
-/* function mousePressed() {
-  let x = mouseX;
-  let y = mouseY;
-  let cloud = new Cloud(x, y, cloudImage);
-  clouds.push(cloud);
-} */
+function mousePressed() {
+  rainSFX.loop();
+}

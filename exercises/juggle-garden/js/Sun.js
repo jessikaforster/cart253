@@ -1,6 +1,6 @@
 class Sun {
 
-  constructor(x, y, image) {
+  constructor(x, y, image, splashSFX, thunderSFX) {
     this.x = x;
     this.y = y;
     this.vx = 0;
@@ -8,7 +8,9 @@ class Sun {
     this.ax = 0;
     this.ay = 0;
     this.maxSpeed = 14;
-    this.size = 300;
+    this.size = 250;
+    this.splashSFX = splashSFX;
+    this.thunderSFX = thunderSFX;
     this.active = true;
     this.image = image;
   }
@@ -39,6 +41,12 @@ class Sun {
       state = `end2`;
     }
 
+    sound() {
+      if (this.y > height) {
+      this.thunderSFX.play();
+      }
+    }
+
   bounce(paddle) {
       if (this.x > paddle.x - paddle.width / 2 &&
         this.x < paddle.x + paddle.width / 2 &&
@@ -51,6 +59,8 @@ class Sun {
 
         this.vy = -this.vy;
         this.ay = 0;
+
+        this.splashSFX.play();
       }
     }
 
