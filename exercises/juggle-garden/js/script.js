@@ -12,7 +12,7 @@ another form of user-control, a new class and objects and at least 2 endings.
 // Defining force of gravity
 let gravityForce = 0.0025;
 
-// Defining items from classes
+// Creating arrays and defining items from classes
 let suns = [];
 let numSuns = 1;
 let clouds = [];
@@ -151,25 +151,25 @@ function simulation() {
   createSuns();
 }
 
-// State that appeats when cloud falls out of frame
+// State that appears when cloud falls out of frame
 function end1() {
   fill(255);
   textSize(40);
   textAlign(CENTER, CENTER);
   textFont('Special Elite');
-  text(`It was being kept under control, but now`, windowWidth / 2, windowHeight / 3.7);
-  text(`the fog is stopping you from going out… Stay safe!`, windowWidth / 2, windowHeight / 1.35);
+  text(`It was being kept under control, but now the`, windowWidth / 2, windowHeight / 3.7);
+  text(`fog is stopping you from going out… Stay safe!`, windowWidth / 2, windowHeight / 1.35);
   displayGif1();
 }
 
-// State that appeats when sun falls out of frame
+// State that appears when sun falls out of frame
 function end2() {
   fill(255);
   textSize(40);
   textAlign(CENTER, CENTER);
   textFont('Special Elite');
-  text(`You couldn’t manage to keep the sun up,`, windowWidth / 2, windowHeight / 3.7);
-  text(`another gloomy day ahead… Keep yourself busy inside!`, windowWidth / 2, windowHeight / 1.35);
+  text(`You couldn’t manage to keep the sun up, another`, windowWidth / 2, windowHeight / 3.7);
+  text(`gloomy day ahead… Keep yourself busy inside!`, windowWidth / 2, windowHeight / 1.35);
   displayGif2();
 }
 
@@ -212,7 +212,7 @@ function keyPressed() {
     suns.push(sun);
   }
 
-  // Pressing 'C' key will add a new sun in mouse position
+  // Pressing 'C' key will add a new cloud in mouse position
   if (keyCode === 67) {
     let x = mouseX;
     let y = mouseY;
@@ -221,7 +221,8 @@ function keyPressed() {
   }
 }
 
-// Clicking anywhere on the screen in the title state begins simulation
+/* Clicking anywhere on the screen in the title state begins simulation and
+starts rain sound in background */
 function mousePressed() {
   if (state === `title`) {
     state = `simulation`;

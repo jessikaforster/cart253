@@ -39,7 +39,7 @@ class Sun {
     }
   }
 
-  // When sun exits frame, end1 state will appear
+  // When sun exits frame, end2 state will appear
   check() {
     if (this.y > height)
       state = `end2`;
@@ -66,7 +66,7 @@ class Sun {
       this.vy = -this.vy;
       this.ay = 0;
 
-      // Splash sound will play when sun hits it
+      // Splash sound will play when sun hits paddle
       this.splashSFX.play();
     }
   }

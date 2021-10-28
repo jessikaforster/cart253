@@ -66,11 +66,10 @@ class Cloud {
       this.vy = -this.vy;
       this.ay = 0;
 
-      // Splash sound will play when cloud hits it
+      // Splash sound will play when cloud hits paddle
       this.splashSFX.play();
     }
   }
-
 
   // Display cloud image
   display() {
