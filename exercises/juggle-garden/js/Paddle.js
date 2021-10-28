@@ -1,5 +1,6 @@
 class Paddle {
 
+  // Defining all variables related to paddle
   constructor(w, h) {
     this.width = w;
     this.height = h;
@@ -7,10 +8,12 @@ class Paddle {
     this.y = height - this.height / 2;
   }
 
+  // Paddle is controlled by mouse movement
   move() {
     this.x = mouseX;
   }
 
+  // Display paddle
   display() {
     push();
     fill(0, 153, 255)

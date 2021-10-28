@@ -9,17 +9,20 @@ another form of user-control, a new class and objects and at least 2 endings.
 
 "use strict";
 
+// Defining force of gravity
 let gravityForce = 0.0025;
 
+// Defining items from classes
 let suns = [];
 let numSuns = 1;
 let clouds = [];
 let numClouds = 1;
 
+let paddle;
+
+// Defining images and sounds
 let sunImage = undefined;
 let cloudImage = undefined;
-
-let paddle;
 
 let splashSFX = undefined;
 let rainSFX;
@@ -30,7 +33,7 @@ let gif1Image;
 let gif2Image;
 
 /**
-Description of preload
+Loading all images and sounds into code
 */
 function preload() {
   sunImage = loadImage("assets/images/sun.png");
@@ -45,6 +48,7 @@ function preload() {
   thunderSFX = loadSound("assets/sounds/thunder.wav");
 }
 
+// Identifying all variables for start and end gifs
 let start = {
   x: undefined,
   y: undefined,
@@ -66,10 +70,11 @@ let gif2 = {
   height: 444,
 };
 
-let state = `end2`; // Can be: title, simulation, end1, end2
+let state = `title`; // Can be: title, simulation, end1, end2
 
 /**
-Description of setup
+Creating canvas, adding paddle into simulation, displaying suns and clouds in
+simulation
 */
 function setup() {
   createCanvas(windowWidth, windowHeight);
@@ -92,7 +97,7 @@ function setup() {
 }
 
 /**
-Description of draw()
+Adding blue background, noise on background and identifying states
 */
 function draw() {
   background(0, 9, 135);
@@ -115,28 +120,30 @@ function draw() {
   }
 }
 
+// Title state
 function title() {
   push();
   fill(255);
   textSize(60);
   textAlign(CENTER, CENTER);
-  text(`The Weather is in Your Hands`, windowWidth/2, windowHeight/6);
+  text(`The Weather is in Your Hands`, windowWidth / 2, windowHeight / 6);
   pop();
   textFont('Special Elite');
   fill(255);
   textSize(30);
   textAlign(CENTER, CENTER);
-  text(`Control the puddle with the mouse to keep the items in the air`, windowWidth/2, windowHeight/3.7);
-  text(`Press 'C' to add clouds   |   Press 'S' to add suns`, windowWidth/2, windowHeight/1.35);
+  text(`Control the puddle with the mouse to keep the items in the air`, windowWidth / 2, windowHeight / 3.7);
+  text(`Press 'C' to add clouds   |   Press 'S' to add suns`, windowWidth / 2, windowHeight / 1.35);
   push();
   fill(255);
   textSize(45);
   textAlign(CENTER, CENTER);
-  text(`Click to start`, windowWidth/2, windowHeight/1.2);
+  text(`Click to start`, windowWidth / 2, windowHeight / 1.2);
   pop();
   displayStart();
 }
 
+// Game playing state
 function simulation() {
   paddle.move();
   paddle.display();
@@ -144,26 +151,29 @@ function simulation() {
   createSuns();
 }
 
+// State that appeats when cloud falls out of frame
 function end1() {
   fill(255);
   textSize(40);
   textAlign(CENTER, CENTER);
   textFont('Special Elite');
-  text(`It was being kept under control, but now`, windowWidth/2, windowHeight/3.7);
-  text(`the fog is stopping you from going out… Stay safe!`, windowWidth/2, windowHeight/1.35);
+  text(`It was being kept under control, but now`, windowWidth / 2, windowHeight / 3.7);
+  text(`the fog is stopping you from going out… Stay safe!`, windowWidth / 2, windowHeight / 1.35);
   displayGif1();
 }
 
+// State that appeats when sun falls out of frame
 function end2() {
   fill(255);
   textSize(40);
   textAlign(CENTER, CENTER);
   textFont('Special Elite');
-  text(`You couldn’t manage to keep the sun up,`,windowWidth/2, windowHeight/3.7);
-  text(`another gloomy day ahead… Keep yourself busy inside!`,windowWidth/2, windowHeight/1.35);
+  text(`You couldn’t manage to keep the sun up,`, windowWidth / 2, windowHeight / 3.7);
+  text(`another gloomy day ahead… Keep yourself busy inside!`, windowWidth / 2, windowHeight / 1.35);
   displayGif2();
 }
 
+// Creating clouds and adding all methods that control them
 function createClouds() {
   for (let i = 0; i < clouds.length; i++) {
     let cloud = clouds[i];
@@ -178,6 +188,7 @@ function createClouds() {
   }
 }
 
+// Creating suns and adding all methods that control them
 function createSuns() {
   for (let i = 0; i < suns.length; i++) {
     let sun = suns[i];
@@ -192,6 +203,7 @@ function createSuns() {
   }
 }
 
+// Pressing 'S' key will add a new sun in mouse position
 function keyPressed() {
   if (keyCode === 83) {
     let x = mouseX;
@@ -200,6 +212,7 @@ function keyPressed() {
     suns.push(sun);
   }
 
+  // Pressing 'C' key will add a new sun in mouse position
   if (keyCode === 67) {
     let x = mouseX;
     let y = mouseY;
@@ -208,6 +221,7 @@ function keyPressed() {
   }
 }
 
+// Clicking anywhere on the screen in the title state begins simulation
 function mousePressed() {
   if (state === `title`) {
     state = `simulation`;
@@ -215,17 +229,18 @@ function mousePressed() {
   rainSFX.loop();
 }
 
+// Displaying all gifs that appear on title and end states
 function displayStart() {
-  image(startImage,width/2,height/2,start.width,start.height);
-  imageMode(CENTER,CENTER);
+  image(startImage, width / 2, height / 2, start.width, start.height);
+  imageMode(CENTER, CENTER);
 }
 
 function displayGif1() {
-  image(gif1Image,width/2,height/2,gif1.width,gif1.height);
-  imageMode(CENTER,CENTER);
+  image(gif1Image, width / 2, height / 2, gif1.width, gif1.height);
+  imageMode(CENTER, CENTER);
 }
 
 function displayGif2() {
-  image(gif2Image,width/2,height/2,gif2.width,gif2.height);
-  imageMode(CENTER,CENTER);
+  image(gif2Image, width / 2, height / 2, gif2.width, gif2.height);
+  imageMode(CENTER, CENTER);
 }
