@@ -16,36 +16,8 @@ let numSuns = 5;
 let clouds = [];
 let numClouds = 5;
 
-let sadSongs = [];
-let happySongs = [];
-
 let sunImage = undefined;
 let cloudImage = undefined;
-
-/* let hs1Image = undefined;
-let hs2Image = undefined;
-let hs3Image = undefined;
-let hs4Image = undefined;
-let hs5Image = undefined;
-let hs6Image = undefined;
-let hs7Image = undefined;
-let hs8Image = undefined;
-let hs9Image = undefined;
-let hs10Image = undefined;
-
-let ss1Image = undefined;
-let ss2Image = undefined;
-let ss3Image = undefined;
-let ss4Image = undefined;
-let ss5Image = undefined;
-let ss6Image = undefined;
-let ss7Image = undefined;
-let ss8Image = undefined;
-let ss9Image = undefined;
-let ss10Image = undefined;
-
-let images = [];
-let displayImage; */
 
 let paddle;
 
@@ -56,28 +28,6 @@ function preload() {
   sunImage = loadImage("assets/images/sun.png");
   cloudImage = loadImage("assets/images/cloud.png");
 
-  /* hs1Image = loadImage("assets/images/hs1.png");
-  hs2Image = loadImage("assets/images/hs2.png");
-  hs3Image = loadImage("assets/images/hs3.png");
-  hs4Image = loadImage("assets/images/hs4.png");
-  hs5Image = loadImage("assets/images/hs5.png");
-  hs6Image = loadImage("assets/images/hs6.png");
-  hs7Image = loadImage("assets/images/hs7.png");
-  hs8Image = loadImage("assets/images/hs8.png");
-  hs9Image = loadImage("assets/images/hs9.png");
-  hs10Image = loadImage("assets/images/hs10.png");
-
-  ss1Image = loadImage("assets/images/ss1.png");
-  ss2Image = loadImage("assets/images/ss2.png");
-  ss3Image = loadImage("assets/images/ss3.png");
-  ss4Image = loadImage("assets/images/ss4.png");
-  ss5Image = loadImage("assets/images/ss5.png");
-  ss6Image = loadImage("assets/images/ss6.png");
-  ss7Image = loadImage("assets/images/ss7.png");
-  ss8Image = loadImage("assets/images/ss8.png");
-  ss9Image = loadImage("assets/images/ss9.png");
-  ss10Image = loadImage("assets/images/ss10.png"); */
-
 }
 
 let state = `simulation`; // Can be: title, simulation, end1, end2
@@ -87,8 +37,6 @@ Description of setup
 */
 function setup() {
   createCanvas(windowWidth, windowHeight);
-
-  displayImage = random(images);
 
   paddle = new Paddle(600, 20);
 
@@ -143,9 +91,6 @@ function simulation() {
 }
 
 function end1() {
-  /* setupSadSongs();
-  displayRandomSadSong();
-  randomSadSong(); */
   fill(255);
   textSize(80);
   textFont('Amatic SC');
@@ -153,9 +98,6 @@ function end1() {
 }
 
 function end2() {
-  /* setupHappySongs();
-  displayRandomHappySong();
-  randomHappySong(); */
   fill(255);
   textSize(80);
   textFont('Amatic SC');
@@ -170,7 +112,7 @@ function createClouds() {
       cloud.move();
       cloud.bounce(paddle);
       cloud.display();
-      cloud.check();
+      //cloud.check();
     }
   }
 }
@@ -183,79 +125,14 @@ function createSuns() {
       sun.move();
       sun.bounce(paddle);
       sun.display();
-      sun.check();
+      //sun.check();
     }
   }
 }
 
-
-/* function setupSadSongs() {
-  randomSadSong(`Hypnosis`, `Taemin`, ss1Image);
-  randomSadSong(`You Were Beautiful`, `DAY6`, ss2Image);
-  randomSadSong(`Say Yes`, `Seventeen`, ss3Image);
-  randomSadSong(`Selene 6.23`, `SHINee`, ss4Image);
-  randomSadSong(`Eighteen (End Of My Life)`, `Key`, ss5Image);
-  randomSadSong(`Wave`, `GOT7`, ss6Image);
-  randomSadSong(`Day & Night`, `Jung Seung Hwan`, ss7Image);
-  randomSadSong(`Wish`, `Choi Yuree`, ss8Image);
-  randomSadSong(`Dear Name`, `IU`, ss9Image);
-  randomSadSong(`I Will Go To You Like The First Snow`, `Ailee`, ss10Image);
-}
-
-function setupHappySongs() {
-  randomHappySong(`Weekend`, `Taeyeon`, hs1Image);
-  randomHappySong(`Rose`, `D.O.`, hs2Image);
-  randomHappySong(`She Is`, `Jonghyun`, hs3Image);
-  randomHappySong(`Blue Hour`, `Tomorrow X Together`, hs4Image);
-  randomHappySong(`The One`, `EXO-CBX`, hs5Image);
-  randomHappySong(`Tempo`, `EXO`, hs6Image);
-  randomHappySong(`Snap Shoot`, `Seventeen`, hs7Image);
-  randomHappySong(`Thursday`, `GOT7`, hs8Image);
-  randomHappySong(`Married To The Music`, `SHINee`, hs9Image);
-  randomHappySong(`riBBon`, `BamBam`, hs10Image);
-}
-
-function randomSadSong(title, artist, image) {
-  let sadSong = {
-    title: title,
-    artist: artist,
-    image: image,
-  }
-  sadSongs.push(sadSong)
-}
-
-function randomHappySong(title, artist, image) {
-  let happySong = {
-    title: title,
-    artist: artist,
-    image: image,
-  }
-  happySongs.push(happySong)
-}
-
-function displayRandomSadSong() {
-
-  let displayText = `${randomHappySong.title}
-  ${randomHappySong.artist}`;
-  text(displayText, 0, 0);
-  image(randomHappySong.image, 200, 200, 200, 200);
-
-  let randomSadSong = random(sadSongs);
-  title(randomSadSong.title, width / 1, 6, height / 2, 1);
-  artist(randomSadSong.artist, width / 1.6, height / 1.8);
-  image(randomSadSong.image, width / 3.8, height / 3.5); 
-}
-
-function displayRandomHappySong() {
-
-  let displayText = `${randomHappySong.title}
-  ${randomHappySong.artist}`;
-  text(displayText, 0, 0);
-  image(randomHappySong.image, 100, 100, 200, 200);
-  // Obviously the positioning is nonsense
-
-  /* let randomHappySong = random(happySongs);
-  title(randomHappySong.title, width / 1, 6, height / 2, 1);
-  artist(randomHappySong.artist, width / 1.6, height / 1.8);
-  image(randomHappySong.image, width / 3.8, height / 3.5); */
+function mousePressed() {
+  let x = mouseX;
+  let y = mouseY;
+  let cloud = new Cloud(x, y, cloudImage);
+  clouds.push(cloud);
 }
