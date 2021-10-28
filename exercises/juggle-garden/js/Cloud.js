@@ -24,6 +24,8 @@ class Cloud {
     this.vx = constrain(this.vx, -this.maxSpeed, this.maxSpeed);
     this.vy = constrain(this.vy, -this.maxSpeed, this.maxSpeed);
 
+    this.x = constrain(this.x, 0, width);
+
     this.x = this.x + this.vx;
     this.y = this.y + this.vy;
 
