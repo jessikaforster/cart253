@@ -1,9 +1,11 @@
 /**
-Title of Project
-Author Name
+Make Some Noise
+Jessika Forster
 
-This is a template. You must fill in the title,
-author, and this description to match your project!
+The core objective of this exercise is to spend time both experimenting with
+the p5.sound library and its possibilities (most obviously playing with sound
+files, oscillators, synthesizers, and audio input) alongside achieving a
+milestone in your final project.
 */
 
 "use strict";
@@ -14,6 +16,7 @@ Description of preload
 */
 function preload() {
 
+
 }
 
 
@@ -21,7 +24,11 @@ function preload() {
 Description of setup
 */
 function setup() {
+  createCanvas(windowWidth,windowHeight);
 
+  let x = width/2;
+  let y = height;
+  user = new User(x,y);
 }
 
 
@@ -29,5 +36,5 @@ function setup() {
 Description of draw()
 */
 function draw() {
-
+  background(0);
 }
