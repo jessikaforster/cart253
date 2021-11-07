@@ -12,6 +12,11 @@ milestone in your final project.
 
 let user;
 
+let birds = [];
+let numBluejays = 10;
+let numSparrows = 10;
+let numCardinals = 10;
+
 
 /**
 Description of preload
@@ -31,6 +36,38 @@ function setup() {
   let x = width/6;
   let y = height/2;
   user = new User(x,y);
+
+  for (let i = 0; i < numBluejays; i++) {
+  let x = random(0,width);
+  let y = random(0,height);
+  let bluejay = new Bluejay(x,y);
+  birds.push(bluejay);
+}
+
+for (let i = 0; i < numSparrows; i++) {
+  let x = random(0,width);
+  let y = random(0,height);
+  let sparrow = new Sparrow(x,y);
+  birds.push(sparrow);
+}
+
+for (let i = 0; i < numCardinals; i++) {
+  let x = random(0,width);
+  let y = random(0,height);
+  let cardinal = new Cardinal(x,y);
+  birds.push(cardinal);
+}
+
+for (let i = 0; i < birds.length; i++) {
+    let bird = birds[i];
+    let r = random(0,1);
+    if (r < 0.5) {
+      bird.vx = -bird.speed;
+    }
+    else {
+      bird.vx = bird.speed;
+    }
+  }
 }
 
 
@@ -41,4 +78,11 @@ function draw() {
   background(0);
 
   user.display();
+
+  for (let i = 0; i < birds.length; i++) {
+    let bird = birds[i];
+  bird.move();
+  bird.wrap();
+  bird.display();
+  }
 }
