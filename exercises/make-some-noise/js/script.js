@@ -17,6 +17,7 @@ let numBluejays = 10;
 let numSparrows = 10;
 let numCardinals = 10;
 
+let mic;
 
 /**
 Description of preload

@@ -5,8 +5,10 @@ class User {
     this.size = 100;
     this.vx = 0;
     this.vy = 0;
+    this.ay = 0.3;
     this.speed = 10;
     this.dodged = true;
+    this.moveThreshold = 0.2;
   }
 
   display() {
