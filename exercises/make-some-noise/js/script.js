@@ -10,6 +10,8 @@ milestone in your final project.
 
 "use strict";
 
+let user;
+
 
 /**
 Description of preload
@@ -26,8 +28,8 @@ Description of setup
 function setup() {
   createCanvas(windowWidth,windowHeight);
 
-  let x = width/2;
-  let y = height;
+  let x = width/6;
+  let y = height/2;
   user = new User(x,y);
 }
 
@@ -37,4 +39,6 @@ Description of draw()
 */
 function draw() {
   background(0);
+
+  user.display();
 }
