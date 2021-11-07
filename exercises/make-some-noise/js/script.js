@@ -60,13 +60,7 @@ for (let i = 0; i < numCardinals; i++) {
 
 for (let i = 0; i < birds.length; i++) {
     let bird = birds[i];
-    let r = random(0,1);
-    if (r < 0.5) {
       bird.vx = -bird.speed;
-    }
-    else {
-      bird.vx = bird.speed;
-    }
   }
 }
 
