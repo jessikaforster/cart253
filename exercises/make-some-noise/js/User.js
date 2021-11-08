@@ -15,7 +15,9 @@ class User {
       push();
       fill(255);
       noStroke();
-      ellipse(this.x,this.y,this.size);
+      let vol = mic.getLevel();
+      this.y = map(vol, 0, 1, height, 0);
+      ellipse(this.x,this.y,this.size,this.size);
       pop();
     }
   }

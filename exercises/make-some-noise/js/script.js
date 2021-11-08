@@ -34,6 +34,10 @@ Description of setup
 function setup() {
   createCanvas(windowWidth,windowHeight);
 
+  mic = new p5.AudioIn();
+
+  mic.start();
+
   let x = width/6;
   let y = height/2;
   user = new User(x,y);
