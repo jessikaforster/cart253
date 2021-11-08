@@ -85,5 +85,6 @@ for (let i = 0; i < birds.length; i++) {
   bird.move();
   bird.wrap();
   bird.display();
+  bird.wiggle();
   }
 }

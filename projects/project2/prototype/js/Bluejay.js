@@ -4,7 +4,7 @@ class Bluejay extends Bird {
     this.speed = 10;
     this.width = 150;
     this.height = 150;
-  }
+  } 
 
   display() {
     super.display();

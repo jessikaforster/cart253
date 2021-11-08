@@ -17,6 +17,10 @@ class Bird {
     this.y += this.vy;
   }
 
+  wiggle() {
+    this.y = this.y + random(-5,5);
+  }
+
   wrap() {
     if (this.x > width) {
       this.x -= width;
