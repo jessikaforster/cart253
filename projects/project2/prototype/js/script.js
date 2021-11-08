@@ -1,19 +1,19 @@
 /**
-Title of Project
-Author Name
+Project 2 Prototype
+Jessika Forster
 
-This is a template. You must fill in the title,
-author, and this description to match your project!
+Prototype for project 2, final CART 253 project.
 */
 
 "use strict";
 
+let bg;
 
 /**
 Description of preload
 */
 function preload() {
-
+  bg = loadImage("assets/images/bg.gif");
 }
 
 
@@ -21,7 +21,7 @@ function preload() {
 Description of setup
 */
 function setup() {
-
+  createCanvas(windowWidth,windowHeight);
 }
 
 
@@ -29,5 +29,5 @@ function setup() {
 Description of draw()
 */
 function draw() {
-
+background(bg);
 }
