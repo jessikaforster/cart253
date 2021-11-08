@@ -1,9 +1,9 @@
 class Cardinal extends Bird {
-  constructor(x,y) {
-    super(x,y);
+  constructor(x,y,image) {
+    super(x,y,image);
     this.speed = 10;
-    this.width = 300;
-    this.height = 300;
+    this.width = 150;
+    this.height = 150;
   }
 
   display() {
@@ -11,7 +11,7 @@ class Cardinal extends Bird {
 
   push();
   imageMode(CENTER);
-  image(this.image, this.x, this.y, this.size, this.size);
+  image(this.image, this.x, this.y, this.width, this.height);
   pop();
   }
 }
