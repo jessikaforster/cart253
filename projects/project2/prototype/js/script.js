@@ -12,6 +12,8 @@ let numBluejays = 3;
 let numSparrows = 3;
 let numCardinals = 3;
 
+let user;
+
 let bg;
 
 let userImage = undefined;
@@ -40,9 +42,9 @@ Description of setup
 function setup() {
   createCanvas(windowWidth,windowHeight);
 
-  /* let x = width/6;
+  let x = width/6;
   let y = height/2;
-  user = new User(x,y,userImage); */
+  user = new User(x,y,userImage);
 
   for (let i = 0; i < numBluejays; i++) {
   let x = random(0,width);
@@ -78,7 +80,7 @@ Description of draw()
 function draw() {
 background(bg);
 
-// user.display();
+user.display();
 
 for (let i = 0; i < birds.length; i++) {
     let bird = birds[i];
