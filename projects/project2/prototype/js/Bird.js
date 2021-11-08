@@ -6,8 +6,8 @@ class Bird {
     this.vy = 0;
     this.ax = 0;
     this.ay = 0;
-    this.width = 300;
-    this.height = 300;
+    this.width = undefined;
+    this.height = undefined;
     this.speed = undefined;
     this.image = image;
   }
