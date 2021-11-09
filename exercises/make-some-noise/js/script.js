@@ -10,6 +10,8 @@ milestone in your final project.
 
 "use strict";
 
+let state = `simulation`; // Could be simulation or failed
+
 let user;
 
 let birds = [];
@@ -17,7 +19,7 @@ let numBluejays = 10;
 let numSparrows = 10;
 let numCardinals = 10;
 
-let mic;
+// let mic;
 
 /**
 Description of preload
@@ -34,9 +36,9 @@ Description of setup
 function setup() {
   createCanvas(windowWidth,windowHeight);
 
-  mic = new p5.AudioIn();
+  // mic = new p5.AudioIn();
 
-  mic.start();
+  // mic.start();
 
   let x = width/6;
   let y = height/2;
@@ -76,12 +78,40 @@ Description of draw()
 function draw() {
   background(0);
 
+  if (state === `simulation`) {
+    simulation();
+  }
+  else if (state === `failed`) {
+    failed();
+  }
+}
+
+function simulation() {
   user.display();
+
+  if (!user.dodged) {
+    state = `failed`;
+  }
 
   for (let i = 0; i < birds.length; i++) {
     let bird = birds[i];
   bird.move();
   bird.wrap();
   bird.display();
+
+  user.checkHit(bird);
   }
+}
+
+function failed() {
+  displayText(`YOU COULDN'T DODGE IN TIME, BETTER LUCK NEXT TIME!`)
+}
+
+function displayText(string) {
+  push();
+  textAlign(CENTER,CENTER);
+  textSize(32);
+  fill(255);
+  text(string,width/2,height/2);
+  pop();
 }
