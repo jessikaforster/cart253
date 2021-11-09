@@ -19,7 +19,7 @@ let numBluejays = 10;
 let numSparrows = 10;
 let numCardinals = 10;
 
-// let mic;
+let mic;
 
 /**
 Description of preload
@@ -36,9 +36,9 @@ Description of setup
 function setup() {
   createCanvas(windowWidth,windowHeight);
 
-  // mic = new p5.AudioIn();
+  mic = new p5.AudioIn();
 
-  // mic.start();
+  mic.start();
 
   let x = width/6;
   let y = height/2;
@@ -104,7 +104,7 @@ function simulation() {
 }
 
 function failed() {
-  displayText(`YOU COULDN'T DODGE IN TIME, BETTER LUCK NEXT TIME!`)
+  displayText(`YOU DIDN'T DODGE AND GOT HIT, BETTER LUCK NEXT TIME!`)
 }
 
 function displayText(string) {
