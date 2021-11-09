@@ -20,7 +20,13 @@ class User {
     }
   }
 
+micInput() {
+  let vol = mic.getLevel();
+  this.vy = map(vol, 0, 0.01, height, 0);
+} 
+
   handleInput() {
+  let vol = mic.getLevel();
     if (vol > 0.1) {
   this.vy = -4;
 }
@@ -33,8 +39,6 @@ else {
       push();
       fill(255);
       noStroke();
-      let vol = mic.getLevel();
-      this.y = map(vol, 0, 0.01, height, 0);
       ellipse(this.x,this.y,this.size,this.size);
       pop();
     }

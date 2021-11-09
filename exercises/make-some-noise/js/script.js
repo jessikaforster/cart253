@@ -88,6 +88,7 @@ function draw() {
 
 function simulation() {
   user.display();
+  user.handleInput();
 
   if (!user.dodged) {
     state = `failed`;
