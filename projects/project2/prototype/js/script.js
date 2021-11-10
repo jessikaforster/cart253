@@ -49,21 +49,21 @@ function setup() {
   user = new User(x,y,userImage);
 
   for (let i = 0; i < numBluejays; i++) {
-  let x = random(0,width);
+  let x = random(width/2,width);
   let y = random(0,height);
   let bluejay = new Bluejay(x,y,bluejayImage);
   birds.push(bluejay);
 }
 
 for (let i = 0; i < numSparrows; i++) {
-  let x = random(0,width);
+  let x = random(width/2,width);
   let y = random(0,height);
   let sparrow = new Sparrow(x,y,sparrowImage);
   birds.push(sparrow);
 }
 
 for (let i = 0; i < numCardinals; i++) {
-  let x = random(0,width);
+  let x = random(width/2,width);
   let y = random(0,height);
   let cardinal = new Cardinal(x,y,cardinalImage);
   birds.push(cardinal);
