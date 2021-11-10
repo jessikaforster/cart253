@@ -1,7 +1,7 @@
 class Sparrow extends Bird {
   constructor(x,y,image) {
     super(x,y,image);
-    this.speed = 15;
+    this.speed = 10;
     this.width = 100;
     this.height = 100;
   }

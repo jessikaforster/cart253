@@ -24,9 +24,11 @@ class Bird {
   wrap() {
     if (this.x > width) {
       this.x -= width;
+      this.y = random(0,height);
     }
     else if (this.x < 0) {
-      this.x += width
+      this.x += width;
+      this.y = random(0,height);
     }
   }
 
