@@ -6,8 +6,8 @@ class User {
     this.vy = 0;
     this.ax = 0;
     this.ay = 0;
-    this.width = 640;
-    this.height = 360;
+    this.width = 600;
+    this.height = 265.75;
     this.speed = undefined;
     this.image = userImage;
   }

@@ -8,9 +8,9 @@ Prototype for project 2, final CART 253 project.
 "use strict";
 
 let birds = [];
-let numBluejays = 3;
-let numSparrows = 3;
-let numCardinals = 3;
+let numBluejays = 5;
+let numSparrows = 5;
+let numCardinals = 5;
 
 let user;
 
@@ -30,7 +30,7 @@ function preload() {
   cardinalImage = loadImage("assets/images/cardinal.gif");
   sparrowImage = loadImage("assets/images/sparrow.gif");
 
-  userImage = loadImage("assets/images/reindeer.png");
+  userImage = loadImage("assets/images/reindeer.gif");
 
   bg = loadImage("assets/images/bg.gif");
 }
