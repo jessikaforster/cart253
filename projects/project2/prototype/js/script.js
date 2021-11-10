@@ -7,6 +7,8 @@ Prototype for project 2, final CART 253 project.
 
 "use strict";
 
+let state = `simulation`; // Could be simulation or failed
+
 let birds = [];
 let numBluejays = 5;
 let numSparrows = 5;
@@ -80,13 +82,41 @@ Description of draw()
 function draw() {
 background(bg);
 
-user.display();
+if (state === `simulation`) {
+    simulation();
+  }
+  else if (state === `failed`) {
+    failed();
+  }
+}
 
-for (let i = 0; i < birds.length; i++) {
+function simulation() {
+  user.display();
+
+  if (!user.dodged) {
+    state = `failed`;
+  }
+
+  for (let i = 0; i < birds.length; i++) {
     let bird = birds[i];
   bird.move();
   bird.wrap();
   bird.display();
   bird.wiggle();
+
+  user.checkHit(bird);
   }
+}
+
+function failed() {
+  displayText(`YOU DIDN'T DODGE AND GOT HIT, BETTER LUCK NEXT TIME!`)
+}
+
+function displayText(string) {
+  push();
+  textAlign(CENTER,CENTER);
+  textSize(32);
+  fill(255);
+  text(string,width/2,height/2);
+  pop();
 }

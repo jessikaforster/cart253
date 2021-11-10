@@ -8,9 +8,23 @@ class User {
     this.ay = 0;
     this.width = 600;
     this.height = 265.75;
+    this.dodged = true;
     this.speed = undefined;
     this.image = userImage;
   }
+
+  checkHit(bird) {
+      if (this.x > bird.x - bird.height/2 &&
+        this.x > bird.x - bird.width/2 &&
+      this.x < bird.x + bird.height/2 &&
+      this.x < bird.x + bird.width/2 &&
+      this.y > bird.y - bird.height/2 &&
+      this.y > bird.y - bird.width/2 &&
+      this.y < bird.y + bird.height/2 &&
+    this.y < bird.y + bird.width/2) {
+        this.dodged = false;
+      }
+    }
 
   display() {
 
