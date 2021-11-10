@@ -88,6 +88,9 @@ if (state === `simulation`) {
   else if (state === `failed`) {
     failed();
   }
+  else if (state === `success`) {
+    success();
+  }
 }
 
 function simulation() {
@@ -111,6 +114,10 @@ function simulation() {
 
 function failed() {
   displayText(`YOU DIDN'T DODGE AND GOT HIT, BETTER LUCK NEXT TIME!`)
+}
+
+function success() {
+  displayText(`YOU DODGED THE FLOCK OF BIRDS SUCCESSFULLY! THERE'S NO TIME TO REST, WE NEED TO HURRY!`)
 }
 
 function displayText(string) {
