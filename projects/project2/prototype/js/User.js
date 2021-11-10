@@ -26,6 +26,10 @@ class User {
       }
     }
 
+  handleInput() {
+    this.y = mouseY;
+  }
+
   display() {
 
   push();

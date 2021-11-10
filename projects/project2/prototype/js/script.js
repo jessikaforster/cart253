@@ -10,9 +10,9 @@ Prototype for project 2, final CART 253 project.
 let state = `simulation`; // Could be simulation or failed
 
 let birds = [];
-let numBluejays = 5;
-let numSparrows = 5;
-let numCardinals = 5;
+let numBluejays = 10;
+let numSparrows = 10;
+let numCardinals = 10;
 
 let user;
 
@@ -104,6 +104,7 @@ function simulation() {
   bird.display();
   bird.wiggle();
 
+  user.handleInput();
   user.checkHit(bird);
   }
 }
