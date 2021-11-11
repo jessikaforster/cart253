@@ -10,7 +10,7 @@ class Bird {
     this.height = undefined;
     this.speed = undefined;
     this.image = image;
-    this.active = true;
+    this.dodges = 0;
   }
 
   move() {
@@ -33,8 +33,16 @@ class Bird {
     }
   }
 
-  checkDodged() {
-    this.x -= 0;
+  checkExit() {
+    if (this.x < width/8) {
+      this.dodges += 1;
+    }
+  }
+
+  triggerSuccess() {
+    if (this.dodges > 50) {
+      state = `success`;
+    }
   }
 
   display() {
