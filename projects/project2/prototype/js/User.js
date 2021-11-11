@@ -13,6 +13,7 @@ class User {
     this.image = userImage;
   }
 
+// If the user gets hit by a bird, dodged becomes false
   checkHit(bird) {
       if (this.x > bird.x - bird.height/2 &&
         this.x > bird.x - bird.width/2 &&
@@ -26,12 +27,13 @@ class User {
       }
     }
 
+// User controls character using mouse movement on the Y axis
   handleInput() {
     this.y = mouseY;
   }
 
+// Displaying the user image
   display() {
-
   push();
   imageMode(CENTER);
   image(this.image, this.x, this.y, this.width, this.height);
