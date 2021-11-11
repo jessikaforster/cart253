@@ -6,12 +6,11 @@ class Bird {
     this.vy = 0;
     this.ax = 0;
     this.ay = 0;
-    this.exit = 0;
     this.width = undefined;
     this.height = undefined;
     this.speed = undefined;
     this.image = image;
-    this.dodged = true;
+    this.active = true;
   }
 
   move() {
@@ -35,24 +34,8 @@ class Bird {
   }
 
   checkDodged() {
-    if (this.x > width) {
-      this.exit += 1;
-    }
-
-    if (this.exit > 20) {
-      this.dodged = false;
-    }
+    this.x -= 0;
   }
-
-  checkExit() {
-
-    }
-
-  /* checkOverlap() {
-    if (this.x > width) {
-      this.dodges += 1;
-    }
-  } */
 
   display() {
 

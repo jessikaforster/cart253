@@ -24,8 +24,6 @@ let bluejayImage = undefined;
 let cardinalImage = undefined;
 let sparrowImage = undefined;
 
-let dodges = 0;
-
 /**
 Description of preload
 */
@@ -102,21 +100,27 @@ function simulation() {
     state = `failed`;
   }
 
-  if (!birds.dodged) {
+  /* if (!birds.dodged) {
     state = `success`;
-  } 
-
+  } */
+  let numDodges = 0;
   for (let i = 0; i < birds.length; i++) {
     let bird = birds[i];
+  if (bird.active) {
+    numDodges++;
+  bird.checkDodged();
+}
   bird.move();
   bird.wrap();
   bird.display();
   bird.wiggle();
-  bird.checkExit();
-  bird.checkDodged();
 
   user.handleInput();
   user.checkHit(bird);
+  }
+
+  if (numDodges > 2) {
+    state = `success`;
   }
 }
 
