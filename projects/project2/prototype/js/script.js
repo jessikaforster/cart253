@@ -118,7 +118,7 @@ function simulation() {
     bird.wiggle();
     bird.numDodges();
     bird.checkExit();
-    
+
     // User control
     user.handleInput();
     user.checkHit(bird);
@@ -127,7 +127,7 @@ function simulation() {
 
 // State that appears when user fails to dodge a bird
 function failed() {
-  displayText(`YOU DIDN'T DODGE AND GOT HIT, BETTER LUCK NEXT TIME!`)
+  displayText(`YOU HIT A BIRD AND THE SLEIGH GO RUINED...TIME TO GO BACK TO THE NORTH POLE`)
 }
 
 // State that appears when user has successfully dodged enough birds
