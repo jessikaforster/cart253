@@ -41,7 +41,6 @@ function preload() {
   bg = loadImage("assets/images/bg.gif");
 }
 
-
 /**
 Creating the canvas to fill the user's window size
 */
@@ -80,13 +79,12 @@ function setup() {
   // Declaring the direction and speed that the birds will move in
   for (let i = 0; i < birds.length; i++) {
     let bird = birds[i];
-    bird.vx = -bird.speed;
+    bird.vx = bird.speed;
   }
 }
 
-
 /**
-Displaying the background image and creating simulation, ending and success states
+Displaying the background image and creating simulation, failed and success states
 */
 function draw() {
   background(bg);
@@ -102,6 +100,8 @@ function draw() {
 
 // Simulation state
 function simulation() {
+
+  // Display user image
   user.display();
 
   // If user gets hit by a bird, `failed` state is triggered
@@ -127,12 +127,12 @@ function simulation() {
 
 // State that appears when user fails to dodge a bird
 function failed() {
-  displayText(`YOU HIT A BIRD AND THE SLEIGH GO RUINED...TIME TO GO BACK TO THE NORTH POLE`)
+  displayText(`YOU HIT A BIRD AND THE SLEIGH GO RUINED...TIME TO GO BACK TO THE NORTH POLE :(`)
 }
 
 // State that appears when user has successfully dodged enough birds
 function success() {
-  displayText(`YOU DODGED THE FLOCK OF BIRDS SUCCESSFULLY! THERE'S NO TIME TO REST, WE NEED TO HURRY!`)
+  displayText(`YOU DODGED THE FLOCK OF BIRDS SUCCESSFULLY! THERE'S NO TIME TO CELEBRATE, WE NEED TO HURRY!`)
 }
 
 // All characteristics of the text (size, colour, etc.) to be reused in functions
