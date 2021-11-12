@@ -8,7 +8,7 @@ class User {
     this.ay = 0.3;
     this.speed = 10;
     this.dodged = true;
-    this.moveThreshold = 0.2;
+    // this.moveThreshold = 0.2;
   }
 
   checkHit(bird) {
@@ -20,20 +20,10 @@ class User {
     }
   }
 
-micInput() {
-  let vol = mic.getLevel();
-  this.vy = map(vol, 0, 0.01, height, 0);
-} 
-
-  handleInput() {
-  let vol = mic.getLevel();
-    if (vol > 0.1) {
-  this.vy = -4;
-}
-else {
-  this.vy = 1;
-}
-  }
+/* handleInput() {
+let micLevel = mic.getLevel();
+this.y = map(micLevel,0,2,0,height);
+} */
 
   display() {
       push();

@@ -37,7 +37,6 @@ function setup() {
   createCanvas(windowWidth,windowHeight);
 
   mic = new p5.AudioIn();
-
   mic.start();
 
   let x = width/6;
@@ -87,8 +86,18 @@ function draw() {
 }
 
 function simulation() {
+let micLevel = mic.getLevel();
+user.y = map(micLevel,0,2,0,height);
+
+  push();
+  textAlign(CENTER,CENTER);
+  textSize(32);
+  fill(255);
+  text(micLevel,width/2,height/2);
+  pop();
+
   user.display();
-  user.handleInput();
+//  user.handleInput();
 
   if (!user.dodged) {
     state = `failed`;
