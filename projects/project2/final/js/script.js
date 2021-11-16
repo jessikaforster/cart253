@@ -49,7 +49,7 @@ function preload() {
   // Loading images to be used into code : LEVEL 2
   giftImage = loadImage("assets/images/level2/gift.png");
   candycaneImage = loadImage("assets/images/level2/candycane.png");
-  
+
   stockingImage = loadImage("assets/images/level2/stocking.png");
 }
 
@@ -96,6 +96,8 @@ function setup() {
   }
 
   /* Setup for LEVEL 2 */
+  // Displaying sleigh image: LEVEL 1
+  stocking = new Stocking(stockingImage);
 }
 
 /**
@@ -149,6 +151,8 @@ function level1Fail() {
 
 function level2() {
 background(snowfall);
+
+stocking.display();
 
 }
 
