@@ -7,7 +7,7 @@ Project 2, final CART 253 project.
 
 "use strict";
 
-let state = `level1`; // Could be level1, level1Fail, level2, level2Fail, or success
+let state = `level2`; // Could be level1, level1Fail, level2, level2Fail, or success
 
 // Array to display all 3 kinds of birds: LEVEL 1
 let birds = [];
@@ -27,20 +27,30 @@ let cardinalImage = undefined;
 let sparrowImage = undefined;
 
 // Loading images to be used into code : LEVEL 2
+let stocking;
+
+let stockingImage = undefined;
+
+let giftImage = undefined;
+let candycaneImage = undefined;
 
 
 // Loading all images to be used into code
 function preload() {
   // Loading images to be used into code : LEVEL 1
-  bluejayImage = loadImage("assets/images/bluejay.gif");
-  cardinalImage = loadImage("assets/images/cardinal.gif");
-  sparrowImage = loadImage("assets/images/sparrow.gif");
+  bluejayImage = loadImage("assets/images/level1/bluejay.gif");
+  cardinalImage = loadImage("assets/images/level1/cardinal.gif");
+  sparrowImage = loadImage("assets/images/level1/sparrow.gif");
 
-  sleighImage = loadImage("assets/images/reindeer.gif");
+  sleighImage = loadImage("assets/images/level1/reindeer.gif");
 
   snowfall = loadImage("assets/images/bg.gif");
 
   // Loading images to be used into code : LEVEL 2
+  giftImage = loadImage("assets/images/level2/gift.png");
+  candycaneImage = loadImage("assets/images/level2/candycane.png");
+  
+  stockingImage = loadImage("assets/images/level2/stocking.png");
 }
 
 /**
@@ -138,6 +148,7 @@ function level1Fail() {
 }
 
 function level2() {
+background(snowfall);
 
 }
 
