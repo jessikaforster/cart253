@@ -181,13 +181,15 @@ function level1Fail() {
 function level2() {
 background(snowfall);
 
+stocking.handleInput();
+stocking.display();
+stocking.move();
+
 for (let i = 0; i < candycanes.length; i++) {
   let candycane = candycanes[i];
   candycane.move();
   candycane.wrap();
   candycane.display();
-
-  stocking.display();
  }
 
  for (let i = 0; i < gifts.length; i++) {
