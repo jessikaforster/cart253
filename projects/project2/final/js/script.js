@@ -26,6 +26,12 @@ let bluejayImage = undefined;
 let cardinalImage = undefined;
 let sparrowImage = undefined;
 
+// Arrays to display falling candycanes and gifts: LEVEL 2
+let candycanes = [];
+let gifts = [];
+let numGifts = 5;
+let numCandycanes = 5;
+
 // Loading images to be used into code : LEVEL 2
 let stocking;
 
@@ -98,8 +104,19 @@ function setup() {
   /* Setup for LEVEL 2 */
   // Displaying sleigh image: LEVEL 1
   stocking = new Stocking(stockingImage);
-}
 
+  for (let i = 0; i < numCandycanes; i++) {
+    let x = random(0, width);
+    let y = random(0, height/2);
+    let candycane = new Candycane(x, y, candycaneImage);
+    candycanes.push(candycane);
+  }
+
+  for (let i = 0; i < candycanes.length; i++) {
+    let candycane = candycanes[i];
+    candycane.vy = candycane.speed;
+  }
+}
 /**
 Displaying the background image and creating simulation, failed and success states
 */
@@ -152,8 +169,14 @@ function level1Fail() {
 function level2() {
 background(snowfall);
 
-stocking.display();
+for (let i = 0; i < candycanes.length; i++) {
+  let candycane = candycanes[i];
+  candycane.move();
+  candycane.wrap();
+  candycane.display();
 
+  stocking.display();
+ }
 }
 
 // State that appears when user has successfully dodged enough birds

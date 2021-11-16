@@ -21,11 +21,19 @@ class Candycane {
   wrap() {
     if (this.y > height) {
       this.y -= height;
-      this.y = random(0, width);
+      this.x = random(0, width);
     } else if (this.y < 0) {
       this.y += height;
-      this.y = random(0, width);
+      this.x = random(0, width);
     }
+  }
+
+  display() {
+
+    push();
+    imageMode(CENTER);
+    image(this.image, this.x, this.y, this.width, this.height);
+    pop();
   }
 
 }
