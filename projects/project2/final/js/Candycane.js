@@ -16,7 +16,7 @@ class Candycane {
     this.y += this.vy;
   }
 
-  /* When birds reach the other side of screen they will reappear at the starting
+  /* When candycanes reach the bottom of screen they will reappear at the starting
   point in a random position */
   wrap() {
     if (this.y > height) {

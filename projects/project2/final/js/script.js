@@ -116,6 +116,18 @@ function setup() {
     let candycane = candycanes[i];
     candycane.vy = candycane.speed;
   }
+
+  for (let i = 0; i < numGifts; i++) {
+    let x = random(0, width);
+    let y = random(0, height/2);
+    let gift = new Gift(x, y, giftImage);
+    gifts.push(gift);
+  }
+
+  for (let i = 0; i < gifts.length; i++) {
+    let gift = gifts[i];
+    gift.vy = gift.speed;
+  }
 }
 /**
 Displaying the background image and creating simulation, failed and success states
@@ -177,6 +189,13 @@ for (let i = 0; i < candycanes.length; i++) {
 
   stocking.display();
  }
+
+ for (let i = 0; i < gifts.length; i++) {
+   let gift = gifts[i];
+   gift.move();
+   gift.wrap();
+   gift.display();
+  }
 }
 
 // State that appears when user has successfully dodged enough birds
