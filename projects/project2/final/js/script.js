@@ -50,7 +50,7 @@ function preload() {
 
   sleighImage = loadImage("assets/images/level1/reindeer.gif");
 
-  snowfall = loadImage("assets/images/bg.gif");
+  snowfall = loadImage("assets/images/snowfall.m4v");
 
   // Loading images to be used into code : LEVEL 2
   giftImage = loadImage("assets/images/level2/gift.png");
