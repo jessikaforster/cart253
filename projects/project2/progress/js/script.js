@@ -7,7 +7,7 @@ Project 2, final CART 253 project.
 
 "use strict";
 
-let state = `intro`; /* Could be start, intro, level1, level1Fail, level2,
+let state = `level2`; /* Could be start, intro, level1, level1Fail, level2,
 level2Fail, level3, level3Fail, level4, level4Fail, level5, level5Fail, level6, level6Fail, level7, final */
 
 // Array to display all 3 kinds of birds: LEVEL 1
@@ -169,11 +169,11 @@ function preload() {
   treeImage = loadImage("assets/images/level7/tree.gif");
 
   // Loading all ending state images
-  level1EndImage = loadImage("assets/images/level1/level1-end.png");
-  level2EndImage = loadImage("assets/images/level2/level2-end.png");
+  level1EndImage = loadImage("assets/images/level1/level1-end.jpg");
+  level2EndImage = loadImage("assets/images/level2/level2-end.jpg");
   level3EndImage = loadImage("assets/images/level3/level3-end.jpg");
-  level4EndImage = loadImage("assets/images/level4/level4-end.png");
-  level5EndImage = loadImage("assets/images/level5/level5-end.png");
+  level4EndImage = loadImage("assets/images/level4/level4-end.jpg");
+  level5EndImage = loadImage("assets/images/level5/level5-end.jpg");
 
   // Loading final ending image
   finalImage = loadImage("assets/images/final.jpg");
@@ -262,7 +262,7 @@ function draw() {
   } else if (state === `intro`) {
     intro();
   } else if (state === `level1`) {
-    level1Fail();
+    level1();
   } else if (state === `level1Fail`) {
     level1Fail();
   } else if (state === `level2`) {
@@ -299,6 +299,7 @@ background(startImage);
 function intro() {
 background(introAnim);
 displayDialog();
+keyPressed();
 }
 
 /* Level 1 state */
@@ -468,6 +469,10 @@ function mousePressed() {
     // the dialog box's duration property
     setTimeout(hideDialog, dialogBox.duration);
   }
+
+  if (state === `start`) {
+    state = `intro`;
+  }
 }
 
 /**
@@ -484,5 +489,13 @@ function hideDialog() {
   // stay on the final string
   if (currentDialogString >= dialogStrings.length) {
     currentDialogString = dialogStrings.length - 1;
+  }
+}
+
+function keyPressed() {
+  if (keyCode === 32) {
+    if (state === `intro`) {
+      state = `level1`;
+    }
   }
 }
