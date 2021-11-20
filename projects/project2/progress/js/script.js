@@ -43,6 +43,13 @@ let candycaneImage = undefined;
 
 // Loading all images to be used into code
 function preload() {
+
+  // Loading start screen image
+  startImage = loadImage("assets/images/start.jpg");
+
+  // Loading intro animation
+  introAnim = loadImage("assets/images/intro.gif");
+
   // Loading images to be used into code : LEVEL 1
   bluejayImage = loadImage("assets/images/level1/bluejay.gif");
   cardinalImage = loadImage("assets/images/level1/cardinal.gif");
@@ -53,10 +60,38 @@ function preload() {
   snowfall = loadImage("assets/images/snowfall.m4v");
 
   // Loading images to be used into code : LEVEL 2
-  giftImage = loadImage("assets/images/level2/gift.png");
+  giftImage = loadImage("assets/images/level2/level2Gift.png");
   candycaneImage = loadImage("assets/images/level2/candycane.png");
 
   stockingImage = loadImage("assets/images/level2/stocking.png");
+
+  // Loading images to be used into code : LEVEL 3
+  level3Image = loadImage("assets/images/level3/level3Bg.jpg");
+
+  // Loading images to be used into code : LEVEL 4
+  fallingElfImage = loadImage("assets/images/level4/fallingelf.gif");
+  mouseImage = loadImage("assets/images/level4/mouse.png");
+  raccoonImage = loadImage("assets/images/level4/raccoon.png");
+  movingBrick = loadImage("assets/images/level4/movingbrick.gif");
+
+  // Loading images to be used into code : LEVEL 5
+  fireImage = loadImage("assets/images/level5/fire.gif");
+  stillBrick = loadImage("assets/images/level5/stillbrick.gif");
+  snowflakeImage = loadImage("assets/images/level5/snowflake.png");
+
+  // Loading images to be used into code : LEVEL 6
+  scrollImage = loadImage("assets/images/level6/scroll.jpg");
+
+  // Loading images to be used into code : LEVEL 7
+  finalGiftImage = loadImage("assets/images/level7/finalgift.png");
+  treeImage = loadImage("assets/images/level7/tree.gif");
+
+  // Loading all ending state images
+  level1EndImage = loadImage("assets/images/level1/level1-end.png");
+  level2EndImage = loadImage("assets/images/level2/level2-end.png");
+  level3EndImage = loadImage("assets/images/level3/level3-end.jpg");
+  level4EndImage = loadImage("assets/images/level2/level4-end.png");
+  level5EndImage = loadImage("assets/images/level5/level5-end.png");
 }
 
 /**
@@ -65,7 +100,7 @@ Creating the canvas to fill the user's window size
 function setup() {
   createCanvas(windowWidth, windowHeight);
 
-/* Setup for LEVEL 1 */
+  /* Setup for LEVEL 1 */
   // Displaying sleigh image: LEVEL 1
   let x = width / 6;
   let y = height / 2;
@@ -107,7 +142,7 @@ function setup() {
 
   for (let i = 0; i < numCandycanes; i++) {
     let x = random(0, width);
-    let y = random(0, height/2);
+    let y = random(0, height / 2);
     let candycane = new Candycane(x, y, candycaneImage);
     candycanes.push(candycane);
   }
@@ -119,7 +154,7 @@ function setup() {
 
   for (let i = 0; i < numGifts; i++) {
     let x = random(0, width);
-    let y = random(0, height/2);
+    let y = random(0, height / 2);
     let gift = new Gift(x, y, giftImage);
     gifts.push(gift);
   }
@@ -140,14 +175,14 @@ function draw() {
     level1Fail();
   } else if (state === `level2`) {
     level2();
-} else if (state === `level2Fail`) {
-  level2Fail();
+  } else if (state === `level2Fail`) {
+    level2Fail();
   }
 }
 
 /* Level 1 state */
 function level1() {
-background(snowfall);
+  background(snowfall);
   // Display user image
   sleigh.display();
 
@@ -179,24 +214,24 @@ function level1Fail() {
 }
 
 function level2() {
-background(snowfall);
+  background(snowfall);
 
-stocking.handleInput();
-stocking.display();
-stocking.move();
+  stocking.handleInput();
+  stocking.display();
+  stocking.move();
 
-for (let i = 0; i < candycanes.length; i++) {
-  let candycane = candycanes[i];
-  candycane.move();
-  candycane.wrap();
-  candycane.display();
- }
+  for (let i = 0; i < candycanes.length; i++) {
+    let candycane = candycanes[i];
+    candycane.move();
+    candycane.wrap();
+    candycane.display();
+  }
 
- for (let i = 0; i < gifts.length; i++) {
-   let gift = gifts[i];
-   gift.move();
-   gift.wrap();
-   gift.display();
+  for (let i = 0; i < gifts.length; i++) {
+    let gift = gifts[i];
+    gift.move();
+    gift.wrap();
+    gift.display();
   }
 }
 
