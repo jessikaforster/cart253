@@ -7,7 +7,8 @@ Project 2, final CART 253 project.
 
 "use strict";
 
-let state = `level2`; // Could be level1, level1Fail, level2, level2Fail, or success
+let state = `level2`; /* Could be start, intro, level1, level1Fail, level2,
+level2Fail, level3, level3Fail, level4, level4Fail, level5, level5Fail, level6, level6Fail, level7, final */
 
 // Array to display all 3 kinds of birds: LEVEL 1
 let birds = [];
@@ -169,15 +170,47 @@ Displaying the background image and creating simulation, failed and success stat
 */
 function draw() {
 
-  if (state === `level1`) {
-    level1();
+  if (state === `start`) {
+    start();
+  } else if (state === `intro`) {
+    intro();
+  } else if (state === `level1`) {
+    level1Fail();
   } else if (state === `level1Fail`) {
     level1Fail();
   } else if (state === `level2`) {
     level2();
   } else if (state === `level2Fail`) {
     level2Fail();
+  } else if (state === `level3`) {
+    level1Fail();
+  } else if (state === `level3Fail`) {
+    level1Fail();
+  } else if (state === `level4`) {
+    level1Fail();
+  } else if (state === `level4Fail`) {
+    level1Fail();
+  } else if (state === `level5`) {
+    level1Fail();
+  } else if (state === `level5Fail`) {
+    level1Fail();
+  } else if (state === `level6`) {
+    level1Fail();
+  } else if (state === `level6Fail`) {
+    level1Fail();
+  } else if (state === `level7`) {
+    level1Fail();
+  } else if (state === `final`) {
+    level1Fail();
   }
+}
+
+function start() {
+
+}
+
+function intro() {
+
 }
 
 /* Level 1 state */
@@ -233,6 +266,50 @@ function level2() {
     gift.wrap();
     gift.display();
   }
+}
+
+function level2Fail() {
+
+}
+
+function level3() {
+
+}
+
+function level3Fail() {
+
+}
+
+function level4() {
+
+}
+
+function level4Fail() {
+
+}
+
+function level5() {
+
+}
+
+function level5Fail() {
+
+}
+
+function level6() {
+
+}
+
+function level6Fail() {
+
+}
+
+function level7() {
+
+}
+
+function final() {
+
 }
 
 // State that appears when user has successfully dodged enough birds
