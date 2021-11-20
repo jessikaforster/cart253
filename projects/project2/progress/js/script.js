@@ -7,7 +7,7 @@ Project 2, final CART 253 project.
 
 "use strict";
 
-let state = `final`; /* Could be start, intro, level1, level1Fail, level2,
+let state = `intro`; /* Could be start, intro, level1, level1Fail, level2,
 level2Fail, level3, level3Fail, level4, level4Fail, level5, level5Fail, level6, level6Fail, level7, final */
 
 // Array to display all 3 kinds of birds: LEVEL 1
@@ -87,6 +87,38 @@ let level5EndImage;
 // Declaring final image
 let finalImage;
 
+
+// An array of the strings (in order) our dialog box will display,
+// one at a time
+let dialogStrings = [
+  `Santa: Alright great job everyone, it looks like another Christmas will pass successfully`,
+  `Head Elf: Um…Santa actually…There’s 1 gift that wasn’t delivered`,
+  `Santa: WHAT?! Where’s the new elf?`,
+  `Head Elf: Here Santa sir`,
+  `Santa:	Now’s your chance to get on my good list, find the missing gift and deliver it successfully to save Christmas!`
+];
+// The index of the current string to display, starts at 0 so we
+// display the first string first!
+let currentDialogString = 0;
+
+// An object representing our dialog box
+let dialogBox = {
+  // Position on screen (will set in setup())
+  x: undefined,
+  y: undefined,
+  // Current string to display (starts empty)
+  string: ``,
+  // Whether it's currently visible on the canvas
+  visible: false,
+  // Dimensions
+  width: 500,
+  height: 300,
+  // Padding
+  padding: 20,
+  // How long the dialog box should display before auto-closing
+  duration: 3000
+};
+
 // Loading all images to be used into code
 function preload() {
 
@@ -152,6 +184,9 @@ Creating the canvas to fill the user's window size
 */
 function setup() {
   createCanvas(windowWidth, windowHeight);
+
+  dialogBox.x = width/6;
+  dialogBox.y = height/1.15;
 
   /* Setup for LEVEL 1 */
   // Displaying sleigh image: LEVEL 1
@@ -263,6 +298,7 @@ background(startImage);
 
 function intro() {
 background(introAnim);
+displayDialog();
 }
 
 /* Level 1 state */
@@ -377,4 +413,76 @@ function displayText(string) {
   fill(255);
   text(string, width / 2, height / 2);
   pop();
+}
+
+/**
+Displays a dialog box and text according to the current settings
+*/
+function displayDialog() {
+  // We only display the dialog box if it's set to be visible
+  if (dialogBox.visible) {
+    // First draw the box part
+    push();
+    // Make it easier to centre the box
+    rectMode(CENTER);
+    // Red outline
+    stroke(255,0,0);
+    // Thicker than usual
+    strokeWeight(5);
+    // Draw a rectangle based on the box's position and dimensions
+    rect(dialogBox.x, dialogBox.y, dialogBox.width, dialogBox.height);
+    pop();
+
+    // Now draw the text inside the box
+    push();
+    // Remember that the box part used rectMode(CENTER) so we need it
+    // here too, since we're using a special kind of text() that can
+    // automatically fit inside a defined rectangle
+    rectMode(CENTER);
+    // Display the current string at the same position as the box
+    // and with the same dimensions, except we'll subtract the
+    // padding so the text sits more nicely inside the box
+    // The last two arguments here defined the size of the imaginary
+    // rectangle to fit the text in (it will create the linebreaks
+    // for us, which is nice)
+    textSize(30);
+    textFont(`Architects Daughter`);
+    text(dialogBox.string, dialogBox.x, dialogBox.y, dialogBox.width - dialogBox.padding, dialogBox.height - dialogBox.padding);
+    pop();
+  }
+}
+
+/**
+Displays the dialog box if it's not already visible
+*/
+function mousePressed() {
+  // We display the dialog box if the mouse gets clicked
+  // but only if it isn't already visible
+  if (!dialogBox.visible) {
+    // Set it to visible to it displays
+    dialogBox.visible = true;
+    // Set the string in the dialog box to the current string
+    dialogBox.string = dialogStrings[currentDialogString];
+    // Set a timer to hide the dialog box by calling the hideDialog()
+    // function after the number of milliseconds specified by
+    // the dialog box's duration property
+    setTimeout(hideDialog, dialogBox.duration);
+  }
+}
+
+/**
+Hides the dialog box and sets it up for the next appearance as
+needed. Called after a delay.
+*/
+function hideDialog() {
+  // Set the dialog to be invisible
+  dialogBox.visible = false;
+  // Increase the string index by one so we display the next one
+  // next time
+  currentDialogString += 1;
+  // But if we hit the end of the array of strings, then just
+  // stay on the final string
+  if (currentDialogString >= dialogStrings.length) {
+    currentDialogString = dialogStrings.length - 1;
+  }
 }
