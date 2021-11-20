@@ -16,7 +16,13 @@ let numBluejays = 5;
 let numSparrows = 5;
 let numCardinals = 5;
 
-// Declaring all images that will be used: LEVEL 1
+// Declaring all images that will be used : start
+let startImage;
+
+// Declaring all images that will be used : intro
+let introAnim;
+
+// Declaring all images that will be used : LEVEL 1
 let sleigh;
 
 let snowfall;
@@ -33,7 +39,7 @@ let gifts = [];
 let numGifts = 5;
 let numCandycanes = 5;
 
-// Loading images to be used into code : LEVEL 2
+// Declaring all images that will be used : LEVEL 2
 let stocking;
 
 let stockingImage = undefined;
@@ -41,6 +47,42 @@ let stockingImage = undefined;
 let giftImage = undefined;
 let candycaneImage = undefined;
 
+// Declaring all images that will be used : LEVEL 3
+let level3Image;
+
+
+// Declaring all images that will be used : LEVEL 4
+let fallingElfImage;
+let movingBrick;
+
+let mouseImage = undefined;
+let raccoonImage = undefined;
+
+// Arrays to display falling candycanes and gifts: LEVEL 4
+let mice = [];
+let raccoons = [];
+let numMice = 5;
+let numRaccoons = 5;
+
+// Declaring all images that will be used : LEVEL 5
+let fireImage;
+let stillBrick;
+
+let snowflakeImage;
+
+// Declaring all images that will be used : LEVEL 6
+let scrollImage;
+
+// Declaring all images that will be used : LEVEL 7
+let finalGiftImage;
+let treeImage;
+
+// Declaring all ending state images
+let level1EndImage;
+let level2EndImage;
+let level3EndImage;
+let level4EndImage;
+let level5EndImage;
 
 // Loading all images to be used into code
 function preload() {
@@ -58,7 +100,7 @@ function preload() {
 
   sleighImage = loadImage("assets/images/level1/reindeer.gif");
 
-  snowfall = loadImage("assets/images/snowfall.m4v");
+  snowfall = loadImage("assets/images/bg.gif");
 
   // Loading images to be used into code : LEVEL 2
   giftImage = loadImage("assets/images/level2/level2Gift.png");
@@ -71,13 +113,16 @@ function preload() {
 
   // Loading images to be used into code : LEVEL 4
   fallingElfImage = loadImage("assets/images/level4/fallingelf.gif");
+
   mouseImage = loadImage("assets/images/level4/mouse.png");
   raccoonImage = loadImage("assets/images/level4/raccoon.png");
+
   movingBrick = loadImage("assets/images/level4/movingbrick.gif");
 
   // Loading images to be used into code : LEVEL 5
   fireImage = loadImage("assets/images/level5/fire.gif");
   stillBrick = loadImage("assets/images/level5/stillbrick.gif");
+
   snowflakeImage = loadImage("assets/images/level5/snowflake.png");
 
   // Loading images to be used into code : LEVEL 6
@@ -85,13 +130,14 @@ function preload() {
 
   // Loading images to be used into code : LEVEL 7
   finalGiftImage = loadImage("assets/images/level7/finalgift.png");
+
   treeImage = loadImage("assets/images/level7/tree.gif");
 
   // Loading all ending state images
   level1EndImage = loadImage("assets/images/level1/level1-end.png");
   level2EndImage = loadImage("assets/images/level2/level2-end.png");
   level3EndImage = loadImage("assets/images/level3/level3-end.jpg");
-  level4EndImage = loadImage("assets/images/level2/level4-end.png");
+  level4EndImage = loadImage("assets/images/level4/level4-end.png");
   level5EndImage = loadImage("assets/images/level5/level5-end.png");
 }
 
@@ -105,13 +151,13 @@ function setup() {
   // Displaying sleigh image: LEVEL 1
   let x = width / 6;
   let y = height / 2;
-  sleigh = new Sleigh(x, y, sleighImage);
+  sleigh = new SleighL1(x, y, sleighImage);
 
   // Displaying bluejays using for loop
   for (let i = 0; i < numBluejays; i++) {
     let x = random(width / 2, width);
     let y = random(0, height);
-    let bluejay = new Bluejay(x, y, bluejayImage);
+    let bluejay = new BluejayL1(x, y, bluejayImage);
     birds.push(bluejay);
   }
 
@@ -119,7 +165,7 @@ function setup() {
   for (let i = 0; i < numSparrows; i++) {
     let x = random(width / 2, width);
     let y = random(0, height);
-    let sparrow = new Sparrow(x, y, sparrowImage);
+    let sparrow = new SparrowL1(x, y, sparrowImage);
     birds.push(sparrow);
   }
 
@@ -127,7 +173,7 @@ function setup() {
   for (let i = 0; i < numCardinals; i++) {
     let x = random(width / 2, width);
     let y = random(0, height);
-    let cardinal = new Cardinal(x, y, cardinalImage);
+    let cardinal = new CardinalL1(x, y, cardinalImage);
     birds.push(cardinal);
   }
 
@@ -139,12 +185,12 @@ function setup() {
 
   /* Setup for LEVEL 2 */
   // Displaying sleigh image: LEVEL 1
-  stocking = new Stocking(stockingImage);
+  stocking = new StockingL2(stockingImage);
 
   for (let i = 0; i < numCandycanes; i++) {
     let x = random(0, width);
     let y = random(0, height / 2);
-    let candycane = new Candycane(x, y, candycaneImage);
+    let candycane = new CandycaneL2(x, y, candycaneImage);
     candycanes.push(candycane);
   }
 
@@ -156,7 +202,7 @@ function setup() {
   for (let i = 0; i < numGifts; i++) {
     let x = random(0, width);
     let y = random(0, height / 2);
-    let gift = new Gift(x, y, giftImage);
+    let gift = new GiftL2(x, y, giftImage);
     gifts.push(gift);
   }
 

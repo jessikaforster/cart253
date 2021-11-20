@@ -1,12 +1,12 @@
-class Bluejay extends Bird {
+class SparrowL1 extends BirdL1 {
   constructor(x, y, image) {
     super(x, y, image);
-    this.speed = -15;
+    this.speed = -10;
     this.width = 100;
     this.height = 100;
   }
 
-  // Displaying the bluejay image
+  // Displaying the sparrow image
   display() {
     super.display();
 

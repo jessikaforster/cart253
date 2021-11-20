@@ -1,22 +1,22 @@
-class Candycane {
-  constructor(x, y, candycaneImage) {
+class GiftL2 {
+  constructor(x, y, giftImage) {
     this.x = x;
     this.y = y;
     this.vx = 0;
     this.vy = 0;
     this.width = 100;
     this.height = 100;
-    this.speed = 2;
-    this.image = candycaneImage;
+    this.speed = 3;
+    this.image = giftImage;
   }
 
-  // Adding movement to the candycanes
+  // Adding movement to the gifts
   move() {
     this.x += this.vx;
     this.y += this.vy;
   }
 
-  /* When candycanes reach the bottom of screen they will reappear at the starting
+  /* When gifts reach the bottom of screen they will reappear at the starting
   point in a random position */
   wrap() {
     if (this.y > height) {

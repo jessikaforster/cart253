@@ -1,4 +1,4 @@
-class Sleigh {
+class SleighL1 {
   constructor(x, y, sleighImage) {
     this.x = x;
     this.y = y;

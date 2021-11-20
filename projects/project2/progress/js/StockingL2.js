@@ -1,4 +1,4 @@
-class Stocking {
+class StockingL2 {
   constructor(stockingImage) {
     this.x = width/2;
     this.y = height/1.2;
