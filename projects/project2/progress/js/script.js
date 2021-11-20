@@ -7,7 +7,7 @@ Project 2, final CART 253 project.
 
 "use strict";
 
-let state = `level2`; /* Could be start, intro, level1, level1Fail, level2,
+let state = `final`; /* Could be start, intro, level1, level1Fail, level2,
 level2Fail, level3, level3Fail, level4, level4Fail, level5, level5Fail, level6, level6Fail, level7, final */
 
 // Array to display all 3 kinds of birds: LEVEL 1
@@ -84,6 +84,9 @@ let level3EndImage;
 let level4EndImage;
 let level5EndImage;
 
+// Declaring final image
+let finalImage;
+
 // Loading all images to be used into code
 function preload() {
 
@@ -139,6 +142,9 @@ function preload() {
   level3EndImage = loadImage("assets/images/level3/level3-end.jpg");
   level4EndImage = loadImage("assets/images/level4/level4-end.png");
   level5EndImage = loadImage("assets/images/level5/level5-end.png");
+
+  // Loading final ending image
+  finalImage = loadImage("assets/images/final.jpg");
 }
 
 /**
@@ -184,7 +190,7 @@ function setup() {
   }
 
   /* Setup for LEVEL 2 */
-  // Displaying sleigh image: LEVEL 1
+  // Displaying stocking image: LEVEL 2
   stocking = new StockingL2(stockingImage);
 
   for (let i = 0; i < numCandycanes; i++) {
@@ -229,34 +235,34 @@ function draw() {
   } else if (state === `level2Fail`) {
     level2Fail();
   } else if (state === `level3`) {
-    level1Fail();
+    level3();
   } else if (state === `level3Fail`) {
-    level1Fail();
+    level3Fail();
   } else if (state === `level4`) {
-    level1Fail();
+    level4();
   } else if (state === `level4Fail`) {
-    level1Fail();
+    level4Fail();
   } else if (state === `level5`) {
-    level1Fail();
+    level5();
   } else if (state === `level5Fail`) {
-    level1Fail();
+    level5Fail();
   } else if (state === `level6`) {
-    level1Fail();
+    level6();
   } else if (state === `level6Fail`) {
-    level1Fail();
+    level6Fail();
   } else if (state === `level7`) {
-    level1Fail();
+    level7();
   } else if (state === `final`) {
-    level1Fail();
+    final();
   }
 }
 
 function start() {
-
+background(startImage);
 }
 
 function intro() {
-
+background(introAnim);
 }
 
 /* Level 1 state */
@@ -288,8 +294,7 @@ function level1() {
 
 // State that appears when user fails to dodge a bird
 function level1Fail() {
-  background(snowfall);
-  displayText(`YOU HIT A BIRD AND THE SLEIGH GO RUINED...TIME TO GO BACK TO THE NORTH POLE :(`)
+  background(level1EndImage);
 }
 
 function level2() {
@@ -315,35 +320,35 @@ function level2() {
 }
 
 function level2Fail() {
-
+background(level2EndImage);
 }
 
 function level3() {
-
+background(level3Image);
 }
 
 function level3Fail() {
-
+background(level3EndImage);
 }
 
 function level4() {
-
+background(movingBrick);
 }
 
 function level4Fail() {
-
+background(level4EndImage);
 }
 
 function level5() {
-
+background(stillBrick);
 }
 
 function level5Fail() {
-
+background(level5EndImage);
 }
 
 function level6() {
-
+background(scrollImage);
 }
 
 function level6Fail() {
@@ -351,11 +356,11 @@ function level6Fail() {
 }
 
 function level7() {
-
+background(treeImage);
 }
 
 function final() {
-
+background(finalImage);
 }
 
 // State that appears when user has successfully dodged enough birds
