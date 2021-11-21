@@ -7,7 +7,7 @@ Project 2, final CART 253 project.
 
 "use strict";
 
-let state = `level2`; /* Could be start, intro, level1, level1Fail, level2,
+let state = `level3`; /* Could be start, intro, level1, level1Fail, level2,
 level2Fail, level3, level3Fail, level4, level4Fail, level5, level5Fail, level6, level6Fail, level7, final */
 
 // Array to display all 3 kinds of birds: LEVEL 1
@@ -332,6 +332,7 @@ function level1() {
 // State that appears when user fails to dodge a bird
 function level1Fail() {
   background(level1EndImage);
+  keyPressed();
 }
 
 function level2() {

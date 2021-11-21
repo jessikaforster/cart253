@@ -8,6 +8,7 @@ class GiftL2 {
     this.height = 100;
     this.speed = 3;
     this.image = giftImage;
+    this.caught = false;
   }
 
   // Adding movement to the gifts
@@ -28,8 +29,22 @@ class GiftL2 {
     }
   }
 
-  display() {
+  /* checkCaught(stocking) {
+    if (!this.caught) {
+    let d = dist(this.x, this.y, stocking.x, stocking.y);
+    if (d < this.width / 2 + stocking.width / 2) {
+      this.caught = true;
+    }
+  }
 
+  if (!this.caught) {
+    let d = dist(this.x, this.y, stocking.x, stocking.y);
+    if (d < this.height / 2 + stocking.height / 2) {
+      this.caught = true;
+    }
+  } */
+
+  display() {
     push();
     imageMode(CENTER);
     image(this.image, this.x, this.y, this.width, this.height);

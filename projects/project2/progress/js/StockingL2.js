@@ -8,6 +8,7 @@ class StockingL2 {
     this.height = 300;
     this.speed = 20;
     this.image = stockingImage;
+    this.caught = false;
   }
 
   move() {
@@ -27,6 +28,26 @@ class StockingL2 {
     this.vx = 0;
     }
   }
+
+/*  checkCaughtGift(gift) {
+    if (!gift.caught) {
+    let d = dist(this.x, this.y, gift.x, gift.y);
+    if (d < this.width / 2 + gift.width / 2) {
+      gift.caught = true;
+    }
+  }
+
+  if (!gift.caught) {
+    let d = dist(this.x, this.y, gift.x, gift.y);
+    if (d < this.height / 2 + gift.height / 2) {
+      gift.caught = true;
+    }
+  }
+}
+
+  checkCaughtCane(candycane) {
+
+  } */
 
   display() {
 
