@@ -4,8 +4,8 @@ class CivilianL3 {
     this.y = y;
     this.vx = 0;
     this.vy = 0;
-    this.size = 20;
-    this.speed = 5;
+    this.size = 30;
+    this.speed = 3;
   }
 
   move() {

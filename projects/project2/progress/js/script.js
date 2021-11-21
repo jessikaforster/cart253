@@ -383,15 +383,18 @@ for (let i = 0; i < civilians.length; i++) {
   let civilian = civilians[i];
 civilian.move();
 civilian.display();
+userL3.checkDist(civilian);
   }
 
 userL3.move();
 userL3.handleInput();
 userL3.display();
+userL3.checkExit();
 }
 
 function level3Fail() {
 background(level3EndImage);
+userL3.keyPressed();
 }
 
 function level4() {

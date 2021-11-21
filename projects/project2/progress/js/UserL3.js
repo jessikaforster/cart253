@@ -29,6 +29,31 @@ handleInput() {
   }
 }
 
+checkExit() {
+  if (this.x > width) {
+    state = `level4`;
+  }
+}
+
+checkDist(civilian) {
+  if (this.x > civilian.x - civilian.size * 8 &&
+  this.x < civilian.x + civilian.size * 8 &&
+  this.y > civilian.y - civilian.size * 8 &&
+  this.y < civilian.y + civilian.size * 8) {
+    state = `level3Fail`;
+  }
+}
+
+keyPressed() {
+  if (keyCode === 32) {
+    if (state === `level3Fail`) {
+      state = `level3`;
+      this.x = 0;
+      this.y = height/6;
+    }
+  }
+}
+
 display() {
   push();
   fill(16, 138, 0);
