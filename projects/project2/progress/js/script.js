@@ -394,7 +394,10 @@ userL3.checkExit();
 
 function level3Fail() {
 background(level3EndImage);
-userL3.keyPressed();
+for (let i = 0; i < civilians.length; i++) {
+  let civilian = civilians[i];
+userL3.keyPressed(civilian);
+  }
 }
 
 function level4() {

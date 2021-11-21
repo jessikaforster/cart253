@@ -44,12 +44,14 @@ checkDist(civilian) {
   }
 }
 
-keyPressed() {
+keyPressed(civilian) {
   if (keyCode === 32) {
     if (state === `level3Fail`) {
       state = `level3`;
       this.x = 0;
       this.y = height/6;
+      civilian.x = random(width / 2, width);
+      civilian.y = random(0, height);
     }
   }
 }
