@@ -9,11 +9,24 @@ class CivilianL3 {
   }
 
   move() {
-    let change = random(0, 1);
+  let change = random(0, 1);
   if (change < 0.05) {
     this.vx = random(-this.speed, this.speed);
     this.vy = random(-this.speed, this.speed);
+    }
+
+    this.x += this.vx;
+    this.y += this.vy;
+
+    this.x = constrain(this.x, 0, width);
+    this.y = constrain(this.y, 0, height);
+}
+
+display() {
+  push();
+  fill(16,138,0);
+  noStroke();
+  ellipse(this.x, this.y, this.size);
+  pop();
   }
-
-
 }

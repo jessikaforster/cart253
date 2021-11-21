@@ -50,6 +50,9 @@ let candycaneImage = undefined;
 // Declaring all images that will be used : LEVEL 3
 let level3Image;
 
+// Array to display civilians : LEVEL 3
+let civilians = [];
+let numCivilians = 5;
 
 // Declaring all images that will be used : LEVEL 4
 let fallingElfImage;
@@ -251,6 +254,14 @@ function setup() {
     let gift = gifts[i];
     gift.vy = gift.speed;
   }
+
+// Setup : LEVEL 3
+  for (let i = 0; i < numCivilians; i++) {
+    let x = random(width / 2, width);
+    let y = random(0, height);
+    let civilian = new CivilianL3(x, y);
+    civilians.push(civilian);
+  }
 }
 /**
 Displaying the background image and creating simulation, failed and success states
@@ -363,6 +374,12 @@ background(level2EndImage);
 
 function level3() {
 background(level3Image);
+
+for (let i = 0; i < civilians.length; i++) {
+  let civilian = civilians[i];
+civilian.move();
+civilian.display();
+  }
 }
 
 function level3Fail() {
