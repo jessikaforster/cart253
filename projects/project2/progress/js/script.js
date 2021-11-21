@@ -50,6 +50,8 @@ let candycaneImage = undefined;
 // Declaring all images that will be used : LEVEL 3
 let level3Image;
 
+let userL3;
+
 // Array to display civilians : LEVEL 3
 let civilians = [];
 let numCivilians = 5;
@@ -262,6 +264,8 @@ function setup() {
     let civilian = new CivilianL3(x, y);
     civilians.push(civilian);
   }
+
+  userL3 = new UserL3(x, y);
 }
 /**
 Displaying the background image and creating simulation, failed and success states
@@ -380,6 +384,10 @@ for (let i = 0; i < civilians.length; i++) {
 civilian.move();
 civilian.display();
   }
+
+userL3.move();
+userL3.handleInput();
+userL3.display();
 }
 
 function level3Fail() {

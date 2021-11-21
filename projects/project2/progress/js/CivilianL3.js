@@ -24,7 +24,7 @@ class CivilianL3 {
 
 display() {
   push();
-  fill(16,138,0);
+  fill(255,0,0);
   noStroke();
   ellipse(this.x, this.y, this.size);
   pop();
