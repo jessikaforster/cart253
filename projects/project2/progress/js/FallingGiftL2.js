@@ -9,6 +9,7 @@ class FallingGiftL2 {
     this.speed = undefined;
     this.random = 3;
     this.image = image;
+    this.caught = false;
   }
 
   // Adding movement to the gifts
@@ -26,6 +27,22 @@ class FallingGiftL2 {
     } else if (this.y < 0) {
       this.y += height;
       this.x = random(0, width);
+    }
+  }
+
+  checkGift(stocking) {
+  if (!this.caught) {
+    let d = dist(this.x, this.y, stocking.x, stocking.y);
+    if (d < this.width / 2 + stocking.width / 2) {
+      this.caught = true;
+    }
+  }
+
+  if (!this.caught) {
+    let d = dist(this.x, this.y, stocking.x, stocking.y);
+    if (d < this.height / 2 + stocking.height / 2) {
+      this.caught = true;
+      }
     }
   }
 

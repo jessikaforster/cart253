@@ -384,6 +384,7 @@ function level2() {
     fallingGift.move();
     fallingGift.wrap();
     fallingGift.display();
+    fallingGift.checkGift(stocking);
   }
 }
 

@@ -7,11 +7,12 @@ class CandycaneL2 extends FallingGiftL2 {
   // Displaying the candycane image
   display() {
     super.display();
-
+    if (!this.caught) {
     push();
     imageMode(CENTER);
     image(this.image, this.x, this.y, this.width, this.height);
     pop();
+    }
   }
 
 }
