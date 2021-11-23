@@ -7,6 +7,7 @@ class AnimalL4 {
     this.width = undefined;
     this.height = undefined;
     this.speed = undefined;
+    this.random = 3;
     this.image = image;
     this.dodges = 0;
   }
@@ -17,8 +18,12 @@ class AnimalL4 {
       this.x += this.vx;
       this.y += this.vy;
 
+      let change = random(0, 1);
+      if (change < 0.05) {
+        this.vx = random(-this.random, this.random);
+        }
+
       this.x = constrain(this.x, 0, width);
-      this.y = constrain(this.y, 0, height);
   }
 
 

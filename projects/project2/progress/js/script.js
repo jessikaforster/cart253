@@ -275,7 +275,7 @@ fallingElf = new FallingElfL4(fallingElfImage);
 // Displaying raccoons using for loop
 for (let i = 0; i < numRaccoons; i++) {
   let x = random(0, width);
-  let y = random(0, height/4);
+  let y = random(0, height/6);
   let raccoon = new RaccoonL4(x, y, raccoonImage);
   animals.push(raccoon);
 }
@@ -283,7 +283,7 @@ for (let i = 0; i < numRaccoons; i++) {
 // Displaying mice using for loop
 for (let i = 0; i < numMice; i++) {
   let x = random(0, width);
-  let y = random(0, height/4);
+  let y = random(0, height/6);
   let mouse = new MouseL4(x, y, mouseImage);
   animals.push(mouse);
 }
@@ -291,7 +291,7 @@ for (let i = 0; i < numMice; i++) {
 // Declaring the direction and speed that the animals will move in
 for (let i = 0; i < animals.length; i++) {
   let animal = animals[i];
-  animal.vy = -animal.speed;
+  animal.vy = animal.speed;
   }
 }
 
@@ -444,7 +444,6 @@ for (let i = 0; i < animals.length; i++) {
   let animal = animals[i];
   animal.move();
   animal.wrap();
-  animal.randomMovement();
   animal.display();
   animal.numDodges();
   animal.checkExit();
