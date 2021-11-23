@@ -1,7 +1,7 @@
 class FallingElfL4 {
-  constructor(x, y, fallingElfImage) {
-    this.x = x;
-    this.y = y;
+  constructor(fallingElfImage) {
+    this.x = width / 2;
+    this.y = height / 2;
     this.width = 300;
     this.height = 300;
     this.dodged = true;

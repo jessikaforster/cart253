@@ -267,7 +267,34 @@ function setup() {
   }
 
   userL3 = new UserL3(x, y);
+
+/* Setup for LEVEL 4 */
+// Displaying falling elf image: LEVEL 4
+fallingElf = new FallingElfL4(fallingElfImage);
+
+// Displaying raccoons using for loop
+for (let i = 0; i < numRaccoons; i++) {
+  let x = random(0, width);
+  let y = random(0, height/4);
+  let raccoon = new RaccoonL4(x, y, raccoonImage);
+  animals.push(raccoon);
 }
+
+// Displaying mice using for loop
+for (let i = 0; i < numMice; i++) {
+  let x = random(0, width);
+  let y = random(0, height/4);
+  let mouse = new MouseL4(x, y, mouseImage);
+  animals.push(mouse);
+}
+
+// Declaring the direction and speed that the animals will move in
+for (let i = 0; i < animals.length; i++) {
+  let animal = animals[i];
+  animal.vy = -animal.speed;
+  }
+}
+
 /**
 Displaying the background image and creating simulation, failed and success states
 */
@@ -403,6 +430,29 @@ userL3.keyPressed(civilian);
 
 function level4() {
 background(movingBrick);
+
+// Display falling elf image
+fallingElf.display();
+
+// If user gets hit by an animal, `failed` state is triggered
+if (!fallingElf.dodged) {
+  state = `level4Fail`;
+}
+
+// For loop to create all of the birds along with all statements from Bird class
+for (let i = 0; i < animals.length; i++) {
+  let animal = animals[i];
+  animal.move();
+  animal.wrap();
+  animal.randomMovement();
+  animal.display();
+  animal.numDodges();
+  animal.checkExit();
+
+  // User control
+  fallingElf.handleInput();
+  fallingElf.checkHit(animal);
+}
 }
 
 function level4Fail() {

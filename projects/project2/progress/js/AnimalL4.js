@@ -25,12 +25,12 @@ class AnimalL4 {
   /* When animals reach the top of screen they will reappear at the starting
   point in a random position */
   wrap() {
-    if (this.y < 0) {
-      this.x -= width;
-      this.y = random(0, height);
-    } else if (this.x < 0) {
-      this.x += width;
-      this.y = random(0, height);
+    if (this.y > height) {
+      this.y -= height;
+      this.x = random(0, width);
+    } else if (this.y < 0) {
+      this.y += height;
+      this.x = random(0, width);
     }
   }
 
