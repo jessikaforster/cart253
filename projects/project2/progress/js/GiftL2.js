@@ -1,7 +1,7 @@
 class GiftL2 extends FallingGiftL2 {
   constructor(x, y, image) {
     super(x, y, image);
-    this.speed = 3;
+    this.speed = 8;
   }
 
     // Displaying the gift image

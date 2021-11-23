@@ -35,8 +35,8 @@ let sparrowImage = undefined;
 
 // Arrays to display falling candycanes and gifts: LEVEL 2
 let fallingGifts = [];
-let numGifts = 5;
-let numCandycanes = 5;
+let numGifts = 15;
+let numCandycanes = 20;
 
 // Declaring all images that will be used : LEVEL 2
 let stocking;
@@ -379,13 +379,23 @@ function level2() {
   stocking.display();
   stocking.move();
 
+  let numActiveFallingGifts = 0;
+
   for (let i = 0; i < fallingGifts.length; i++) {
     let fallingGift = fallingGifts[i];
+    if (fallingGift.active) {
+    numActiveFallingGifts++;
     fallingGift.move();
     fallingGift.wrap();
+    }
     fallingGift.display();
     fallingGift.checkGift(stocking);
-  }
+    // fallingGift.numItems();
+}
+
+if (numActiveFallingGifts === 0) {
+  state = `level3`;
+}
 }
 
 function level2Fail() {

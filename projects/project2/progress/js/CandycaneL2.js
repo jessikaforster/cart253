@@ -1,7 +1,7 @@
 class CandycaneL2 extends FallingGiftL2 {
   constructor(x, y, image) {
     super(x, y, image);
-    this.speed = 2;
+    this.speed = 5;
   }
 
   // Displaying the candycane image

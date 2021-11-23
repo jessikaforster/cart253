@@ -10,6 +10,8 @@ class UserL3 {
 move() {
   this.x += this.vx;
   this.y += this.vy;
+
+  this.y = constrain(this.y, 0, height);
 }
 
 handleInput() {

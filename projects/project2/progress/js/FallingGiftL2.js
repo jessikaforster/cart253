@@ -10,6 +10,8 @@ class FallingGiftL2 {
     this.random = 3;
     this.image = image;
     this.caught = false;
+    this.active = true;
+  //  this.itemsCaught = 0;
   }
 
   // Adding movement to the gifts
@@ -35,6 +37,8 @@ class FallingGiftL2 {
     let d = dist(this.x, this.y, stocking.x, stocking.y);
     if (d < this.width / 2 + stocking.width / 2) {
       this.caught = true;
+      this.active = false;
+    //  this.itemsCaught += 1;
     }
   }
 
@@ -42,9 +46,17 @@ class FallingGiftL2 {
     let d = dist(this.x, this.y, stocking.x, stocking.y);
     if (d < this.height / 2 + stocking.height / 2) {
       this.caught = true;
+      this.active = false;
+    //  this.itemsCaught += 1;
       }
     }
   }
+
+  /* numItems() {
+    if (this.itemsCaught > 15) {
+      state = `level3`;
+    }
+  } */
 
   // Display animals (done in corresponding classes)
   display() {
