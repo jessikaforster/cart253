@@ -7,7 +7,7 @@ Project 2, final CART 253 project.
 
 "use strict";
 
-let state = `level3`; /* Could be start, intro, level1, level1Fail, level2,
+let state = `level4`; /* Could be start, intro, level1, level1Fail, level2,
 level2Fail, level3, level3Fail, level4, level4Fail, level5, level5Fail, level6, level6Fail, level7, final */
 
 // Array to display all 3 kinds of birds: LEVEL 1
@@ -60,12 +60,13 @@ let numCivilians = 5;
 let fallingElfImage;
 let movingBrick;
 
+let fallingElf;
+
 let mouseImage = undefined;
 let raccoonImage = undefined;
 
 // Arrays to display falling candycanes and gifts: LEVEL 4
-let mice = [];
-let raccoons = [];
+let animals = [];
 let numMice = 5;
 let numRaccoons = 5;
 
