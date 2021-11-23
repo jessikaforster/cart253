@@ -12,9 +12,9 @@ level2Fail, level3, level3Fail, level4, level4Fail, level5, level5Fail, level6, 
 
 // Array to display all 3 kinds of birds: LEVEL 1
 let birds = [];
-let numBluejays = 5;
-let numSparrows = 5;
-let numCardinals = 5;
+let numBluejays = 3;
+let numSparrows = 3;
+let numCardinals = 3;
 
 // Declaring all images that will be used : start
 let startImage;
@@ -67,8 +67,8 @@ let raccoonImage = undefined;
 
 // Arrays to display falling candycanes and gifts: LEVEL 4
 let animals = [];
-let numMice = 5;
-let numRaccoons = 5;
+let numMice = 3;
+let numRaccoons = 3;
 
 // Declaring all images that will be used : LEVEL 5
 let fireImage;

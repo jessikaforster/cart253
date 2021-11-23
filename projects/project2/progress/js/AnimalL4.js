@@ -41,14 +41,14 @@ class AnimalL4 {
 
   // When animal passes by user, 1 is added to the dodges
   checkExit() {
-    if (this.y < 0) {
+    if (this.y < height / 8) {
       this.dodges += 1;
     }
   }
 
   // If the number of animals dodged exceeds 100, level 5 is triggered
   numDodges() {
-    if (this.dodges > 100) {
+    if (this.dodges > 200) {
       state = `level5`;
     }
   }
