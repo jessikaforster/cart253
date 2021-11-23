@@ -7,7 +7,7 @@ Project 2, final CART 253 project.
 
 "use strict";
 
-let state = `level4`; /* Could be start, intro, level1, level1Fail, level2,
+let state = `level2`; /* Could be start, intro, level1, level1Fail, level2,
 level2Fail, level3, level3Fail, level4, level4Fail, level5, level5Fail, level6, level6Fail, level7, final */
 
 // Array to display all 3 kinds of birds: LEVEL 1
@@ -34,8 +34,7 @@ let cardinalImage = undefined;
 let sparrowImage = undefined;
 
 // Arrays to display falling candycanes and gifts: LEVEL 2
-let candycanes = [];
-let gifts = [];
+let fallingGifts = [];
 let numGifts = 5;
 let numCandycanes = 5;
 
@@ -238,24 +237,19 @@ function setup() {
     let x = random(0, width);
     let y = random(0, height / 2);
     let candycane = new CandycaneL2(x, y, candycaneImage);
-    candycanes.push(candycane);
-  }
-
-  for (let i = 0; i < candycanes.length; i++) {
-    let candycane = candycanes[i];
-    candycane.vy = candycane.speed;
+    fallingGifts.push(candycane);
   }
 
   for (let i = 0; i < numGifts; i++) {
     let x = random(0, width);
     let y = random(0, height / 2);
     let gift = new GiftL2(x, y, giftImage);
-    gifts.push(gift);
+    fallingGifts.push(gift);
   }
 
-  for (let i = 0; i < gifts.length; i++) {
-    let gift = gifts[i];
-    gift.vy = gift.speed;
+  for (let i = 0; i < fallingGifts.length; i++) {
+    let fallingGift = fallingGifts[i];
+    fallingGift.vy = fallingGift.speed;
   }
 
 // Setup : LEVEL 3
@@ -385,18 +379,11 @@ function level2() {
   stocking.display();
   stocking.move();
 
-  for (let i = 0; i < candycanes.length; i++) {
-    let candycane = candycanes[i];
-    candycane.move();
-    candycane.wrap();
-    candycane.display();
-  }
-
-  for (let i = 0; i < gifts.length; i++) {
-    let gift = gifts[i];
-    gift.move();
-    gift.wrap();
-    gift.display();
+  for (let i = 0; i < fallingGifts.length; i++) {
+    let fallingGift = fallingGifts[i];
+    fallingGift.move();
+    fallingGift.wrap();
+    fallingGift.display();
   }
 }
 
