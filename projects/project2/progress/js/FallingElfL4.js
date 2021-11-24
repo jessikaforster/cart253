@@ -1,4 +1,5 @@
 class FallingElfL4 {
+  // Defining variables for falling elf animation : LEVEL4
   constructor(fallingElfImage) {
     this.x = width / 2;
     this.y = height / 2;

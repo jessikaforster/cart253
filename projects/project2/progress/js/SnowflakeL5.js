@@ -1,4 +1,5 @@
 class SnowflakeL5 {
+// Defining variables for snowflake : LEVEL 5
   constructor(x, y) {
     this.x = 0;
     this.y = height/6;

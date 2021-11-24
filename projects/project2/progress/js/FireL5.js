@@ -1,4 +1,5 @@
 class FireL5 {
+  // Defining variables for fire : LEVEL 5
   constructor(fireImage) {
     this.x = width / 2;
     this.y = height / 1.2;
@@ -7,7 +8,7 @@ class FireL5 {
     this.image = fireImage;
   }
 
-  // Displaying the falling elf image
+  // Displaying the fire image
   display() {
     push();
     imageMode(CENTER);

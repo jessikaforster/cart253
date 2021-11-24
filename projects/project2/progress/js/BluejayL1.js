@@ -1,4 +1,5 @@
 class BluejayL1 extends BirdL1 {
+  // Defining variables for bluejays that were not defined in BirdL1 class : LEVEL 1
   constructor(x, y, image) {
     super(x, y, image);
     this.speed = -15;

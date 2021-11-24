@@ -1,4 +1,5 @@
 class RaccoonL4 extends AnimalL4 {
+  // Defining variables for raccoons that were not defined in AnimalL4 class : LEVEL 4
   constructor(x, y, image) {
     super(x, y, image);
     this.speed = -8;

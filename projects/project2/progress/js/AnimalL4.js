@@ -1,4 +1,5 @@
 class AnimalL4 {
+  // Defining variables for animals - RaccoonL4 & MouseL4 : LEVEL 4
   constructor(x, y, image) {
     this.x = x;
     this.y = y;
@@ -15,15 +16,15 @@ class AnimalL4 {
   /* Adding movement to the animals and constraining them to remain on
   the inside of the screen */
   move() {
-      this.x += this.vx;
-      this.y += this.vy;
+    this.x += this.vx;
+    this.y += this.vy;
 
-      let change = random(0, 1);
-      if (change < 0.05) {
-        this.vx = random(-this.random, this.random);
-        }
+    let change = random(0, 1);
+    if (change < 0.05) {
+      this.vx = random(-this.random, this.random);
+    }
 
-      this.x = constrain(this.x, 0, width);
+    this.x = constrain(this.x, 0, width);
   }
 
 

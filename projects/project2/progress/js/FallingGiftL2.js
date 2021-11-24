@@ -1,4 +1,5 @@
 class FallingGiftL2 {
+  // Defining variables for falling gifts - CandycaneL2 & GiftL2 : LEVEL 2
   constructor(x, y, image) {
     this.x = x;
     this.y = y;
@@ -11,7 +12,6 @@ class FallingGiftL2 {
     this.image = image;
     this.caught = false;
     this.active = true;
-  //  this.itemsCaught = 0;
   }
 
   // Adding movement to the gifts
@@ -33,32 +33,24 @@ class FallingGiftL2 {
   }
 
   checkGift(stocking) {
-  if (!this.caught) {
-    let d = dist(this.x, this.y, stocking.x, stocking.y);
-    if (d < this.width / 2 + stocking.width / 2) {
-      this.caught = true;
-      this.active = false;
-    //  this.itemsCaught += 1;
+    if (!this.caught) {
+      let d = dist(this.x, this.y, stocking.x, stocking.y);
+      if (d < this.width / 2 + stocking.width / 2) {
+        this.caught = true;
+        this.active = false;
+      }
     }
-  }
 
-  if (!this.caught) {
-    let d = dist(this.x, this.y, stocking.x, stocking.y);
-    if (d < this.height / 2 + stocking.height / 2) {
-      this.caught = true;
-      this.active = false;
-    //  this.itemsCaught += 1;
+    if (!this.caught) {
+      let d = dist(this.x, this.y, stocking.x, stocking.y);
+      if (d < this.height / 2 + stocking.height / 2) {
+        this.caught = true;
+        this.active = false;
       }
     }
   }
 
-  /* numItems() {
-    if (this.itemsCaught > 15) {
-      state = `level3`;
-    }
-  } */
-
-  // Display animals (done in corresponding classes)
+  // Display falling gifts (done in corresponding classes)
   display() {
 
   }
