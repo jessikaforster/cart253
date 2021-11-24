@@ -7,7 +7,8 @@ Project 2, final CART 253 project.
 
 "use strict";
 
-let state = `level5`; /* Could be start, intro, level1, level1Fail, level2,
+let state = `start`;
+/* Could be start, intro, level1, level1Fail, level2,
 level2Fail, level3, level3Fail, level4, level4Fail, level5, level5Fail, level6, level6Fail, level7, final */
 
 // Array to display all 3 kinds of birds: LEVEL 1
@@ -16,10 +17,10 @@ let numBluejays = 3;
 let numSparrows = 3;
 let numCardinals = 3;
 
-// Declaring all images that will be used : start
+// Declaring all images that will be used : START
 let startImage;
 
-// Declaring all images that will be used : intro
+// Declaring all images that will be used : INTRO
 let introAnim;
 
 // Declaring all images that will be used : LEVEL 1
@@ -84,19 +85,17 @@ let scrollImage;
 let finalGiftImage;
 let treeImage;
 
-// Declaring all ending state images
+// Declaring all ending state images : LEVEL 1 TO 5
 let level1EndImage;
 let level2EndImage;
 let level3EndImage;
 let level4EndImage;
 let level5EndImage;
 
-// Declaring final image
+// Declaring final image : FINAL
 let finalImage;
 
-
-// An array of the strings (in order) our dialog box will display,
-// one at a time
+// The lines that will appear in intro : INTRO
 let dialogStrings = [
   `Santa: Alright great job everyone, it looks like another Christmas will pass successfully`,
   `Head Elf: Um…Santa actually…There’s 1 gift that wasn’t delivered`,
@@ -104,35 +103,29 @@ let dialogStrings = [
   `Head Elf: Here Santa sir`,
   `Santa:	Now’s your chance to get on my good list, find the missing gift and deliver it successfully to save Christmas!`
 ];
-// The index of the current string to display, starts at 0 so we
-// display the first string first!
+
+// Setting the dialog to start from the first line : INTRO
 let currentDialogString = 0;
 
-// An object representing our dialog box
+// Defining all variables related to dialog box : INTRO
 let dialogBox = {
-  // Position on screen (will set in setup())
   x: undefined,
   y: undefined,
-  // Current string to display (starts empty)
   string: ``,
-  // Whether it's currently visible on the canvas
   visible: false,
-  // Dimensions
   width: 500,
   height: 300,
-  // Padding
   padding: 20,
-  // How long the dialog box should display before auto-closing
   duration: 3000
 };
 
 // Loading all images to be used into code
 function preload() {
 
-  // Loading start screen image
+  // Loading start screen image : START
   startImage = loadImage("assets/images/start.jpg");
 
-  // Loading intro animation
+  // Loading intro animation : INTRO
   introAnim = loadImage("assets/images/intro.gif");
 
   // Loading images to be used into code : LEVEL 1
@@ -175,14 +168,14 @@ function preload() {
 
   treeImage = loadImage("assets/images/level7/tree.gif");
 
-  // Loading all ending state images
+  // Loading all ending state images : LEVEL 1 TO 5
   level1EndImage = loadImage("assets/images/level1/level1-end.jpg");
   level2EndImage = loadImage("assets/images/level2/level2-end.jpg");
   level3EndImage = loadImage("assets/images/level3/level3-end.jpg");
   level4EndImage = loadImage("assets/images/level4/level4-end.jpg");
   level5EndImage = loadImage("assets/images/level5/level5-end.jpg");
 
-  // Loading final ending image
+  // Loading final ending image : FINAL
   finalImage = loadImage("assets/images/final.jpg");
 }
 
@@ -192,11 +185,12 @@ Creating the canvas to fill the user's window size
 function setup() {
   createCanvas(windowWidth, windowHeight);
 
-  dialogBox.x = width/6;
-  dialogBox.y = height/1.15;
+  // Dialog box position : INTRO
+  dialogBox.x = width / 6;
+  dialogBox.y = height / 1.15;
 
   /* Setup for LEVEL 1 */
-  // Displaying sleigh image: LEVEL 1
+  // Displaying sleigh image
   let x = width / 6;
   let y = height / 2;
   sleigh = new SleighL1(x, y, sleighImage);
@@ -232,9 +226,10 @@ function setup() {
   }
 
   /* Setup for LEVEL 2 */
-  // Displaying stocking image: LEVEL 2
+  // Displaying stocking image
   stocking = new StockingL2(stockingImage);
 
+  // Displaying candycanes using for loop
   for (let i = 0; i < numCandycanes; i++) {
     let x = random(0, width);
     let y = random(0, height / 2);
@@ -242,6 +237,7 @@ function setup() {
     fallingGifts.push(candycane);
   }
 
+  // Displaying gifts using for loop
   for (let i = 0; i < numGifts; i++) {
     let x = random(0, width);
     let y = random(0, height / 2);
@@ -249,12 +245,15 @@ function setup() {
     fallingGifts.push(gift);
   }
 
+  // Displaying the direction and speed that the falling gifts will move in
   for (let i = 0; i < fallingGifts.length; i++) {
     let fallingGift = fallingGifts[i];
     fallingGift.vy = fallingGift.speed;
   }
 
-// Setup : LEVEL 3
+  /* Setup for LEVEL 3 */
+
+  // Displaying civilians using for loop
   for (let i = 0; i < numCivilians; i++) {
     let x = random(width / 2, width);
     let y = random(0, height);
@@ -262,40 +261,43 @@ function setup() {
     civilians.push(civilian);
   }
 
+  // Displaying user image
   userL3 = new UserL3(x, y);
 
-/* Setup for LEVEL 4 */
-// Displaying falling elf image: LEVEL 4
-fallingElf = new FallingElfL4(fallingElfImage);
+  /* Setup for LEVEL 4 */
+  // Displaying falling elf image
+  fallingElf = new FallingElfL4(fallingElfImage);
 
-// Displaying raccoons using for loop
-for (let i = 0; i < numRaccoons; i++) {
-  let x = random(0, width);
-  let y = random(0, height/6);
-  let raccoon = new RaccoonL4(x, y, raccoonImage);
-  animals.push(raccoon);
-}
+  // Displaying raccoons using for loop
+  for (let i = 0; i < numRaccoons; i++) {
+    let x = random(0, width);
+    let y = random(0, height / 6);
+    let raccoon = new RaccoonL4(x, y, raccoonImage);
+    animals.push(raccoon);
+  }
 
-// Displaying mice using for loop
-for (let i = 0; i < numMice; i++) {
-  let x = random(0, width);
-  let y = random(0, height/6);
-  let mouse = new MouseL4(x, y, mouseImage);
-  animals.push(mouse);
-}
+  // Displaying mice using for loop
+  for (let i = 0; i < numMice; i++) {
+    let x = random(0, width);
+    let y = random(0, height / 6);
+    let mouse = new MouseL4(x, y, mouseImage);
+    animals.push(mouse);
+  }
 
-// Declaring the direction and speed that the animals will move in
-for (let i = 0; i < animals.length; i++) {
-  let animal = animals[i];
-  animal.vy = animal.speed;
+  // Declaring the direction and speed that the animals will move in
+  for (let i = 0; i < animals.length; i++) {
+    let animal = animals[i];
+    animal.vy = animal.speed;
   }
 
   /* Setup for LEVEL 5 */
+
+  // Displaying fire image
   fire = new FireL5(fireImage);
 }
 
 /**
-Displaying the background image and creating simulation, failed and success states
+Displaying the background image and defining all states
 */
 function draw() {
 
@@ -334,23 +336,34 @@ function draw() {
   }
 }
 
+/* Starting screen state : START */
 function start() {
-background(startImage);
+
+  // Displaying starting image
+  background(startImage);
 }
 
+/* Intro state before game begins : INTRO */
 function intro() {
-background(introAnim);
-displayDialog();
-keyPressed();
+
+  // Displaying intro animation
+  background(introAnim);
+  // Displaying dialog
+  displayDialog();
+  // Pressing the spacebar after dialog will begin level 1
+  keyPressed();
 }
 
-/* Level 1 state */
+/* Level 1 state : LEVEL 1 */
 function level1() {
+
+  // Display snowfall animation
   background(snowfall);
-  // Display user image
+
+  // Display user-controlled image
   sleigh.display();
 
-  // If user gets hit by a bird, `failed` state is triggered
+  // If user gets hit by a bird, `level1Fail` state is triggered
   if (!sleigh.dodged) {
     state = `level1Fail`;
   }
@@ -365,174 +378,205 @@ function level1() {
     bird.numDodges();
     bird.checkExit();
 
-    // User control
+    // User control for sleigh image
     sleigh.handleInput();
+
+    // Check when bird and sleigh overlap
     sleigh.checkHit(bird);
   }
 }
 
-// State that appears when user fails to dodge a bird
+/* State that appears when user fails to dodge a bird : LEVEL1FAIL */
 function level1Fail() {
+
+  // Displaying level 1 end image
   background(level1EndImage);
+
+  // Pressing spacebar restarts level 1
   keyPressed();
 }
 
+/* Level 2 state : LEVEL 2 */
 function level2() {
+
+  // Display snowfall animation
   background(snowfall);
 
+  // Control stocking image using left and right arrow keys
   stocking.handleInput();
+
+  // Display stocking image
   stocking.display();
+
+  // Allow stocking to move
   stocking.move();
 
+  // Initial number of gifts falling
   let numActiveFallingGifts = 0;
 
+  // For loop to display all falling gifts
   for (let i = 0; i < fallingGifts.length; i++) {
     let fallingGift = fallingGifts[i];
+    // If a falling gift is active, that means all the methods below apply
     if (fallingGift.active) {
-    numActiveFallingGifts++;
-    fallingGift.move();
-    fallingGift.wrap();
+      // Increasing the number of falling gifts as they become active
+      numActiveFallingGifts++;
+      // Adding movement to make gifts fall
+      fallingGift.move();
+      // Gifts appear back at the top once they have reached the bottom
+      fallingGift.wrap();
     }
+    // Display falling gifts
     fallingGift.display();
+
+    // Check when falling gift and stocking overlap
     fallingGift.checkGift(stocking);
-    // fallingGift.numItems();
+  }
+
+  // If the number of gifts falling reaches 0, the next level begins
+  if (numActiveFallingGifts === 0) {
+    state = `level3`;
+  }
 }
 
-if (numActiveFallingGifts === 0) {
-  state = `level3`;
-}
-}
-
+/* State that appears when user misses too many gifts : LEVEL2FAIL */
 function level2Fail() {
-background(level2EndImage);
+  background(level2EndImage);
 }
 
+/* Level 3 state : LEVEL 3 */
 function level3() {
-background(level3Image);
 
-for (let i = 0; i < civilians.length; i++) {
-  let civilian = civilians[i];
-civilian.move();
-civilian.display();
-userL3.checkDist(civilian);
+  // Display background image for level 3
+  background(level3Image);
+
+  // For loop to create and display civilians
+  for (let i = 0; i < civilians.length; i++) {
+    let civilian = civilians[i];
+    // Add movement to civilians
+    civilian.move();
+    // Display civilians
+    civilian.display();
+    // Check distance between user and civilian, if too close, fail state is triggered
+    userL3.checkDist(civilian);
   }
 
-userL3.move();
-userL3.handleInput();
-userL3.display();
-userL3.checkExit();
+  // Allow user to move
+  userL3.move();
+  // Allow arrow keys to control user movement
+  userL3.handleInput();
+  // Display user circle
+  userL3.display();
+  // Trigger next level state to begin when user reaches other side
+  userL3.checkExit();
 }
 
+/* State that appears when user is too close to civilian : LEVEL3FAIL */
 function level3Fail() {
-background(level3EndImage);
-for (let i = 0; i < civilians.length; i++) {
-  let civilian = civilians[i];
-userL3.keyPressed(civilian);
+
+  // Display end image for level 3
+  background(level3EndImage);
+}
+
+/* Level 4 state : LEVEL 4 */
+function level4() {
+
+  // Display moving brick animation
+  background(movingBrick);
+
+  // Display falling elf image
+  fallingElf.display();
+
+  // If user gets hit by an animal, `level4Fail` state is triggered
+  if (!fallingElf.dodged) {
+    state = `level4Fail`;
+  }
+
+  // For loop to create all of the animals from the Animal class
+  for (let i = 0; i < animals.length; i++) {
+    let animal = animals[i];
+
+    // Add movement to animals
+    animal.move();
+    // Animals appear at top of screen when they reach the bottom
+    animal.wrap();
+    // Display animal images
+    animal.display();
+    // If number of dodges exceeds a number, next state is triggered
+    animal.numDodges();
+    // Check when animal was dodged
+    animal.checkExit();
+
+    // User control
+    fallingElf.handleInput();
+    // Check when elf and animal overlap and trigger `level4Fail` state
+    fallingElf.checkHit(animal);
   }
 }
 
-function level4() {
-background(movingBrick);
-
-// Display falling elf image
-fallingElf.display();
-
-// If user gets hit by an animal, `failed` state is triggered
-if (!fallingElf.dodged) {
-  state = `level4Fail`;
-}
-
-// For loop to create all of the birds along with all statements from Bird class
-for (let i = 0; i < animals.length; i++) {
-  let animal = animals[i];
-  animal.move();
-  animal.wrap();
-  animal.display();
-  animal.numDodges();
-  animal.checkExit();
-
-  // User control
-  fallingElf.handleInput();
-  fallingElf.checkHit(animal);
-}
-}
-
+/* State that appears when user runs into animal : LEVEL4FAIL */
 function level4Fail() {
-background(level4EndImage);
+
+  // Display level 4 fail state image
+  background(level4EndImage);
 }
 
+/* Level 5 state : LEVEL 5 */
 function level5() {
-background(stillBrick);
 
-fire.display();
+  // Display brick background
+  background(stillBrick);
+
+  // Display fire animation
+  fire.display();
 }
 
+/* State that appears when user lands in fire : LEVEL5FAIL */
 function level5Fail() {
-background(level5EndImage);
+  background(level5EndImage);
 }
 
+/* Level 6 state : LEVEL 6 */
 function level6() {
-background(scrollImage);
+
+  // Display scroll page as background
+  background(scrollImage);
 }
 
+/* State that appears when gift was incorrectly guessed : LEVEL7FAIL */
 function level6Fail() {
 
 }
 
+/* Level 7 state : LEVEL 7 */
 function level7() {
-background(treeImage);
+
+  // Display room with Christmas tree image
+  background(treeImage);
 }
 
+/* State that appears when entire mission is complete : FINAL */
 function final() {
-background(finalImage);
+
+  // Display final success image
+  background(finalImage);
 }
 
-// State that appears when user has successfully dodged enough birds
-function success() {
-  background(snowfall);
-  displayText(`YOU DODGED THE FLOCK OF BIRDS SUCCESSFULLY! THERE'S NO TIME TO CELEBRATE, WE NEED TO HURRY!`)
-}
-
-// All characteristics of the text (size, colour, etc.) to be reused in functions
-function displayText(string) {
-  push();
-  textAlign(CENTER, CENTER);
-  textSize(32);
-  fill(255);
-  text(string, width / 2, height / 2);
-  pop();
-}
-
-/**
-Displays a dialog box and text according to the current settings
-*/
+/* Dialog box : INTRO */
 function displayDialog() {
-  // We only display the dialog box if it's set to be visible
+
+  // When the dialog box is visibles, all of the following variables apply
   if (dialogBox.visible) {
-    // First draw the box part
+    // Displaying rectangle with red border that dialog will appear in
     push();
-    // Make it easier to centre the box
     rectMode(CENTER);
-    // Red outline
-    stroke(255,0,0);
-    // Thicker than usual
+    stroke(255, 0, 0);
     strokeWeight(5);
-    // Draw a rectangle based on the box's position and dimensions
     rect(dialogBox.x, dialogBox.y, dialogBox.width, dialogBox.height);
     pop();
-
-    // Now draw the text inside the box
+    // Ensuring that the text is placed within dialog box
     push();
-    // Remember that the box part used rectMode(CENTER) so we need it
-    // here too, since we're using a special kind of text() that can
-    // automatically fit inside a defined rectangle
     rectMode(CENTER);
-    // Display the current string at the same position as the box
-    // and with the same dimensions, except we'll subtract the
-    // padding so the text sits more nicely inside the box
-    // The last two arguments here defined the size of the imaginary
-    // rectangle to fit the text in (it will create the linebreaks
-    // for us, which is nice)
     textSize(30);
     textFont(`Architects Daughter`);
     text(dialogBox.string, dialogBox.x, dialogBox.y, dialogBox.width - dialogBox.padding, dialogBox.height - dialogBox.padding);
@@ -540,45 +584,37 @@ function displayDialog() {
   }
 }
 
-/**
-Displays the dialog box if it's not already visible
-*/
+/* Event is triggered  when mouse is clicked */
 function mousePressed() {
-  // We display the dialog box if the mouse gets clicked
-  // but only if it isn't already visible
+  // Displaying dialog using mouse clicks
   if (!dialogBox.visible) {
-    // Set it to visible to it displays
+    // Dialog box being visible is true when mouse has been pressed
     dialogBox.visible = true;
-    // Set the string in the dialog box to the current string
+    // Displaying one string after another from 0
     dialogBox.string = dialogStrings[currentDialogString];
-    // Set a timer to hide the dialog box by calling the hideDialog()
-    // function after the number of milliseconds specified by
-    // the dialog box's duration property
+    // Current string disappears once it has timed out
     setTimeout(hideDialog, dialogBox.duration);
   }
 
+  // When mouse is pressed, state changes from `start` to `intro` : START
   if (state === `start`) {
     state = `intro`;
   }
 }
 
-/**
-Hides the dialog box and sets it up for the next appearance as
-needed. Called after a delay.
-*/
+// When dialog box is no longer visible : INTRO
 function hideDialog() {
-  // Set the dialog to be invisible
+  // Dialog box being visible is not true
   dialogBox.visible = false;
-  // Increase the string index by one so we display the next one
-  // next time
+  // Whenever dialog is not visible, the next string will appear next
   currentDialogString += 1;
-  // But if we hit the end of the array of strings, then just
-  // stay on the final string
+  // When all strings have been seen, clicks only trigger final string
   if (currentDialogString >= dialogStrings.length) {
     currentDialogString = dialogStrings.length - 1;
   }
 }
 
+// Pressing spacebar triggers `level 1` when in `intro` : INTRO
 function keyPressed() {
   if (keyCode === 32) {
     if (state === `intro`) {
