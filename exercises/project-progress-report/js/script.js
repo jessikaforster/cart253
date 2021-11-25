@@ -77,6 +77,11 @@ let stillBrick;
 let fire;
 let snowflake;
 
+let fallingElfL5;
+// Defining force of gravity
+let gravityForce = 0.0025;
+
+
 let snowflakeImage;
 
 // Declaring all images that will be used : LEVEL 6
@@ -192,9 +197,7 @@ function setup() {
 
   /* Setup for LEVEL 1 */
   // Displaying sleigh image
-  let x = width / 6;
-  let y = height / 2;
-  sleigh = new SleighL1(x, y, sleighImage);
+  sleigh = new SleighL1(sleighImage);
 
   // Displaying bluejays using for loop
   for (let i = 0; i < numBluejays; i++) {
@@ -263,7 +266,7 @@ function setup() {
   }
 
   // Displaying user image
-  userL3 = new UserL3(x, y);
+  userL3 = new UserL3;
 
   /* Setup for LEVEL 4 */
   // Displaying falling elf image
@@ -298,6 +301,8 @@ function setup() {
 
   // Displaying fire image
   fire = new FireL5(fireImage);
+
+fallingElfL5 = new FallingElfL5(fallingElfImage);
 }
 
 /**
@@ -536,8 +541,21 @@ function level5() {
 
   // Display snowflake image
   snowflake.display();
+  //
   snowflake.keyPressed();
+  //
   snowflake.handleInput();
+
+  // Display falling elf
+fallingElfL5.display();
+//
+fallingElfL5.gravity(gravityForce);
+//
+fallingElfL5.move();
+//
+fallingElfL5.checkOverlap(fire);
+//
+fallingElfL5.bounce(snowflake);
 }
 
 /* State that appears when user lands in fire : LEVEL5FAIL */
