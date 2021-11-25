@@ -133,7 +133,7 @@ function preload() {
   cardinalImage = loadImage("assets/images/level1/cardinal.gif");
   sparrowImage = loadImage("assets/images/level1/sparrow.gif");
 
-  sleighImage = loadImage("assets/images/level1/reindeer.gif");
+  sleighImage = loadImage("assets/images/level1/reindeer.png");
 
   snowfall = loadImage("assets/images/snowbg.jpg");
 
@@ -155,7 +155,7 @@ function preload() {
   movingBrick = loadImage("assets/images/level4/movingbrick.gif");
 
   // Loading images to be used into code : LEVEL 5
-  fireImage = loadImage("assets/images/level5/fire.gif");
+  fireImage = loadImage("assets/images/level5/fire.png");
   stillBrick = loadImage("assets/images/level5/stillbrick.gif");
 
   snowflakeImage = loadImage("assets/images/level5/snowflake.png");
