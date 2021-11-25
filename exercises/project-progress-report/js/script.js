@@ -536,6 +536,7 @@ function level5() {
 
   // Display snowflake image
   snowflake.display();
+  snowflake.keyPressed();
 }
 
 /* State that appears when user lands in fire : LEVEL5FAIL */
