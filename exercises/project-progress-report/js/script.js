@@ -126,7 +126,7 @@ function preload() {
   startImage = loadImage("assets/images/start.jpg");
 
   // Loading intro animation : INTRO
-  introAnim = loadImage("assets/images/intro.gif");
+  introAnim = loadImage("assets/images/intro.jpg");
 
   // Loading images to be used into code : LEVEL 1
   bluejayImage = loadImage("assets/images/level1/bluejay.gif");
@@ -135,7 +135,7 @@ function preload() {
 
   sleighImage = loadImage("assets/images/level1/reindeer.gif");
 
-  snowfall = loadImage("assets/images/bg.gif");
+  snowfall = loadImage("assets/images/snowbg.jpg");
 
   // Loading images to be used into code : LEVEL 2
   giftImage = loadImage("assets/images/level2/level2Gift.png");
