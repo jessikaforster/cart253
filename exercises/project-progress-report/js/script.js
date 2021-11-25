@@ -7,7 +7,7 @@ Project 2, final CART 253 project.
 
 "use strict";
 
-let state = `start`;
+let state = `level5`;
 /* Could be start, intro, level1, level1Fail, level2,
 level2Fail, level3, level3Fail, level4, level4Fail, level5, level5Fail, level6, level6Fail, level7, final */
 
@@ -75,6 +75,7 @@ let fireImage;
 let stillBrick;
 
 let fire;
+let snowflake;
 
 let snowflakeImage;
 
@@ -291,6 +292,9 @@ function setup() {
   }
 
   /* Setup for LEVEL 5 */
+
+  // Displaying snowflake image
+  snowflake = new SnowflakeL5(snowflakeImage);
 
   // Displaying fire image
   fire = new FireL5(fireImage);
@@ -527,8 +531,11 @@ function level5() {
   // Display brick background
   background(stillBrick);
 
-  // Display fire animation
+  // Display fire image
   fire.display();
+
+  // Display snowflake image
+  snowflake.display();
 }
 
 /* State that appears when user lands in fire : LEVEL5FAIL */
