@@ -1,4 +1,5 @@
-class Bird {
+class BirdL1 {
+  // Defining variables for birds - BluejayL1, CardinalL1 & SparrowL1 : LEVEL 1
   constructor(x, y, image) {
     this.x = x;
     this.y = y;

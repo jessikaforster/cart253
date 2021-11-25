@@ -1,4 +1,5 @@
-class Sleigh {
+class SleighL1 {
+  // Defining variables for sleigh : LEVEL 1
   constructor(x, y, sleighImage) {
     this.x = x;
     this.y = y;
@@ -27,7 +28,7 @@ class Sleigh {
     this.y = mouseY;
   }
 
-  // Displaying the user image
+  // Displaying the sleigh image
   display() {
     push();
     imageMode(CENTER);

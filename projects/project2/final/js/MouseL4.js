@@ -1,12 +1,13 @@
-class Sparrow extends Bird {
+class MouseL4 extends AnimalL4 {
+  // Defining variables for mice that were not defined in AnimalL4 class : LEVEL 4
   constructor(x, y, image) {
     super(x, y, image);
     this.speed = -10;
-    this.width = 100;
-    this.height = 100;
+    this.width = 70;
+    this.height = 70;
   }
 
-  // Displaying the sparrow image
+  // Displaying the mouse image
   display() {
     super.display();
 
