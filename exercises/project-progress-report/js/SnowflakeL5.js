@@ -3,8 +3,8 @@ class SnowflakeL5 {
   constructor(snowflakeImage) {
     this.x = width/2;
     this.y = height/1.4;
-    this.width = 500;
-    this.height = 500;
+    this.width = 600;
+    this.height = 600;
     this.image = snowflakeImage;
     this.visible = false;
   }
@@ -13,6 +13,10 @@ class SnowflakeL5 {
   if (keyCode === 53) {
       this.visible = true;
   }
+}
+
+handleInput() {
+  this.x = mouseX;
 }
 
   // Displaying the snowflake image
