@@ -75,6 +75,11 @@ let fireImage;
 let stillBrick;
 
 let fire;
+let snowflake;
+
+let fallingElfL5;
+// Defining force of gravity
+let gravityForce = 0.0025;
 
 let snowflakeImage;
 
@@ -126,16 +131,16 @@ function preload() {
   startImage = loadImage("assets/images/start.jpg");
 
   // Loading intro animation : INTRO
-  introAnim = loadImage("assets/images/intro.gif");
+  introAnim = loadImage("assets/images/intro.jpg");
 
   // Loading images to be used into code : LEVEL 1
   bluejayImage = loadImage("assets/images/level1/bluejay.gif");
   cardinalImage = loadImage("assets/images/level1/cardinal.gif");
   sparrowImage = loadImage("assets/images/level1/sparrow.gif");
 
-  sleighImage = loadImage("assets/images/level1/reindeer.gif");
+  sleighImage = loadImage("assets/images/level1/reindeer.png");
 
-  snowfall = loadImage("assets/images/bg.gif");
+  snowfall = loadImage("assets/images/snowbg.jpg");
 
   // Loading images to be used into code : LEVEL 2
   giftImage = loadImage("assets/images/level2/level2Gift.png");
@@ -155,7 +160,7 @@ function preload() {
   movingBrick = loadImage("assets/images/level4/movingbrick.gif");
 
   // Loading images to be used into code : LEVEL 5
-  fireImage = loadImage("assets/images/level5/fire.gif");
+  fireImage = loadImage("assets/images/level5/fire.png");
   stillBrick = loadImage("assets/images/level5/stillbrick.gif");
 
   snowflakeImage = loadImage("assets/images/level5/snowflake.png");
@@ -191,9 +196,7 @@ function setup() {
 
   /* Setup for LEVEL 1 */
   // Displaying sleigh image
-  let x = width / 6;
-  let y = height / 2;
-  sleigh = new SleighL1(x, y, sleighImage);
+  sleigh = new SleighL1(sleighImage);
 
   // Displaying bluejays using for loop
   for (let i = 0; i < numBluejays; i++) {
@@ -262,7 +265,7 @@ function setup() {
   }
 
   // Displaying user image
-  userL3 = new UserL3(x, y);
+  userL3 = new UserL3;
 
   /* Setup for LEVEL 4 */
   // Displaying falling elf image
@@ -292,8 +295,14 @@ function setup() {
 
   /* Setup for LEVEL 5 */
 
+  // Displaying snowflake image
+  snowflake = new SnowflakeL5(snowflakeImage);
+
   // Displaying fire image
   fire = new FireL5(fireImage);
+
+  // Displaying falling elf image
+  fallingElfL5 = new FallingElfL5(fallingElfImage);
 }
 
 /**
@@ -527,12 +536,32 @@ function level5() {
   // Display brick background
   background(stillBrick);
 
-  // Display fire animation
+  // Display fire image
   fire.display();
+
+  // Display snowflake image
+  snowflake.display();
+  // Snowflake appears when `5` is pressed
+  snowflake.keyPressed();
+  // Snowflake is controlled using mouse
+  snowflake.handleInput();
+
+  // Display falling elf
+  fallingElfL5.display();
+  // Adding gravity to elf
+  fallingElfL5.gravity(gravityForce);
+  // Allowing elf to move
+  fallingElfL5.move();
+  // Checking when elf and fire have overlapped
+  fallingElfL5.checkOverlap(fire);
+  // Elf will bounce off of snowflake
+  fallingElfL5.bounce(snowflake);
 }
 
 /* State that appears when user lands in fire : LEVEL5FAIL */
 function level5Fail() {
+
+  // Display level 5 fail image
   background(level5EndImage);
 }
 

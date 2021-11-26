@@ -1,8 +1,8 @@
 class SleighL1 {
   // Defining variables for sleigh : LEVEL 1
-  constructor(x, y, sleighImage) {
-    this.x = x;
-    this.y = y;
+  constructor(sleighImage) {
+    this.x = width / 6;
+    this.y = height / 2;
     this.width = 600;
     this.height = 265.75;
     this.dodged = true;
