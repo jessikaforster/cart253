@@ -1,7 +1,7 @@
 class FallingElfL5 {
   // Defining variables for falling elf in level 5
   constructor(fallingElfImage) {
-    this.x = width/2;
+    this.x = width / 2;
     this.y = -400;
     this.width = 400;
     this.height = 400;
@@ -10,64 +10,64 @@ class FallingElfL5 {
     this.active = true;
   }
 
-// Adding gravity to elf
-gravity(force) {
-  this.ay = this.ay + force;
-}
+  // Adding gravity to elf
+  gravity(force) {
+    this.ay = this.ay + force;
+  }
 
-// Adding movement to elf
-move() {
-  this.vx = this.vx + this.ax;
-  this.vy = this.vy + this.ay;
+  // Adding movement to elf
+  move() {
+    this.vx = this.vx + this.ax;
+    this.vy = this.vy + this.ay;
 
-  this.vx = constrain(this.vx, -this.maxSpeed, this.maxSpeed);
-  this.vy = constrain(this.vy, -this.maxSpeed, this.maxSpeed);
+    this.vx = constrain(this.vx, -this.maxSpeed, this.maxSpeed);
+    this.vy = constrain(this.vy, -this.maxSpeed, this.maxSpeed);
 
-  this.x = constrain(this.x, 0, width);
+    this.x = constrain(this.x, 0, width);
 
-  this.x = this.x + this.vx;
-  this.y = this.y + this.vy;
+    this.x = this.x + this.vx;
+    this.y = this.y + this.vy;
 
-  if (this.y - this.size / 2 > height) {
-    this.active = false;
+    if (this.y - this.size / 2 > height) {
+      this.active = false;
+    }
+  }
+
+  // If user overlaps with the fire, fail state is triggered
+  checkOverlap(fire) {
+    if (this.x > fire.x - fire.height / 2 &&
+      this.x > fire.x - fire.width / 2 &&
+      this.x < fire.x + fire.height / 2 &&
+      this.x < fire.x + fire.width / 2 &&
+      this.y > fire.y - fire.height / 2 &&
+      this.y > fire.y - fire.width / 2 &&
+      this.y < fire.y + fire.height / 2 &&
+      this.y < fire.y + fire.width / 2) {
+      state = `level5Fail`;
+    }
+  }
+
+  // Elf will bounce when it lands on snowflake
+  bounce(snowflake) {
+    if (this.x > snowflake.x - snowflake.width / 2 &&
+      this.x < snowflake.x + snowflake.width / 2 &&
+      this.y + this.size / 2 > snowflake.y - snowflake.height / 2 &&
+      this.y - this.size / 2 < snowflake.y + snowflake.height / 2) {
+
+      // Bounce
+      let dx = this.x - snowflake.x;
+      this.vx = this.vx + map(dx, -snowflake.width / 2, snowflake.width / 2, -2, 2);
+
+      this.vy = -this.vy;
+      this.ay = 0;
+    }
+  }
+
+  // Displaying the falling elf image
+  display() {
+    push();
+    imageMode(CENTER);
+    image(this.image, this.x, this.y, this.width, this.height);
+    pop();
   }
 }
-
-// If user overlaps with the fire, fail state is triggered
-checkOverlap(fire) {
-  if (this.x > fire.x - fire.height / 2 &&
-    this.x > fire.x - fire.width / 2 &&
-    this.x < fire.x + fire.height / 2 &&
-    this.x < fire.x + fire.width / 2 &&
-    this.y > fire.y - fire.height / 2 &&
-    this.y > fire.y - fire.width / 2 &&
-    this.y < fire.y + fire.height / 2 &&
-    this.y < fire.y + fire.width / 2) {
-    state = `level5Fail`;
-  }
-}
-
-// Elf will bounce when it lands on snowflake
-bounce(snowflake) {
-  if (this.x > snowflake.x - snowflake.width / 2 &&
-    this.x < snowflake.x + snowflake.width / 2 &&
-    this.y + this.size / 2 > snowflake.y - snowflake.height / 2 &&
-    this.y - this.size / 2 < snowflake.y + snowflake.height / 2) {
-
-    // Bounce
-    let dx = this.x - snowflake.x;
-    this.vx = this.vx + map(dx, -snowflake.width / 2, snowflake.width / 2, -2, 2);
-
-    this.vy = -this.vy;
-    this.ay = 0;
-  }
-}
-
-// Displaying the falling elf image
-display() {
-  push();
-  imageMode(CENTER);
-  image(this.image, this.x, this.y, this.width, this.height);
-  pop();
-}
- }

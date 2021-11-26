@@ -7,7 +7,7 @@ Project 2, final CART 253 project.
 
 "use strict";
 
-let state = `level5`;
+let state = `start`;
 /* Could be start, intro, level1, level1Fail, level2,
 level2Fail, level3, level3Fail, level4, level4Fail, level5, level5Fail, level6, level6Fail, level7, final */
 
@@ -80,7 +80,6 @@ let snowflake;
 let fallingElfL5;
 // Defining force of gravity
 let gravityForce = 0.0025;
-
 
 let snowflakeImage;
 
@@ -302,7 +301,8 @@ function setup() {
   // Displaying fire image
   fire = new FireL5(fireImage);
 
-fallingElfL5 = new FallingElfL5(fallingElfImage);
+  // Displaying falling elf image
+  fallingElfL5 = new FallingElfL5(fallingElfImage);
 }
 
 /**
@@ -541,25 +541,27 @@ function level5() {
 
   // Display snowflake image
   snowflake.display();
-  //
+  // Snowflake appears when `5` is pressed
   snowflake.keyPressed();
-  //
+  // Snowflake is controlled using mouse
   snowflake.handleInput();
 
   // Display falling elf
-fallingElfL5.display();
-//
-fallingElfL5.gravity(gravityForce);
-//
-fallingElfL5.move();
-//
-fallingElfL5.checkOverlap(fire);
-//
-fallingElfL5.bounce(snowflake);
+  fallingElfL5.display();
+  // Adding gravity to elf
+  fallingElfL5.gravity(gravityForce);
+  // Allowing elf to move
+  fallingElfL5.move();
+  // Checking when elf and fire have overlapped
+  fallingElfL5.checkOverlap(fire);
+  // Elf will bounce off of snowflake
+  fallingElfL5.bounce(snowflake);
 }
 
 /* State that appears when user lands in fire : LEVEL5FAIL */
 function level5Fail() {
+
+  // Display level 5 fail image
   background(level5EndImage);
 }
 
