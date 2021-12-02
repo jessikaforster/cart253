@@ -149,7 +149,7 @@ function preload() {
   stockingImage = loadImage("assets/images/level2/stocking.png");
 
   // Loading images to be used into code : LEVEL 3
-  level3Image = loadImage("assets/images/level3/level3Bg.jpg");
+  level3Image = loadImage("assets/images/level3/level3bg.jpg");
 
   // Loading images to be used into code : LEVEL 4
   fallingElfImage = loadImage("assets/images/level4/fallingelf.gif");
