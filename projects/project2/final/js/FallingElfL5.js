@@ -1,12 +1,15 @@
 class FallingElfL5 {
   // Defining variables for falling elf in level 5
-  constructor(fallingElfImage) {
+  constructor(fallingElfImage2) {
     this.x = width / 2;
     this.y = -400;
-    this.width = 400;
-    this.height = 400;
+    this.size = 400;
+    this.vx = 0;
+    this.vy = 0;
+    this.ax = 0;
+    this.ay = 0;
     this.maxSpeed = 12;
-    this.image = fallingElfImage;
+    this.image = fallingElfImage2;
     this.active = true;
   }
 
@@ -51,8 +54,8 @@ class FallingElfL5 {
   bounce(snowflake) {
     if (this.x > snowflake.x - snowflake.width / 2 &&
       this.x < snowflake.x + snowflake.width / 2 &&
-      this.y + this.size / 2 > snowflake.y - snowflake.height / 2 &&
-      this.y - this.size / 2 < snowflake.y + snowflake.height / 2) {
+      this.y + this.size / 3 > snowflake.y - snowflake.height / 2 &&
+      this.y - this.size / 3 < snowflake.y + snowflake.height / 2) {
 
       // Bounce
       let dx = this.x - snowflake.x;
@@ -66,8 +69,7 @@ class FallingElfL5 {
   // Displaying the falling elf image
   display() {
     push();
-    imageMode(CENTER);
-    image(this.image, this.x, this.y, this.width, this.height);
+    image(this.image, this.x, this.y, this.size, this.size);
     pop();
   }
 }

@@ -7,7 +7,7 @@ Project 2, final CART 253 project.
 
 "use strict";
 
-let state = `start`;
+let state = `level5`;
 /* Could be start, intro, level1, level1Fail, level2,
 level2Fail, level3, level3Fail, level4, level4Fail, level5, level5Fail, level6, level6Fail, level7, final */
 
@@ -74,10 +74,12 @@ let numRaccoons = 3;
 let fireImage;
 let stillBrick;
 
+let fallingElfImage2;
+
 let fire;
 let snowflake;
 
-let fallingElfL5;
+let fallingElf2;
 // Defining force of gravity
 let gravityForce = 0.0025;
 
@@ -164,6 +166,8 @@ function preload() {
   stillBrick = loadImage("assets/images/level5/stillbrick.gif");
 
   snowflakeImage = loadImage("assets/images/level5/snowflake.png");
+
+  fallingElfImage2 = loadImage("assets/images/level5/fallingelf2.gif");
 
   // Loading images to be used into code : LEVEL 6
   scrollImage = loadImage("assets/images/level6/scroll.jpg");
@@ -302,7 +306,7 @@ function setup() {
   fire = new FireL5(fireImage);
 
   // Displaying falling elf image
-  fallingElfL5 = new FallingElfL5(fallingElfImage);
+  fallingElf2 = new FallingElfL5(fallingElfImage2);
 }
 
 /**
@@ -547,15 +551,15 @@ function level5() {
   snowflake.handleInput();
 
   // Display falling elf
-  fallingElfL5.display();
+  fallingElf2.display();
   // Adding gravity to elf
-  fallingElfL5.gravity(gravityForce);
+  fallingElf2.gravity(gravityForce);
   // Allowing elf to move
-  fallingElfL5.move();
+  fallingElf2.move();
   // Checking when elf and fire have overlapped
-  fallingElfL5.checkOverlap(fire);
+  fallingElf2.checkOverlap(fire);
   // Elf will bounce off of snowflake
-  fallingElfL5.bounce(snowflake);
+  fallingElf2.bounce(snowflake);
 }
 
 /* State that appears when user lands in fire : LEVEL5FAIL */
@@ -648,6 +652,9 @@ function keyPressed() {
   if (keyCode === 32) {
     if (state === `intro`) {
       state = `level1`;
+    }
+    if (state===`level1Fail`) {
+      state=`level1`;
     }
   }
 }
