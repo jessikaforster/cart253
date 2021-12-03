@@ -131,16 +131,16 @@ function preload() {
   startImage = loadImage("assets/images/start.jpg");
 
   // Loading intro animation : INTRO
-  introAnim = loadImage("assets/images/intro.jpg");
+  introAnim = loadImage("assets/images/intro.gif");
 
   // Loading images to be used into code : LEVEL 1
   bluejayImage = loadImage("assets/images/level1/bluejay.gif");
   cardinalImage = loadImage("assets/images/level1/cardinal.gif");
   sparrowImage = loadImage("assets/images/level1/sparrow.gif");
 
-  sleighImage = loadImage("assets/images/level1/reindeer.png");
+  sleighImage = loadImage("assets/images/level1/reindeer.gif");
 
-  snowfall = loadImage("assets/images/snowbg.jpg");
+  snowfall = loadImage("assets/images/snowbg.gif");
 
   // Loading images to be used into code : LEVEL 2
   giftImage = loadImage("assets/images/level2/level2Gift.png");
@@ -160,7 +160,7 @@ function preload() {
   movingBrick = loadImage("assets/images/level4/movingbrick.gif");
 
   // Loading images to be used into code : LEVEL 5
-  fireImage = loadImage("assets/images/level5/fire.png");
+  fireImage = loadImage("assets/images/level5/fire.gif");
   stillBrick = loadImage("assets/images/level5/stillbrick.gif");
 
   snowflakeImage = loadImage("assets/images/level5/snowflake.png");
