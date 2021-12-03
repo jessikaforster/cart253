@@ -95,7 +95,7 @@ let giftText = `What is the missing gift?`;
 // A variable to track what the user has typed so far
 let currentInput = ``;
 // Indent from the left margin
-let indent = 20;
+let indent = 30;
 
 // Declaring all images that will be used : LEVEL 7
 let finalGiftImage;
@@ -665,8 +665,9 @@ function hideDialog() {
 }
 
 function typeAnswer() {
-textSize(100);
+textSize(150);
 textAlign(LEFT, CENTER);
+textFont(`Gwendolyn`);
 fill(0);
 // Display the question
 push();
