@@ -7,7 +7,7 @@ Project 2, final CART 253 project.
 
 "use strict";
 
-let state = `level5`;
+let state = `level6`;
 /* Could be start, intro, level1, level1Fail, level2,
 level2Fail, level3, level3Fail, level4, level4Fail, level5, level5Fail, level6, level6Fail, level7, final */
 
@@ -87,6 +87,15 @@ let snowflakeImage;
 
 // Declaring all images that will be used : LEVEL 6
 let scrollImage;
+
+// The missing gift the user needs to type in correctly
+let missingGift = `phone`;
+// The question being asked
+let giftText = `What is the missing gift?`;
+// A variable to track what the user has typed so far
+let currentInput = ``;
+// Indent from the left margin
+let indent = 20;
 
 // Declaring all images that will be used : LEVEL 7
 let finalGiftImage;
@@ -576,6 +585,12 @@ function level6() {
 
   // Display scroll page as background
   background(scrollImage);
+
+
+  typeAnswer();
+  keyPressed();
+  inputIsCorrect();
+  keyTyped();
 }
 
 /* State that appears when gift was incorrectly guessed : LEVEL7FAIL */
@@ -649,6 +664,56 @@ function hideDialog() {
   }
 }
 
+function typeAnswer() {
+textSize(100);
+textAlign(LEFT, CENTER);
+fill(0);
+// Display the question
+push();
+text(giftText, indent, height / 2.5);
+pop();
+
+// Display the current input from the user
+push();
+// If they've got it right, make the input green
+if (inputIsCorrect()) {
+  state=`level7`;
+}
+else {
+  // If incorrect colour remains the same
+  fill(0);
+}
+// Calculate the height of a line of text, so we can
+// offset the answer just below the riddle
+let giftTextHeight = textAscent() + textDescent();
+text(currentInput, indent, height / 2.2 + giftTextHeight);
+pop();
+}
+
+/**
+Compares the current input text with the magic word and returns
+true if it's correct, and false otherwise
+*/
+function inputIsCorrect() {
+  // First convert the input to lower case so we can
+  // ignore any capitalization stuff
+  let lowerCaseInput = currentInput.toLowerCase();
+  // Check if the converted input is the same as the missing gift
+  if (lowerCaseInput === missingGift) {
+    return true;
+  }
+  else {
+    return false;
+  }
+}
+
+/**
+Add the typed key to the input string after converting it to upper case
+*/
+function keyTyped() {
+  currentInput += key.toLowerCase();
+}
+
 // Pressing spacebar triggers `level 1` when in `intro` : INTRO
 function keyPressed() {
   if (keyCode === 32) {
@@ -659,4 +724,11 @@ function keyPressed() {
       state=`level1`;
     }
   }
+
+/* Functions for typing in gift name : LEVEL 6 */
+
+  // If user presses backspace, it will delete what they have written so far : LEVEL 6
+ if (keyCode === BACKSPACE) {
+   currentInput = ``;
+ }
 }

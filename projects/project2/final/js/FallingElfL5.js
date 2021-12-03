@@ -52,6 +52,7 @@ class FallingElfL5 {
 
   // Elf will bounce when it lands on snowflake
   bounce(snowflake) {
+    if (snowflake.visible) {
     if (this.x > snowflake.x - snowflake.width / 2 &&
       this.x < snowflake.x + snowflake.width / 2 &&
       this.y + this.size / 3 > snowflake.y - snowflake.height / 2 &&
@@ -63,6 +64,7 @@ class FallingElfL5 {
 
       this.vy = -this.vy;
       this.ay = 0;
+      }
     }
   }
 
