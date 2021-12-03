@@ -66,6 +66,12 @@ class FallingElfL5 {
     }
   }
 
+  success() {
+    if (this.y > height) {
+      state=`level6`;
+    }
+  }
+
   // Displaying the falling elf image
   display() {
     push();

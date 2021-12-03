@@ -560,6 +560,8 @@ function level5() {
   fallingElf2.checkOverlap(fire);
   // Elf will bounce off of snowflake
   fallingElf2.bounce(snowflake);
+
+  fallingElf2.success();
 }
 
 /* State that appears when user lands in fire : LEVEL5FAIL */
