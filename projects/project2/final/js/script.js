@@ -7,7 +7,7 @@ Project 2, final CART 253 project.
 
 "use strict";
 
-let state = `level6`;
+let state = `level7`;
 /* Could be start, intro, level1, level1Fail, level2,
 level2Fail, level3, level3Fail, level4, level4Fail, level5, level5Fail, level6, level6Fail, level7, final */
 
@@ -100,6 +100,8 @@ let indent = 30;
 // Declaring all images that will be used : LEVEL 7
 let finalGiftImage;
 let treeImage;
+
+let finalGift;
 
 // Declaring all ending state images : LEVEL 1 TO 5
 let level1EndImage;
@@ -316,6 +318,12 @@ function setup() {
 
   // Displaying falling elf image
   fallingElf2 = new FallingElfL5(fallingElfImage2);
+
+  /* Setup for LEVEL 6 */
+
+  /* Setup for LEVEL 7 */
+
+  finalGift = new FinalGiftL7(finalGiftImage);
 }
 
 /**
@@ -603,6 +611,12 @@ function level7() {
 
   // Display room with Christmas tree image
   background(treeImage);
+  // Display final gift image
+  finalGift.display();
+  // When mouse is pressed on gift, it follows the mouse position
+  finalGift.mousePressed();
+  // When gift is placed under tree, final state is triggered
+  finalGift.underTree();
 }
 
 /* State that appears when entire mission is complete : FINAL */
@@ -664,31 +678,33 @@ function hideDialog() {
   }
 }
 
-function typeAnswer() {
-textSize(150);
-textAlign(LEFT, CENTER);
-textFont(`Gwendolyn`);
-fill(0);
-// Display the question
-push();
-text(giftText, indent, height / 2.5);
-pop();
+/* Functions for typing in gift name : LEVEL 6 */
 
-// Display the current input from the user
-push();
-// If they've got it right, make the input green
-if (inputIsCorrect()) {
-  state=`level7`;
-}
-else {
-  // If incorrect colour remains the same
+function typeAnswer() {
+  // Display the question
+  push();
+  text(giftText, indent, height / 2.5);
+  pop();
+
+  // Display the current input from the user
+  push();
+  // If the answer is correct, next level begins
+  if (inputIsCorrect()) {
+    state = `level7`;
+  } else {
+    // If incorrect colour remains black and text changes
+    fill(0);
+  }
+  // Calculate question position for answer to be right underneath
+  let giftTextHeight = textAscent() + textDescent();
+  text(currentInput, indent, height / 2.3 + giftTextHeight);
+  pop();
+
+  // Text size, position, font and colour (black)
+  textSize(150);
+  textAlign(LEFT, CENTER);
+  textFont(`Gwendolyn`);
   fill(0);
-}
-// Calculate the height of a line of text, so we can
-// offset the answer just below the riddle
-let giftTextHeight = textAscent() + textDescent();
-text(currentInput, indent, height / 2.2 + giftTextHeight);
-pop();
 }
 
 /**
@@ -702,14 +718,13 @@ function inputIsCorrect() {
   // Check if the converted input is the same as the missing gift
   if (lowerCaseInput === missingGift) {
     return true;
-  }
-  else {
+  } else {
     return false;
   }
 }
 
 /**
-Add the typed key to the input string after converting it to upper case
+Add the typed key to the input string after converting it to lower case
 */
 function keyTyped() {
   currentInput += key.toLowerCase();
@@ -721,15 +736,13 @@ function keyPressed() {
     if (state === `intro`) {
       state = `level1`;
     }
-    if (state===`level1Fail`) {
-      state=`level1`;
+    if (state === `level1Fail`) {
+      state = `level1`;
     }
   }
 
-/* Functions for typing in gift name : LEVEL 6 */
-
   // If user presses backspace, it will delete what they have written so far : LEVEL 6
- if (keyCode === BACKSPACE) {
-   currentInput = ``;
- }
+  if (keyCode === BACKSPACE) {
+    currentInput = ``;
+  }
 }
