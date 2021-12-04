@@ -2,7 +2,7 @@ class FallingElfL5 {
   // Defining variables for falling elf in level 5
   constructor(fallingElfImage2) {
     this.x = width / 2;
-  // Elf drops from high enough that user can read instructions
+    // Elf drops from high enough that user can read instructions
     this.y = -2000;
     this.size = 400;
     this.vx = 0;
@@ -37,6 +37,15 @@ class FallingElfL5 {
     }
   }
 
+  keyPressed() {
+    // Pressing spacebar will make elf return to initial y position and state will change to `level5`
+if (keyCode === 32) {
+      this.y = -2000;
+      this.x = width / 2;
+      state = `level5`;
+    }
+  }
+
   // If user overlaps with the fire, fail state is triggered
   checkOverlap(fire) {
     if (this.x > fire.x - fire.height / 2 &&
@@ -54,24 +63,24 @@ class FallingElfL5 {
   // Elf will bounce when it lands on snowflake
   bounce(snowflake) {
     if (snowflake.visible) {
-    if (this.x > snowflake.x - snowflake.width / 2 &&
-      this.x < snowflake.x + snowflake.width / 2 &&
-      this.y + this.size / 3 > snowflake.y - snowflake.height / 2 &&
-      this.y - this.size / 3 < snowflake.y + snowflake.height / 2) {
+      if (this.x > snowflake.x - snowflake.width / 2 &&
+        this.x < snowflake.x + snowflake.width / 2 &&
+        this.y + this.size / 3 > snowflake.y - snowflake.height / 2 &&
+        this.y - this.size / 3 < snowflake.y + snowflake.height / 2) {
 
-      // Bounce
-      let dx = this.x - snowflake.x;
-      this.vx = this.vx + map(dx, -snowflake.width / 2, snowflake.width / 2, -2, 2);
+        // Bounce
+        let dx = this.x - snowflake.x;
+        this.vx = this.vx + map(dx, -snowflake.width / 2, snowflake.width / 2, -2, 2);
 
-      this.vy = -this.vy;
-      this.ay = 0;
+        this.vy = -this.vy;
+        this.ay = 0;
       }
     }
   }
 
   success() {
     if (this.y > height) {
-      state=`level6`;
+      state = `level6`;
     }
   }
 

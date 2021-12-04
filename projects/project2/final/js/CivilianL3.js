@@ -25,6 +25,14 @@ class CivilianL3 {
     this.y = constrain(this.y, 0, height);
   }
 
+  keyPressed() {
+    if (keyCode === 32) {
+          this.y = random(0, height);
+          this.x = random(width / 2, width);;
+          state = `level3`;
+        }
+      }
+
   // Display civilians as red circles
   display() {
     push();

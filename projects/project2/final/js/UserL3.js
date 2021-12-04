@@ -36,10 +36,18 @@ class UserL3 {
     }
   }
 
+  keyPressed() {
+    if (keyCode === 32) {
+          this.y = height / 6;
+          this.x = 0;
+          state = `level3`;
+        }
+      }
+
   // When user reaches other side of screen, level 4 begins
   checkExit() {
     if (this.x > width) {
-      state = `level4`;
+      state = `level4Intro`;
     }
   }
 

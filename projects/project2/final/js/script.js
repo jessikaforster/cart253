@@ -7,7 +7,7 @@ Project 2, final CART 253 project.
 
 "use strict";
 
-let state = `level6Fail`;
+let state = `level1`;
 /* Could be start, intro, level1, level1Fail, level2, level3, level3Fail,
 level4Intro, level4, level4Fail, level5, level5Fail, level6, level6Fail, level7, final */
 
@@ -436,7 +436,10 @@ function level1Fail() {
   // Displaying level 1 end image as background
   background(level1EndImage);
   // Pressing spacebar triggers `level 1` state
-  keyPressed();
+  for (let i = 0; i < birds.length; i++) {
+    let bird = birds[i];
+bird.keyPressed();
+  }
 }
 
 /* Level 2 state : LEVEL 2 */
@@ -523,7 +526,12 @@ function level3Fail() {
   // Display end image for level 3
   background(level3EndImage);
   // Pressing spacebar triggers `level 3` state
-  keyPressed();
+  userL3.keyPressed();
+
+  for (let i = 0; i < civilians.length; i++) {
+    let civilian = civilians[i];
+    civilian.keyPressed();
+  }
 }
 
 /* State to give instructions for level 4 : LEVEL 4 INTRO */
@@ -616,8 +624,10 @@ function level5() {
 function level5Fail() {
   // Display level 5 fail image
   background(level5EndImage);
-  // Pressing spacebar triggers `level 5` state
-  keyPressed();
+// Pressing spacebar will make snowflake disappear and state will change to `level5`
+  snowflake.keyPressed();
+  // Pressing spacebar will make elf return to initial y position and state will change to `level5`
+  fallingElf2.keyPressed();
 }
 
 /* Level 6 state : LEVEL 6 */
@@ -798,21 +808,9 @@ function keyPressed() {
     if (state === `intro`) {
       state = `level1`;
     }
-    // When spacebar is pressed, state changes from `level1Fail` to `level1` : LEVEL 1 FAIL
-    if (state === `level1Fail`) {
-      state = `level1`;
-    }
-    // When spacebar is pressed, state changes from `level3Fail` to `level3` : LEVEL 3 FAIL
-    if (state === `level3Fail`) {
-      state = `level3`;
-    }
     // When spacebar is pressed, state changes from `level4Fail` to `level4` : LEVEL 4 FAIL
     if (state === `level4Fail`) {
       state = `level4`;
-    }
-    // When spacebar is pressed, state changes from `level5Fail` to `level5` : LEVEL 5 FAIL
-    if (state === `level5Fail`) {
-      state = `level5`;
     }
     // When spacebar is pressed, state changes from `level4Intro` to `level4` : LEVEL 4 INTRO
     if (state === `level4Intro`) {

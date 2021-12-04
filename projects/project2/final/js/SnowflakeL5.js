@@ -9,10 +9,16 @@ class SnowflakeL5 {
     this.visible = false;
   }
 
-  // Pressing number `5` will make snowflake appear
+
   keyPressed() {
+    // Pressing number `5` will make snowflake appear
     if (keyCode === 53) {
       this.visible = true;
+    }
+    // Pressing spacebar will make snowflake disappear and state will change to `level5`
+    if (keyCode === 32) {
+      this.visible = false;
+      state = `level5`;
     }
   }
 

@@ -7,6 +7,14 @@ class CardinalL1 extends BirdL1 {
     this.height = 100;
   }
 
+  keyPressed() {
+    if (keyCode === 32) {
+          this.y = random(0, height);
+          this.x = random(width / 2, width);;
+          state = `level1`;
+        }
+      }
+
   // Displaying the cardinal image
   display() {
     super.display();
