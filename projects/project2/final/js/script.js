@@ -595,7 +595,13 @@ function level5() {
 
   // Display brick background
   background(stillBrick);
-  keyPressed();
+
+  push();
+  cornerText();
+  text(`Use your magic to make a snowflake to catch your fall`, width / 24, height / 16);
+  text(`A specific number key will summon it!`, width / 24, height / 9);
+  pop();
+
   push();
   // Display fire image
   fire.display();
@@ -628,6 +634,7 @@ function level5() {
 
 /* State that appears when user lands in fire : LEVEL5FAIL */
 function level5Fail() {
+  keyPressed();
   push();
   // Display level 5 fail image
   background(level5EndImage);
