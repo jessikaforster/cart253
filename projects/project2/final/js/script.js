@@ -7,7 +7,7 @@ Project 2, final CART 253 project.
 
 "use strict";
 
-let state = `level1`;
+let state = `level5`;
 /* Could be start, intro, level1, level1Fail, level2, level3, level3Fail,
 level4Intro, level4, level4Fail, level5, level5Fail, level6, level6Fail, level7, final */
 
@@ -445,6 +445,10 @@ function level2() {
   // Display snowfall animation
   background(snowfall);
 
+  missingLetters();
+  text(`H`, width / 30, height / 1.3);
+  fill(26, 72, 122);
+
   push();
   cornerText();
   text(`Some gifts fell out on the way!`, width / 24, height / 16);
@@ -500,6 +504,10 @@ function level3() {
   text(`Use the arrow keys to make it to the other side while staying as far away as possible from the civilians`, width / 24, height / 9);
   pop();
 
+  missingLetters();
+  text(`O`, width / 2, height / 1.2);
+  fill(125, 79, 66);
+
   // For loop to create and display civilians
   for (let i = 0; i < civilians.length; i++) {
     let civilian = civilians[i];
@@ -539,7 +547,6 @@ function level4() {
 
   // Display moving brick animation
   background(movingBrick);
-  keyPressed();
   // Display falling elf image
   fallingElf.display();
 
@@ -568,6 +575,10 @@ function level4() {
     // Check when elf and animal overlap and trigger `level4Fail` state
     fallingElf.checkHit(animal);
   }
+
+  missingLetters();
+  text(`N`, width / 1.1, height / 1.1);
+  fill(46, 19, 12);
 }
 
 /* State that appears when user runs into animal : LEVEL4FAIL */
@@ -609,6 +620,10 @@ function level5() {
 
   fallingElf2.success();
   pop();
+
+  missingLetters();
+  text(`E`, width / 27, height / 20);
+  fill(46, 19, 12);
 }
 
 /* State that appears when user lands in fire : LEVEL5FAIL */
