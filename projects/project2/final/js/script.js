@@ -7,7 +7,7 @@ Project 2, final CART 253 project.
 
 "use strict";
 
-let state = `level5`;
+let state = `level7`;
 /* Could be start, intro, level1, level1Fail, level2, level3, level3Fail,
 level4Intro, level4, level4Fail, level5, level5Fail, level6, level6Fail, level7, final */
 
@@ -657,7 +657,8 @@ function level6() {
 
 /* State that appears when gift was incorrectly guessed : LEVEL7FAIL */
 function level6Fail() {
-
+  // Display scroll page as background
+  background(scrollImage);
 }
 
 /* Level 7 state : LEVEL 7 */
@@ -665,6 +666,12 @@ function level7() {
 
   // Display room with Christmas tree image
   background(treeImage);
+
+  push();
+  cornerText();
+  text(`Place the gift under the Christmas tree`, width / 24, height / 16);
+  pop();
+
   // Display final gift image
   finalGift.display();
   // When mouse is pressed on gift, it follows the mouse position
