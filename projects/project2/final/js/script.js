@@ -7,7 +7,7 @@ Project 2, final CART 253 project.
 
 "use strict";
 
-let state = `level7`;
+let state = `level6Fail`;
 /* Could be start, intro, level1, level1Fail, level2, level3, level3Fail,
 level4Intro, level4, level4Fail, level5, level5Fail, level6, level6Fail, level7, final */
 
@@ -659,6 +659,15 @@ function level6() {
 function level6Fail() {
   // Display scroll page as background
   background(scrollImage);
+
+text(`You couldn't figure out what the missing gift was...`, width / 2, height / 3.5);
+text(`Time to go back to the North Pole and`, width / 2, height / 2.3);
+text(`let Santa know the mission wasn't completed...`, width / 2, height / 1.9);
+text(`Refresh to restart`, width / 2, height / 1.4);
+  textSize(100);
+  textAlign(CENTER, CENTER);
+  textFont(`Gwendolyn`);
+  fill(0);
 }
 
 /* Level 7 state : LEVEL 7 */
