@@ -11,17 +11,43 @@ let state = `level6Fail`;
 /* Could be start, intro, level1, level1Fail, level2, level3, level3Fail,
 level4Intro, level4, level4Fail, level5, level5Fail, level6, level6Fail, level7, final */
 
-// Array to display all 3 kinds of birds: LEVEL 1
-let birds = [];
-let numBluejays = 3;
-let numSparrows = 3;
-let numCardinals = 3;
-
 // Declaring all images that will be used : START
 let startImage;
 
 // Declaring all images that will be used : INTRO
 let introAnim;
+
+// The lines that will appear in intro : INTRO
+let dialogStrings = [
+  `Santa: Alright great job everyone, it looks like another Christmas will pass successfully`,
+  `Head Elf: Um…Santa actually…There’s 1 gift that wasn’t delivered`,
+  `Santa: WHAT?! Where’s the new elf?`,
+  `Head Elf: Here Santa sir`,
+  `Santa:	Now’s your chance to get on my good list, find the missing gift and deliver it successfully to save Christmas!`,
+  `Santa:	Your first obstacle will be the birds. Move your mouse up and down to dodge them.`,
+  `Santa:	Press space to start your mission!`
+];
+
+// Setting the dialog to start from the first line : INTRO
+let currentDialogString = 0;
+
+// Defining all variables related to dialog box : INTRO
+let dialogBox = {
+  x: undefined,
+  y: undefined,
+  string: ``,
+  visible: false,
+  width: 500,
+  height: 300,
+  padding: 20,
+  duration: 3000
+};
+
+// Array to display all 3 kinds of birds: LEVEL 1
+let birds = [];
+let numBluejays = 3;
+let numSparrows = 3;
+let numCardinals = 3;
 
 // Declaring all images that will be used : LEVEL 1
 let sleigh;
@@ -68,7 +94,7 @@ let fallingElf;
 let mouseImage = undefined;
 let raccoonImage = undefined;
 
-// Arrays to display falling candycanes and gifts: LEVEL 4
+// Arrays to display mice and raccoons: LEVEL 4
 let animals = [];
 let numMice = 3;
 let numRaccoons = 3;
@@ -83,14 +109,15 @@ let fire;
 let snowflake;
 
 let fallingElf2;
-// Defining force of gravity
+// Defining force of gravity for falling elf
 let gravityForce = 0.0025;
 
 let snowflakeImage;
 
-// Declaring all images that will be used : LEVEL 6
+// Declaring all images that will be used : LEVEL 6 & LEVEL 6 FAIL
 let scrollImage;
 
+/* Variables for level 6 text : LEVEL 6 */
 // The missing gift the user needs to type in correctly
 let missingGift = `phone`;
 // The question being asked
@@ -106,7 +133,7 @@ let treeImage;
 
 let finalGift;
 
-// Declaring all ending state images : LEVEL 1 TO 5
+// Declaring all ending state images : LEVEL 1, 3, 4 & 5
 let level1EndImage;
 let level3EndImage;
 let level4EndImage;
@@ -115,31 +142,6 @@ let level5EndImage;
 // Declaring final image : FINAL
 let finalImage;
 
-// The lines that will appear in intro : INTRO
-let dialogStrings = [
-  `Santa: Alright great job everyone, it looks like another Christmas will pass successfully`,
-  `Head Elf: Um…Santa actually…There’s 1 gift that wasn’t delivered`,
-  `Santa: WHAT?! Where’s the new elf?`,
-  `Head Elf: Here Santa sir`,
-  `Santa:	Now’s your chance to get on my good list, find the missing gift and deliver it successfully to save Christmas!`,
-  `Santa:	Your first obstacle will be the birds. Move your mouse up and down to dodge them.`,
-  `Santa:	Press space to start your mission!`
-];
-
-// Setting the dialog to start from the first line : INTRO
-let currentDialogString = 0;
-
-// Defining all variables related to dialog box : INTRO
-let dialogBox = {
-  x: undefined,
-  y: undefined,
-  string: ``,
-  visible: false,
-  width: 500,
-  height: 300,
-  padding: 20,
-  duration: 3000
-};
 
 // Loading all images to be used into code
 function preload() {
@@ -195,7 +197,7 @@ function preload() {
 
   treeImage = loadImage("assets/images/level7/tree.gif");
 
-  // Loading all ending state images : LEVEL 1 TO 5
+  // Loading all ending state images : LEVEL 1, 3, 4 & 5
   level1EndImage = loadImage("assets/images/level1/level1-end.jpg");
   level3EndImage = loadImage("assets/images/level3/level3-end.jpg");
   level4EndImage = loadImage("assets/images/level4/level4-end.jpg");
@@ -205,17 +207,21 @@ function preload() {
   finalImage = loadImage("assets/images/final.jpg");
 }
 
+
 /**
 Creating the canvas to fill the user's window size
 */
 function setup() {
   createCanvas(windowWidth, windowHeight);
 
+  /* Setup for INTRO */
+
   // Dialog box position : INTRO
   dialogBox.x = width / 6;
   dialogBox.y = height / 1.15;
 
   /* Setup for LEVEL 1 */
+
   // Displaying sleigh image
   sleigh = new SleighL1(sleighImage);
 
@@ -250,6 +256,7 @@ function setup() {
   }
 
   /* Setup for LEVEL 2 */
+
   // Displaying stocking image
   stocking = new StockingL2(stockingImage);
 
@@ -285,10 +292,11 @@ function setup() {
     civilians.push(civilian);
   }
 
-  // Displaying user image
+  // Displaying user circle
   userL3 = new UserL3;
 
   /* Setup for LEVEL 4 */
+
   // Displaying falling elf image
   fallingElf = new FallingElfL4(fallingElfImage);
 
@@ -325,15 +333,14 @@ function setup() {
   // Displaying falling elf image
   fallingElf2 = new FallingElfL5(fallingElfImage2);
 
-  /* Setup for LEVEL 6 */
-
   /* Setup for LEVEL 7 */
 
+  // Displaying final gift image
   finalGift = new FinalGiftL7(finalGiftImage);
 }
 
 /**
-Displaying the background image and defining all states
+Defining all states within game
 */
 function draw() {
 
@@ -372,21 +379,22 @@ function draw() {
   }
 }
 
+/* Functions for all states */
+
 /* Starting screen state : START */
 function start() {
-
-  // Displaying starting image
+  // Displaying starting image as background
   background(startImage);
 }
 /* Intro state before game begins : INTRO */
 function intro() {
-  // Displaying intro animation
+  // Displaying intro animation as background
   background(introAnim);
   // Displaying dialog
   displayDialog();
   // Pressing the spacebar after dialog will begin level 1
   keyPressed();
-  // Display text in top left corner
+  // Display intruction text in top left corner
   push();
   cornerText();
   text(`Click to view dialogue...`, width / 24, height / 16);
@@ -395,18 +403,14 @@ function intro() {
 
 /* Level 1 state : LEVEL 1 */
 function level1() {
-
-  // Display snowfall animation
+  // Display snowfall animation as background
   background(snowfall);
-
   // Display user-controlled image
   sleigh.display();
-
   // If user gets hit by a bird, `level1Fail` state is triggered
   if (!sleigh.dodged) {
     state = `level1Fail`;
   }
-
   // For loop to create all of the birds along with all statements from Bird class
   for (let i = 0; i < birds.length; i++) {
     let bird = birds[i];
@@ -416,57 +420,47 @@ function level1() {
     bird.wiggle();
     bird.numDodges();
     bird.checkExit();
-
     // User control for sleigh image
     sleigh.handleInput();
-
     // Check when bird and sleigh overlap
     sleigh.checkHit(bird);
   }
-
+  // Displaying first letter from missing gift name
   missingLetters();
   text(`P`, width / 1.3, height / 16);
   fill(4, 34, 66);
 }
 
-/* State that appears when user fails to dodge a bird : LEVEL1FAIL */
+/* State that appears when user fails to dodge a bird : LEVEL 1 FAIL */
 function level1Fail() {
-
-  // Displaying level 1 end image
+  // Displaying level 1 end image as background
   background(level1EndImage);
-
-  // Pressing spacebar restarts level 1
+  // Pressing spacebar triggers `level 1` state
   keyPressed();
 }
 
 /* Level 2 state : LEVEL 2 */
 function level2() {
-
   // Display snowfall animation
   background(snowfall);
-
+  // Displaying second letter from missing gift name
   missingLetters();
   text(`H`, width / 30, height / 1.3);
   fill(26, 72, 122);
-
+  // Displaying instructions for level 2
   push();
   cornerText();
   text(`Some gifts fell out on the way!`, width / 24, height / 16);
   text(`Use left and right arrow keys to move the stocking and catch the gifts`, width / 24, height / 9);
   pop();
-
   // Control stocking image using left and right arrow keys
   stocking.handleInput();
-
   // Display stocking image
   stocking.display();
-
   // Allow stocking to move
   stocking.move();
-
   // Initial number of gifts falling
   let numActiveFallingGifts = 0;
-
   // For loop to display all falling gifts
   for (let i = 0; i < fallingGifts.length; i++) {
     let fallingGift = fallingGifts[i];
@@ -481,11 +475,9 @@ function level2() {
     }
     // Display falling gifts
     fallingGift.display();
-
     // Check when falling gift and stocking overlap
     fallingGift.checkGift(stocking);
   }
-
   // If the number of gifts falling reaches 0, the next level begins
   if (numActiveFallingGifts === 0) {
     state = `level3`;
@@ -494,20 +486,18 @@ function level2() {
 
 /* Level 3 state : LEVEL 3 */
 function level3() {
-
   // Display background image for level 3
   background(level3Image);
-
   push();
+  // Displaying instructions
   cornerText();
   text(`You've arrived in the town, but not everyone is asleep...`, width / 24, height / 16);
   text(`Use the arrow keys to make it to the other side while staying as far away as possible from the civilians`, width / 24, height / 9);
   pop();
-
+  // Displaying third letter from missing gift name
   missingLetters();
   text(`O`, width / 2, height / 1.2);
   fill(125, 79, 66);
-
   // For loop to create and display civilians
   for (let i = 0; i < civilians.length; i++) {
     let civilian = civilians[i];
@@ -518,7 +508,6 @@ function level3() {
     // Check distance between user and civilian, if too close, fail state is triggered
     userL3.checkDist(civilian);
   }
-
   // Allow user to move
   userL3.move();
   // Allow arrow keys to control user movement
@@ -529,36 +518,35 @@ function level3() {
   userL3.checkExit();
 }
 
-/* State that appears when user is too close to civilian : LEVEL3FAIL */
+/* State that appears when user is too close to civilian : LEVEL 3 FAIL */
 function level3Fail() {
-
   // Display end image for level 3
   background(level3EndImage);
+  // Pressing spacebar triggers `level 3` state
+  keyPressed();
 }
 
+/* State to give instructions for level 4 : LEVEL 4 INTRO */
 function level4Intro() {
+  // Display instruction image
   background(level4StartImage);
-
+  // Press spacebar to begin level 4
   keyPressed();
 }
 
 /* Level 4 state : LEVEL 4 */
 function level4() {
-
   // Display moving brick animation
   background(movingBrick);
   // Display falling elf image
   fallingElf.display();
-
   // If user gets hit by an animal, `level4Fail` state is triggered
   if (!fallingElf.dodged) {
     state = `level4Fail`;
   }
-
   // For loop to create all of the animals from the Animal class
   for (let i = 0; i < animals.length; i++) {
     let animal = animals[i];
-
     // Add movement to animals
     animal.move();
     // Animals appear at top of screen when they reach the bottom
@@ -569,50 +557,43 @@ function level4() {
     animal.numDodges();
     // Check when animal was dodged
     animal.checkExit();
-
     // User control
     fallingElf.handleInput();
     // Check when elf and animal overlap and trigger `level4Fail` state
     fallingElf.checkHit(animal);
   }
-
+  // Displaying fourth letter from missing gift name
   missingLetters();
   text(`N`, width / 1.1, height / 1.1);
   fill(46, 19, 12);
 }
 
-/* State that appears when user runs into animal : LEVEL4FAIL */
+/* State that appears when user runs into animal : LEVEL 4 FAIL */
 function level4Fail() {
-
   // Display level 4 fail state image
   background(level4EndImage);
-
+  // Pressing spacebar triggers `level 4` state
   keyPressed();
 }
 
 /* Level 5 state : LEVEL 5 */
 function level5() {
-
   // Display brick background
   background(stillBrick);
-
+  // Displaying instructions
   push();
   cornerText();
   text(`Use your magic to make a snowflake to catch your fall`, width / 24, height / 16);
   text(`A specific number key will summon it!`, width / 24, height / 9);
   pop();
-
-  push();
   // Display fire image
   fire.display();
-
   // Display snowflake image
   snowflake.display();
   // Snowflake appears when `5` is pressed
   snowflake.keyPressed();
   // Snowflake is controlled using mouse
   snowflake.handleInput();
-
   // Display falling elf
   fallingElf2.display();
   // Adding gravity to elf
@@ -623,34 +604,34 @@ function level5() {
   fallingElf2.checkOverlap(fire);
   // Elf will bounce off of snowflake
   fallingElf2.bounce(snowflake);
-
+  // When elf exits frame and dodges fire, level 6 begins
   fallingElf2.success();
-  pop();
-
+  // Displaying fifth and final letter from missing gift name
   missingLetters();
   text(`E`, width / 27, height / 20);
   fill(46, 19, 12);
 }
 
-/* State that appears when user lands in fire : LEVEL5FAIL */
+/* State that appears when user lands in fire : LEVEL 5 FAIL */
 function level5Fail() {
-  keyPressed();
-  push();
   // Display level 5 fail image
   background(level5EndImage);
-  pop();
+  // Pressing spacebar triggers `level 5` state
+  keyPressed();
 }
 
 /* Level 6 state : LEVEL 6 */
 function level6() {
-
   // Display scroll page as background
   background(scrollImage);
-
-
+  /* Defining text position, size, position, font, colour (black) and if typed
+  in word is correct, `level7` state is triggered */
   typeAnswer();
+  // If user presses backspace, it will delete what they have written so far
   keyPressed();
+  // Check if the converted input is the same as the missing gift
   inputIsCorrect();
+  // Add the typed key to the input string after converting it to lower case
   keyTyped();
 
 }
@@ -659,11 +640,12 @@ function level6() {
 function level6Fail() {
   // Display scroll page as background
   background(scrollImage);
-
-text(`You couldn't figure out what the missing gift was...`, width / 2, height / 3.5);
-text(`Time to go back to the North Pole and`, width / 2, height / 2.3);
-text(`let Santa know the mission wasn't completed...`, width / 2, height / 1.9);
-text(`Refresh to restart`, width / 2, height / 1.4);
+  // Display text that tells user that they must restart mission
+  text(`You couldn't figure out what the missing gift was...`, width / 2, height / 3.5);
+  text(`Time to go back to the North Pole and`, width / 2, height / 2.3);
+  text(`let Santa know the mission wasn't completed...`, width / 2, height / 1.9);
+  text(`Refresh to restart`, width / 2, height / 1.4);
+  // Defining text size, position, font and colour (black)
   textSize(100);
   textAlign(CENTER, CENTER);
   textFont(`Gwendolyn`);
@@ -672,15 +654,13 @@ text(`Refresh to restart`, width / 2, height / 1.4);
 
 /* Level 7 state : LEVEL 7 */
 function level7() {
-
   // Display room with Christmas tree image
   background(treeImage);
-
+  // Display instructions
   push();
   cornerText();
   text(`Place the gift under the Christmas tree`, width / 24, height / 16);
   pop();
-
   // Display final gift image
   finalGift.display();
   // When mouse is pressed on gift, it follows the mouse position
@@ -691,11 +671,13 @@ function level7() {
 
 /* State that appears when entire mission is complete : FINAL */
 function final() {
-
   // Display final success image
   background(finalImage);
 }
 
+/* Functions to be but into states */
+
+// Defining font size and font for letters of missing gift name
 function missingLetters() {
   textSize(30);
   textFont(`Roboto Mono`);
@@ -711,7 +693,6 @@ function cornerText() {
 
 /* Dialog box : INTRO */
 function displayDialog() {
-
   // When the dialog box is visibles, all of the following variables apply
   if (dialogBox.visible) {
     // Displaying rectangle with red border that dialog will appear in
@@ -742,7 +723,6 @@ function mousePressed() {
     // Current string disappears once it has timed out
     setTimeout(hideDialog, dialogBox.duration);
   }
-
   // When mouse is pressed, state changes from `start` to `intro` : START
   if (state === `start`) {
     state = `intro`;
@@ -762,13 +742,12 @@ function hideDialog() {
 }
 
 /* Functions for typing in gift name : LEVEL 6 */
-
+//
 function typeAnswer() {
   // Display the question
   push();
   text(giftText, indent, height / 2.5);
   pop();
-
   // Display the current input from the user
   push();
   // If the answer is correct, next level begins
@@ -782,7 +761,6 @@ function typeAnswer() {
   let giftTextHeight = textAscent() + textDescent();
   text(currentInput, indent, height / 2.3 + giftTextHeight);
   pop();
-
   // Text size, position, font and colour (black)
   textSize(150);
   textAlign(LEFT, CENTER);
@@ -813,21 +791,26 @@ function keyTyped() {
   currentInput += key.toLowerCase();
 }
 
-// Pressing spacebar triggers `level 1` when in `intro` : INTRO
+// Pressing a specific key triggers new state
 function keyPressed() {
   if (keyCode === 32) {
+    // When spacebar is pressed, state changes from `intro` to `level1` : INTRO
     if (state === `intro`) {
       state = `level1`;
     }
+    // When spacebar is pressed, state changes from `level1Fail` to `level1` : LEVEL 1 FAIL
     if (state === `level1Fail`) {
       state = `level1`;
     }
+    // When spacebar is pressed, state changes from `level3Fail` to `level3` : LEVEL 3 FAIL
     if (state === `level3Fail`) {
       state = `level3`;
     }
+    // When spacebar is pressed, state changes from `level4Fail` to `level4` : LEVEL 4 FAIL
     if (state === `level4Fail`) {
       state = `level4`;
     }
+    // When spacebar is pressed, state changes from `level5Fail` to `level5` : LEVEL 5 FAIL
     if (state === `level5Fail`) {
       state = `level5`;
     }
