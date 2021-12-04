@@ -7,7 +7,7 @@ Project 2, final CART 253 project.
 
 "use strict";
 
-let state = `level4Intro`;
+let state = `level1`;
 /* Could be start, intro, level1, level1Fail, level2, level3, level3Fail,
 level4Intro, level4, level4Fail, level5, level5Fail, level6, level6Fail, level7, final */
 
@@ -108,7 +108,6 @@ let finalGift;
 
 // Declaring all ending state images : LEVEL 1 TO 5
 let level1EndImage;
-let level2EndImage;
 let level3EndImage;
 let level4EndImage;
 let level5EndImage;
@@ -198,7 +197,6 @@ function preload() {
 
   // Loading all ending state images : LEVEL 1 TO 5
   level1EndImage = loadImage("assets/images/level1/level1-end.jpg");
-  level2EndImage = loadImage("assets/images/level2/level2-end.jpg");
   level3EndImage = loadImage("assets/images/level3/level3-end.jpg");
   level4EndImage = loadImage("assets/images/level4/level4-end.jpg");
   level5EndImage = loadImage("assets/images/level5/level5-end.jpg");
@@ -425,6 +423,10 @@ function level1() {
     // Check when bird and sleigh overlap
     sleigh.checkHit(bird);
   }
+
+  missingLetters();
+  text(`P`, width / 1.3, height / 16);
+  fill(4, 34, 66);
 }
 
 /* State that appears when user fails to dodge a bird : LEVEL1FAIL */
@@ -537,7 +539,7 @@ function level4() {
 
   // Display moving brick animation
   background(movingBrick);
-
+  keyPressed();
   // Display falling elf image
   fallingElf.display();
 
@@ -573,6 +575,8 @@ function level4Fail() {
 
   // Display level 4 fail state image
   background(level4EndImage);
+
+  keyPressed();
 }
 
 /* Level 5 state : LEVEL 5 */
@@ -580,7 +584,8 @@ function level5() {
 
   // Display brick background
   background(stillBrick);
-push();
+  keyPressed();
+  push();
   // Display fire image
   fire.display();
 
@@ -608,7 +613,7 @@ push();
 
 /* State that appears when user lands in fire : LEVEL5FAIL */
 function level5Fail() {
-push();
+  push();
   // Display level 5 fail image
   background(level5EndImage);
   pop();
@@ -653,12 +658,17 @@ function final() {
   background(finalImage);
 }
 
+function missingLetters() {
+  textSize(30);
+  textFont(`Roboto Mono`);
+}
+
 /* Defining variables for text being displayed : INTRO, LEVEL 2 */
 function cornerText() {
-// Text size, position, font and colour (black)
-textSize(50);
-textFont(`Gwendolyn`);
-fill(255);
+  // Text size, position, font and colour (black)
+  textSize(50);
+  textFont(`Gwendolyn`);
+  fill(255);
 }
 
 /* Dialog box : INTRO */
@@ -774,10 +784,19 @@ function keyPressed() {
     if (state === `level1Fail`) {
       state = `level1`;
     }
+    if (state === `level3Fail`) {
+      state = `level3`;
+    }
+    if (state === `level4Fail`) {
+      state = `level4`;
+    }
+    if (state === `level5Fail`) {
+      state = `level5`;
+    }
     // When spacebar is pressed, state changes from `level4Intro` to `level4` : LEVEL 4 INTRO
-      if (state === `level4Intro`) {
-        state = `level4`;
-      }
+    if (state === `level4Intro`) {
+      state = `level4`;
+    }
   }
 
   // If user presses backspace, it will delete what they have written so far : LEVEL 6
