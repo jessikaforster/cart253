@@ -7,7 +7,7 @@ Project 2, final CART 253 project.
 
 "use strict";
 
-let state = `level7`;
+let state = `intro`;
 /* Could be start, intro, level1, level1Fail, level2,
 level2Fail, level3, level3Fail, level4, level4Fail, level5, level5Fail, level6, level6Fail, level7, final */
 
@@ -119,7 +119,8 @@ let dialogStrings = [
   `Head Elf: Um…Santa actually…There’s 1 gift that wasn’t delivered`,
   `Santa: WHAT?! Where’s the new elf?`,
   `Head Elf: Here Santa sir`,
-  `Santa:	Now’s your chance to get on my good list, find the missing gift and deliver it successfully to save Christmas!`
+  `Santa:	Now’s your chance to get on my good list, find the missing gift and deliver it successfully to save Christmas!`,
+  `Santa:	Your first obstacle will be the birds. Use your mouse to dodge them! Press space to start. `
 ];
 
 // Setting the dialog to start from the first line : INTRO
@@ -372,16 +373,19 @@ function start() {
   // Displaying starting image
   background(startImage);
 }
-
 /* Intro state before game begins : INTRO */
 function intro() {
-
   // Displaying intro animation
   background(introAnim);
   // Displaying dialog
   displayDialog();
   // Pressing the spacebar after dialog will begin level 1
   keyPressed();
+  // Display text in top left corner
+  push();
+  cornerText();
+  text(`Click to view dialogue...`, width / 24, height / 16);
+  pop();
 }
 
 /* Level 1 state : LEVEL 1 */
@@ -624,6 +628,14 @@ function final() {
 
   // Display final success image
   background(finalImage);
+}
+
+/* Defining variables for text being displayed : INTRO */
+function cornerText() {
+// Text size, position, font and colour (black)
+textSize(70);
+textFont(`Gwendolyn`);
+fill(255);
 }
 
 /* Dialog box : INTRO */
