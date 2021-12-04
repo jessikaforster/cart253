@@ -7,9 +7,9 @@ Project 2, final CART 253 project.
 
 "use strict";
 
-let state = `level6`;
-/* Could be start, intro, level1, level1Fail, level2,
-level2Fail, level3, level3Fail, level4, level4Fail, level5, level5Fail, level6, level6Fail, level7, final */
+let state = `level4Intro`;
+/* Could be start, intro, level1, level1Fail, level2, level3, level3Fail,
+level4Intro, level4, level4Fail, level5, level5Fail, level6, level6Fail, level7, final */
 
 // Array to display all 3 kinds of birds: LEVEL 1
 let birds = [];
@@ -55,6 +55,9 @@ let userL3;
 // Array to display civilians : LEVEL 3
 let civilians = [];
 let numCivilians = 5;
+
+// Declaring all images that will be used : LEVEL 4 INTRO
+let level4StartImage;
 
 // Declaring all images that will be used : LEVEL 4
 let fallingElfImage;
@@ -165,6 +168,9 @@ function preload() {
 
   // Loading images to be used into code : LEVEL 3
   level3Image = loadImage("assets/images/level3/level3bg.jpg");
+
+  // Loading images to be used into code : LEVEL 4 INTRO
+  level4StartImage = loadImage("assets/images/level4/level4Intro.jpg");
 
   // Loading images to be used into code : LEVEL 4
   fallingElfImage = loadImage("assets/images/level4/fallingelf.gif");
@@ -343,12 +349,12 @@ function draw() {
     level1Fail();
   } else if (state === `level2`) {
     level2();
-  } else if (state === `level2Fail`) {
-    level2Fail();
   } else if (state === `level3`) {
     level3();
   } else if (state === `level3Fail`) {
     level3Fail();
+  } else if (state === `level4Intro`) {
+    level4Intro();
   } else if (state === `level4`) {
     level4();
   } else if (state === `level4Fail`) {
@@ -437,6 +443,12 @@ function level2() {
   // Display snowfall animation
   background(snowfall);
 
+  push();
+  cornerText();
+  text(`Some gifts fell out on the way!`, width / 24, height / 16);
+  text(`Use left and right arrow keys to move the stocking and catch the gifts`, width / 24, height / 9);
+  pop();
+
   // Control stocking image using left and right arrow keys
   stocking.handleInput();
 
@@ -474,16 +486,17 @@ function level2() {
   }
 }
 
-/* State that appears when user misses too many gifts : LEVEL2FAIL */
-function level2Fail() {
-  background(level2EndImage);
-}
-
 /* Level 3 state : LEVEL 3 */
 function level3() {
 
   // Display background image for level 3
   background(level3Image);
+
+  push();
+  cornerText();
+  text(`You've arrived in the town, but not everyone is asleep...`, width / 24, height / 16);
+  text(`Use the arrow keys to make it to the other side while staying as far away as possible from the civilians`, width / 24, height / 9);
+  pop();
 
   // For loop to create and display civilians
   for (let i = 0; i < civilians.length; i++) {
@@ -511,6 +524,12 @@ function level3Fail() {
 
   // Display end image for level 3
   background(level3EndImage);
+}
+
+function level4Intro() {
+  background(level4StartImage);
+
+  keyPressed();
 }
 
 /* Level 4 state : LEVEL 4 */
@@ -634,10 +653,10 @@ function final() {
   background(finalImage);
 }
 
-/* Defining variables for text being displayed : INTRO */
+/* Defining variables for text being displayed : INTRO, LEVEL 2 */
 function cornerText() {
 // Text size, position, font and colour (black)
-textSize(70);
+textSize(50);
 textFont(`Gwendolyn`);
 fill(255);
 }
@@ -650,7 +669,7 @@ function displayDialog() {
     // Displaying rectangle with red border that dialog will appear in
     push();
     rectMode(CENTER);
-    stroke(255, 0, 0);
+    stroke(0, 110, 11);
     strokeWeight(5);
     rect(dialogBox.x, dialogBox.y, dialogBox.width, dialogBox.height);
     pop();
@@ -755,6 +774,10 @@ function keyPressed() {
     if (state === `level1Fail`) {
       state = `level1`;
     }
+    // When spacebar is pressed, state changes from `level4Intro` to `level4` : LEVEL 4 INTRO
+      if (state === `level4Intro`) {
+        state = `level4`;
+      }
   }
 
   // If user presses backspace, it will delete what they have written so far : LEVEL 6
