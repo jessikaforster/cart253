@@ -7,7 +7,7 @@ Project 2, final CART 253 project.
 
 "use strict";
 
-let state = `intro`;
+let state = `level5`;
 /* Could be start, intro, level1, level1Fail, level2,
 level2Fail, level3, level3Fail, level4, level4Fail, level5, level5Fail, level6, level6Fail, level7, final */
 
@@ -120,7 +120,8 @@ let dialogStrings = [
   `Santa: WHAT?! Where’s the new elf?`,
   `Head Elf: Here Santa sir`,
   `Santa:	Now’s your chance to get on my good list, find the missing gift and deliver it successfully to save Christmas!`,
-  `Santa:	Your first obstacle will be the birds. Use your mouse to dodge them! Press space to start. `
+  `Santa:	Your first obstacle will be the birds. Move your mouse up and down to dodge them.`,
+  `Santa:	Press space to start your mission!`
 ];
 
 // Setting the dialog to start from the first line : INTRO
@@ -560,7 +561,7 @@ function level5() {
 
   // Display brick background
   background(stillBrick);
-
+push();
   // Display fire image
   fire.display();
 
@@ -583,13 +584,15 @@ function level5() {
   fallingElf2.bounce(snowflake);
 
   fallingElf2.success();
+  pop();
 }
 
 /* State that appears when user lands in fire : LEVEL5FAIL */
 function level5Fail() {
-
+push();
   // Display level 5 fail image
   background(level5EndImage);
+  pop();
 }
 
 /* Level 6 state : LEVEL 6 */
@@ -598,11 +601,12 @@ function level6() {
   // Display scroll page as background
   background(scrollImage);
 
-
+push();
   typeAnswer();
   keyPressed();
   inputIsCorrect();
   keyTyped();
+  pop();
 }
 
 /* State that appears when gift was incorrectly guessed : LEVEL7FAIL */
