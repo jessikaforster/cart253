@@ -7,7 +7,7 @@ Project 2, final CART 253 project.
 
 "use strict";
 
-let state = `start`;
+let state = `level1`;
 /* Could be start, intro, level1, level1Fail, level2, level3, level3Fail,
 level4Intro, level4, level4Fail, level5, level5Fail, level6, level6Fail, level7, final */
 
@@ -221,39 +221,7 @@ function setup() {
   dialogBox.y = height / 1.15;
 
   /* Setup for LEVEL 1 */
-
-  // Displaying sleigh image
-  sleigh = new SleighL1(sleighImage);
-
-  // Displaying bluejays using for loop
-  for (let i = 0; i < numBluejays; i++) {
-    let x = random(width / 2, width);
-    let y = random(0, height);
-    let bluejay = new BluejayL1(x, y, bluejayImage);
-    birds.push(bluejay);
-  }
-
-  // Displaying sparrows using for loop
-  for (let i = 0; i < numSparrows; i++) {
-    let x = random(width / 2, width);
-    let y = random(0, height);
-    let sparrow = new SparrowL1(x, y, sparrowImage);
-    birds.push(sparrow);
-  }
-
-  // Displaying cardinals using for loop
-  for (let i = 0; i < numCardinals; i++) {
-    let x = random(width / 2, width);
-    let y = random(0, height);
-    let cardinal = new CardinalL1(x, y, cardinalImage);
-    birds.push(cardinal);
-  }
-
-  // Declaring the direction and speed that the birds will move in
-  for (let i = 0; i < birds.length; i++) {
-    let bird = birds[i];
-    bird.vx = bird.speed;
-  }
+setupLevel1();
 
   /* Setup for LEVEL 2 */
 
@@ -296,7 +264,61 @@ function setup() {
   userL3 = new UserL3;
 
   /* Setup for LEVEL 4 */
+setupLevel4();
 
+  /* Setup for LEVEL 5 */
+
+  // Displaying snowflake image
+  snowflake = new SnowflakeL5(snowflakeImage);
+
+  // Displaying fire image
+  fire = new FireL5(fireImage);
+
+  // Displaying falling elf image
+  fallingElf2 = new FallingElfL5(fallingElfImage2);
+
+  /* Setup for LEVEL 7 */
+
+  // Displaying final gift image
+  finalGift = new FinalGiftL7(finalGiftImage);
+}
+
+function setupLevel1() {
+  // Displaying sleigh image
+  sleigh = new SleighL1(sleighImage);
+
+  // Displaying bluejays using for loop
+  for (let i = 0; i < numBluejays; i++) {
+    let x = random(width / 2, width);
+    let y = random(0, height);
+    let bluejay = new BluejayL1(x, y, bluejayImage);
+    birds.push(bluejay);
+  }
+
+  // Displaying sparrows using for loop
+  for (let i = 0; i < numSparrows; i++) {
+    let x = random(width / 2, width);
+    let y = random(0, height);
+    let sparrow = new SparrowL1(x, y, sparrowImage);
+    birds.push(sparrow);
+  }
+
+  // Displaying cardinals using for loop
+  for (let i = 0; i < numCardinals; i++) {
+    let x = random(width / 2, width);
+    let y = random(0, height);
+    let cardinal = new CardinalL1(x, y, cardinalImage);
+    birds.push(cardinal);
+  }
+
+  // Declaring the direction and speed that the birds will move in
+  for (let i = 0; i < birds.length; i++) {
+    let bird = birds[i];
+    bird.vx = bird.speed;
+  }
+}
+
+function setupLevel4() {
   // Displaying falling elf image
   fallingElf = new FallingElfL4(fallingElfImage);
 
@@ -321,22 +343,6 @@ function setup() {
     let animal = animals[i];
     animal.vy = animal.speed;
   }
-
-  /* Setup for LEVEL 5 */
-
-  // Displaying snowflake image
-  snowflake = new SnowflakeL5(snowflakeImage);
-
-  // Displaying fire image
-  fire = new FireL5(fireImage);
-
-  // Displaying falling elf image
-  fallingElf2 = new FallingElfL5(fallingElfImage2);
-
-  /* Setup for LEVEL 7 */
-
-  // Displaying final gift image
-  finalGift = new FinalGiftL7(finalGiftImage);
 }
 
 /**
@@ -435,12 +441,7 @@ function level1() {
 function level1Fail() {
   // Displaying level 1 end image as background
   background(level1EndImage);
-  // Pressing spacebar triggers `level 1` state
-/*  for (let i = 0; i < birds.length; i++) {
-    let bird = birds[i];
-bird.keyPressed();
-  }
-  sleigh.keyPressed(); */
+  keyPressed();
 }
 
 /* Level 2 state : LEVEL 2 */
@@ -811,9 +812,15 @@ function keyPressed() {
     if (state === `intro`) {
       state = `level1`;
     }
+// When spacebar is pressed, state changes from `level1Fail` to `level1` : LEVEL 1 FAIL
+    if (state === `level1Fail`) {
+      state = `level1`;
+      setupLevel1();
+    }
     // When spacebar is pressed, state changes from `level4Fail` to `level4` : LEVEL 4 FAIL
     if (state === `level4Fail`) {
       state = `level4`;
+      setupLevel4();
     }
     // When spacebar is pressed, state changes from `level4Intro` to `level4` : LEVEL 4 INTRO
     if (state === `level4Intro`) {
