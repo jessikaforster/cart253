@@ -23,6 +23,14 @@ class SleighL1 {
     }
   }
 
+/*  keyPressed() {
+    if (keyCode === 32) {
+      this.x = width / 6;
+      this.y = height / 2;
+          state = `level1`;
+        }
+      } */
+
   // User controls character using mouse movement on the Y axis
   handleInput() {
     this.y = mouseY;

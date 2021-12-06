@@ -7,7 +7,7 @@ Project 2, final CART 253 project.
 
 "use strict";
 
-let state = `level1`;
+let state = `start`;
 /* Could be start, intro, level1, level1Fail, level2, level3, level3Fail,
 level4Intro, level4, level4Fail, level5, level5Fail, level6, level6Fail, level7, final */
 
@@ -436,10 +436,11 @@ function level1Fail() {
   // Displaying level 1 end image as background
   background(level1EndImage);
   // Pressing spacebar triggers `level 1` state
-  for (let i = 0; i < birds.length; i++) {
+/*  for (let i = 0; i < birds.length; i++) {
     let bird = birds[i];
 bird.keyPressed();
   }
+  sleigh.keyPressed(); */
 }
 
 /* Level 2 state : LEVEL 2 */
@@ -641,8 +642,8 @@ function level6() {
   keyPressed();
   // Check if the converted input is the same as the missing gift
   inputIsCorrect();
-  // Add the typed key to the input string after converting it to lower case
-  keyTyped();
+  /* Add the typed key to the input string after converting it to lower case
+  keyTyped(); */
 
 }
 
@@ -798,7 +799,9 @@ function inputIsCorrect() {
 Add the typed key to the input string after converting it to lower case
 */
 function keyTyped() {
+  if (state === `level6`) {
   currentInput += key.toLowerCase();
+  }
 }
 
 // Pressing a specific key triggers new state

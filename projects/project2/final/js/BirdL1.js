@@ -12,6 +12,14 @@ class BirdL1 {
     this.dodges = 0;
   }
 
+/*  keyPressed() {
+    if (keyCode === 32) {
+          this.y = random(0, height);
+          this.x = random(width / 4, width);
+          state = `level1`;
+        }
+      } */
+
   // Adding movement to the birds
   move() {
     this.x += this.vx;
