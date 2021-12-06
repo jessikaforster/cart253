@@ -691,7 +691,7 @@ function final() {
 
 // Defining font size and font for letters of missing gift name
 function missingLetters() {
-  textSize(30);
+  textSize(40);
   textFont(`Roboto Mono`);
 }
 
