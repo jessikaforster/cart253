@@ -7,7 +7,7 @@ Project 2, final CART 253 project.
 
 "use strict";
 
-let state = `level1`;
+let state = `level4`;
 /* Could be start, intro, level1, level1Fail, level2, level3, level3Fail,
 level4Intro, level4, level4Fail, level5, level5Fail, level6, level6Fail, level7, final */
 
@@ -550,10 +550,11 @@ function level4() {
   background(movingBrick);
   // Display falling elf image
   fallingElf.display();
+  fallingElf.changeState();
   // If user gets hit by an animal, `level4Fail` state is triggered
-  if (!fallingElf.dodged) {
+/*  if (!fallingElf.dodged) {
     state = `level4Fail`;
-  }
+  } */
   // For loop to create all of the animals from the Animal class
   for (let i = 0; i < animals.length; i++) {
     let animal = animals[i];
@@ -816,11 +817,18 @@ function keyPressed() {
     if (state === `level1Fail`) {
       state = `level1`;
       setupLevel1();
+      let birds = [];
+      numBluejays = 0;
+      numSparrows = 0;
+      numCardinals = 0;
     }
     // When spacebar is pressed, state changes from `level4Fail` to `level4` : LEVEL 4 FAIL
     if (state === `level4Fail`) {
       state = `level4`;
       setupLevel4();
+      let animals = [];
+      numMice = 0;
+      numRaccoons = 0;
     }
     // When spacebar is pressed, state changes from `level4Intro` to `level4` : LEVEL 4 INTRO
     if (state === `level4Intro`) {

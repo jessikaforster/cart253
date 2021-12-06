@@ -23,6 +23,12 @@ class FallingElfL4 {
     }
   }
 
+changeState() {
+  if (!this.dodged) {
+      state = `level4Fail`;
+    }
+  }
+
   // User controls character using mouse movement on the X axis
   handleInput() {
     this.x = mouseX;
