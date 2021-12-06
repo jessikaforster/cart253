@@ -11,6 +11,7 @@ class CivilianL3 {
 
   // Adding movement to civilians
   move() {
+    /* --> Used video '7.2 Introducing arrays' as reference <-- */
     // Civilians will move randomly
     let change = random(0, 1);
     if (change < 0.05) {
@@ -25,13 +26,14 @@ class CivilianL3 {
     this.y = constrain(this.y, 0, height);
   }
 
+  // Pressing spacebar will return user to `level3` and position civilians randomly
   keyPressed() {
     if (keyCode === 32) {
-          this.y = random(0, height);
-          this.x = random(width / 2, width);;
-          state = `level3`;
-        }
-      }
+      this.y = random(0, height);
+      this.x = random(width / 2, width);;
+      state = `level3`;
+    }
+  }
 
   // Display civilians as red circles
   display() {

@@ -2,7 +2,7 @@ class SparrowL1 extends BirdL1 {
   // Defining variables for sparrows that were not defined in BirdL1 class : LEVEL 1
   constructor(x, y, image) {
     super(x, y, image);
-    this.speed = -10;
+    this.speed = 8;
     this.width = 100;
     this.height = 100;
   }

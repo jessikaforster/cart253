@@ -17,6 +17,7 @@ class FinalGiftL7 {
 
   // When mouse is pressed on gift, it follows the mouse position
   mousePressed() {
+    /* --> Used my 'dodge-em' exercise as reference <-- */
     // When mouse is pressed gift follows mouse X position and when released, goes back
     if (mouseIsPressed === true) {
       this.x = mouseX;

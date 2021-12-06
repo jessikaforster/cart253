@@ -7,7 +7,7 @@ Project 2, final CART 253 project.
 
 "use strict";
 
-let state = `level4`;
+let state = `level5`;
 /* Could be start, intro, level1, level1Fail, level2, level3, level3Fail,
 level4Intro, level4, level4Fail, level5, level5Fail, level6, level6Fail, level7, final */
 
@@ -314,7 +314,7 @@ function setupLevel1() {
   // Declaring the direction and speed that the birds will move in
   for (let i = 0; i < birds.length; i++) {
     let bird = birds[i];
-    bird.vx = bird.speed;
+    bird.vx = -bird.speed;
   }
 }
 
@@ -550,7 +550,7 @@ function level4() {
   background(movingBrick);
   // Display falling elf image
   fallingElf.display();
-  fallingElf.changeState();
+  fallingElf.notDodged();
   // If user gets hit by an animal, `level4Fail` state is triggered
 /*  if (!fallingElf.dodged) {
     state = `level4Fail`;
@@ -692,7 +692,7 @@ function final() {
 
 // Defining font size and font for letters of missing gift name
 function missingLetters() {
-  textSize(40);
+  textSize(45);
   textFont(`Roboto Mono`);
 }
 

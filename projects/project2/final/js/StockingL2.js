@@ -20,6 +20,7 @@ class StockingL2 {
 
   // User controls character using left and right arrow keys
   handleInput() {
+    /* --> Used my 'love-actually' exercise as reference <-- */
     if (keyIsDown(LEFT_ARROW)) {
       this.vx = -this.speed;
     } else if (keyIsDown(RIGHT_ARROW)) {
@@ -37,5 +38,4 @@ class StockingL2 {
     image(this.image, this.x, this.y, this.width, this.height);
     pop();
   }
-
 }

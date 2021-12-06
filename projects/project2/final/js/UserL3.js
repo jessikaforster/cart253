@@ -20,6 +20,7 @@ class UserL3 {
 
   // User is controlled using left, right, up and down arrow keys
   handleInput() {
+    /* --> Used my 'love-actually' exercise as reference <-- */
     if (keyIsDown(LEFT_ARROW)) {
       this.vx = -this.speed;
     } else if (keyIsDown(RIGHT_ARROW)) {
@@ -36,15 +37,16 @@ class UserL3 {
     }
   }
 
+  // Pressing spacebar will return user to initial position and restart `level3`
   keyPressed() {
     if (keyCode === 32) {
-          this.y = height / 6;
-          this.x = 0;
-          state = `level3`;
-        }
-      }
+      this.y = height / 6;
+      this.x = 0;
+      state = `level3`;
+    }
+  }
 
-  // When user reaches other side of screen, level 4 begins
+  // When user reaches other side of screen, `level4Intro` state is triggered
   checkExit() {
     if (this.x > width) {
       state = `level4Intro`;
@@ -53,6 +55,7 @@ class UserL3 {
 
   // When user is too close to civilian, failure state is triggered
   checkDist(civilian) {
+    /* --> Used traffic example as reference <-- */
     if (this.x > civilian.x - civilian.size * 8 &&
       this.x < civilian.x + civilian.size * 8 &&
       this.y > civilian.y - civilian.size * 8 &&

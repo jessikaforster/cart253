@@ -18,7 +18,7 @@ class BirdL1 {
     this.y += this.vy;
   }
 
-  // Birds will shake slightly in order to make the overall movement more realistic
+  // Birds will shake up and down slightly in order to make the overall movement more realistic
   wiggle() {
     this.y = this.y + random(-5, 5);
   }
@@ -26,6 +26,7 @@ class BirdL1 {
   /* When birds reach the other side of screen they will reappear at the starting
   point in a random position */
   wrap() {
+    /* --> Used video '7.2 Introducing arrays' as reference <-- */
     if (this.x > width) {
       this.x -= width;
       this.y = random(0, height);
@@ -42,7 +43,7 @@ class BirdL1 {
     }
   }
 
-  // If the number of birds dodged exceeds 100, the `success` state is triggered
+  // If the number of birds dodged exceeds 100, `level2` state is triggered
   numDodges() {
     if (this.dodges > 100) {
       state = `level2`;

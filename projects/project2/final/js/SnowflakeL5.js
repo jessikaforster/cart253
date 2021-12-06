@@ -37,5 +37,4 @@ class SnowflakeL5 {
       pop();
     }
   }
-
 }

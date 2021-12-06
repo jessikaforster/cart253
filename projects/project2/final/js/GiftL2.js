@@ -9,6 +9,7 @@ class GiftL2 extends FallingGiftL2 {
   display() {
     super.display();
     // If a gift has not been caught, it continues to be displayed
+    /* --> Used video '7.1 Intermediate functions' as reference <-- */
     if (!this.caught) {
       push();
       imageMode(CENTER);
@@ -16,6 +17,4 @@ class GiftL2 extends FallingGiftL2 {
       pop();
     }
   }
-
-
 }

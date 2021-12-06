@@ -11,6 +11,7 @@ class SleighL1 {
 
   // If the user gets hit by a bird, dodged becomes false
   checkHit(bird) {
+    /* --> Used traffic example as reference <-- */
     if (this.x > bird.x - bird.height / 2 &&
       this.x > bird.x - bird.width / 2 &&
       this.x < bird.x + bird.height / 2 &&
@@ -22,14 +23,6 @@ class SleighL1 {
       this.dodged = false;
     }
   }
-
-/*  keyPressed() {
-    if (keyCode === 32) {
-      this.x = width / 6;
-      this.y = height / 2;
-          state = `level1`;
-        }
-      } */
 
   // User controls character using mouse movement on the Y axis
   handleInput() {
@@ -43,5 +36,4 @@ class SleighL1 {
     image(this.image, this.x, this.y, this.width, this.height);
     pop();
   }
-
 }

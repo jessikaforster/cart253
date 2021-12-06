@@ -23,6 +23,7 @@ class FallingGiftL2 {
   /* When gifts reach the bottom of screen they will reappear at the starting
   point in a random position */
   wrap() {
+    /* --> Used video '7.2 Introducing arrays' as reference <-- */
     if (this.y > height) {
       this.y -= height;
       this.x = random(0, width);
@@ -33,6 +34,7 @@ class FallingGiftL2 {
   }
 
   checkGift(stocking) {
+    /* --> Used video '7.1 Intermediate functions' as reference <-- */
     if (!this.caught) {
       let d = dist(this.x, this.y, stocking.x, stocking.y);
       if (d < this.width / 2 + stocking.width / 2) {

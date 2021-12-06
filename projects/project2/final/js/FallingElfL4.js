@@ -11,6 +11,7 @@ class FallingElfL4 {
 
   // If the user gets hit by an animal, dodged becomes false
   checkHit(animal) {
+    /* --> Used traffic example as reference <-- */
     if (this.x > animal.x - animal.height / 2 &&
       this.x > animal.x - animal.width / 2 &&
       this.x < animal.x + animal.height / 2 &&
@@ -23,8 +24,9 @@ class FallingElfL4 {
     }
   }
 
-changeState() {
-  if (!this.dodged) {
+  // If elf does not dodge an animal, `level4Fail` state is triggered
+  notDodged() {
+    if (!this.dodged) {
       state = `level4Fail`;
     }
   }
@@ -41,5 +43,4 @@ changeState() {
     image(this.image, this.x, this.y, this.width, this.height);
     pop();
   }
-
 }

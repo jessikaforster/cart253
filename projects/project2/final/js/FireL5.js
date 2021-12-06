@@ -15,5 +15,4 @@ class FireL5 {
     image(this.image, this.x, this.y, this.width, this.height);
     pop();
   }
-
 }
