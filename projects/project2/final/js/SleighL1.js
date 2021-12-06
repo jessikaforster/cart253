@@ -24,6 +24,13 @@ class SleighL1 {
     }
   }
 
+  // If user gets hit by a bird, `level1Fail` state is triggered
+  notDodged() {
+    if (!this.dodged) {
+      state = `level1Fail`;
+    }
+  }
+
   // User controls character using mouse movement on the Y axis
   handleInput() {
     this.y = mouseY;

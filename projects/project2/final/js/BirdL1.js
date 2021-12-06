@@ -26,7 +26,7 @@ class BirdL1 {
   /* When birds reach the other side of screen they will reappear at the starting
   point in a random position */
   wrap() {
-    /* --> Used video '7.2 Introducing arrays' as reference <-- */
+    /* --> Used video traffic example as reference <-- */
     if (this.x > width) {
       this.x -= width;
       this.y = random(0, height);
