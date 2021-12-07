@@ -49,9 +49,9 @@ class AnimalL4 {
     }
   }
 
-  // If the number of animals dodged exceeds 180, level 5 is triggered
+  // If the number of animals dodged exceeds 100, level 5 is triggered
   numDodges() {
-    if (this.dodges > 180) {
+    if (this.dodges > 100) {
       state = `level5`;
     }
   }

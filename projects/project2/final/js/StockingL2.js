@@ -4,7 +4,6 @@ class StockingL2 {
     this.x = width / 2;
     this.y = height / 1.2;
     this.vx = 0;
-    this.vy = 0;
     this.width = 300;
     this.height = 300;
     this.speed = 20;
@@ -12,13 +11,12 @@ class StockingL2 {
     this.caught = false;
   }
 
-  // Allowing stocking to move on x and y axis
+  // Allowing stocking to move on x axis
   move() {
     this.x += this.vx;
-    this.y += this.vy;
   }
 
-  // User controls character using left and right arrow keys
+  // User controls stocking using left and right arrow keys
   handleInput() {
     /* --> Used my 'love-actually' exercise as reference <-- */
     if (keyIsDown(LEFT_ARROW)) {

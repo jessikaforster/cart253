@@ -9,12 +9,12 @@ class UserL3 {
     this.speed = 5;
   }
 
-  // Allowing stocking to move on x and y axis
+  // Allowing user to move on x and y axis
   move() {
     this.x += this.vx;
     this.y += this.vy;
 
-    // Constraining user to be unable to go out from the top or bottom of screen
+    // Constraining user to be unable to exit from the top or bottom of screen
     this.y = constrain(this.y, 0, height);
   }
 

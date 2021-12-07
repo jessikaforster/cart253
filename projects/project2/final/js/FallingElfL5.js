@@ -1,5 +1,5 @@
 class FallingElfL5 {
-  // Defining variables for falling elf in level 5
+  // Defining variables for falling elf in level 5 : LEVEL 5
   constructor(fallingElfImage2) {
     this.x = width / 2;
     // Elf drops from high enough that user can read instructions

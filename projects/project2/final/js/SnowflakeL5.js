@@ -9,7 +9,7 @@ class SnowflakeL5 {
     this.visible = false;
   }
 
-
+  // Pressing a specific key will trigger a function
   keyPressed() {
     // Pressing number `5` will make snowflake appear
     if (keyCode === 53) {

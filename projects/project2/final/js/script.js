@@ -7,7 +7,7 @@ Project 2, final CART 253 project. View README.md for more details.
 
 "use strict";
 
-let state = `start`;
+let state = `intro`;
 /* Could be start, intro, level1, level1Fail, level2, level3, level3Fail,
 level4Intro, level4, level4Fail, level5, level5Fail, level6, level7, final */
 
@@ -30,7 +30,6 @@ let dialogStrings = [
 /* --> Used 'Simple dialog box' example as reference <-- */
 // Setting the dialog to start from the first line : INTRO
 let currentDialogString = 0;
-/* --> Used 'Simple dialog box' example as reference <-- */
 // Defining all variables related to dialog box : INTRO
 let dialogBox = {
   x: undefined,
@@ -110,7 +109,7 @@ let giftText = `What is the missing gift?`;
 // A variable to track what the user has typed so far
 let currentInput = ``;
 // Indent from the left margin
-let indent = 30;
+let indent = 100;
 
 // Declaring all images that will be used : LEVEL 7
 let finalGiftImage;
@@ -186,9 +185,10 @@ function preload() {
 
 
 /**
-Creating the canvas to fill the user's window size
+Setup for all levels
 */
 function setup() {
+  // Creating the canvas to fill the user's window size
   createCanvas(windowWidth, windowHeight);
 
   /* Setup for INTRO */
@@ -288,6 +288,7 @@ function setupLevel1() {
   }
 }
 
+
 /**
 Function to setup level 4
 */
@@ -354,6 +355,7 @@ function draw() {
   }
 }
 
+
 /**
 Functions for all states
 */
@@ -373,8 +375,10 @@ function intro() {
   keyPressed();
   // Display instruction text in top left corner
   push();
-  // Function that defines font, font colour (white) and size
-  cornerText();
+  // Defining font, font colour (grey) and size
+  textSize(50);
+  textFont(`Gwendolyn`);
+  fill(87, 87, 87);
   text(`Click to view dialogue...`, width / 24, height / 16);
   pop();
 }
@@ -430,7 +434,7 @@ function level2() {
   missingLetters();
   text(`H`, width / 30, height / 1.3);
   fill(26, 72, 122);
-  // Displaying instructions for level 2
+  // Display instruction text in top left corner
   push();
   // Function that defines font, font colour (white) and size
   cornerText();
@@ -473,8 +477,8 @@ function level2() {
 function level3() {
   // Display background image for level 3
   background(level3Image);
+  // Display instruction text in top left corner
   push();
-  // Displaying instructions
   // Function that defines font, font colour (white) and size
   cornerText();
   text(`You've arrived in the town, but not everyone is asleep...`, width / 24, height / 16);
@@ -568,7 +572,7 @@ function level4Fail() {
 function level5() {
   // Display brick background
   background(stillBrick);
-  // Displaying instructions
+  // Display instruction text in top left corner
   push();
   // Function that defines font, font colour (white) and size
   cornerText();
@@ -628,7 +632,7 @@ function level6() {
 function level7() {
   // Display room with Christmas tree image
   background(treeImage);
-  // Display instructions
+  // Display instruction text in top left corner
   push();
   // Function that defines font, font colour (white) and size
   cornerText();
@@ -648,10 +652,11 @@ function final() {
   background(finalImage);
 }
 
+
 /**
-Functions to be called in states above
+Functions to be called in state functions above
 */
-// Defining font size and font for letters of missing gift name
+// Defining font size and font for letters of missing gift name : LEVELS 1 TO 5
 function missingLetters() {
   textSize(45);
   textFont(`Roboto Mono`);
@@ -669,9 +674,9 @@ function cornerText() {
 /* --> Used 'Simple dialog box' example as reference <-- */
 /* Dialog box : INTRO */
 function displayDialog() {
-  // When the dialog box is visibles, all of the following variables apply
+  // When the dialog box is visible, all of the following variables apply
   if (dialogBox.visible) {
-    // Displaying rectangle with red border that dialog will appear in
+    // Displaying rectangle with green border that dialog will appear in
     push();
     rectMode(CENTER);
     stroke(0, 110, 11);
@@ -779,31 +784,31 @@ function keyPressed() {
       state = `level1`;
     }
     /* When spacebar is pressed, state changes from `level1Fail` to `level1` and
-    `level1` restarts: LEVEL 1 FAIL */
+    `level1` restarts : LEVEL 1 FAIL */
     if (state === `level1Fail`) {
       state = `level1`;
       // Call level 1 setup function
       setupLevel1();
       // Reset array
       let birds = [];
-      numBluejays = 0;
-      numSparrows = 0;
-      numCardinals = 0;
+      let numBluejays = 0;
+      let numSparrows = 0;
+      let numCardinals = 0;
     }
     // When spacebar is pressed, state changes from `level4Intro` to `level4` : LEVEL 4 INTRO
     if (state === `level4Intro`) {
       state = `level4`;
     }
     /* When spacebar is pressed, state changes from `level4Fail` to `level4` and
-    `level4` restarts: LEVEL 4 FAIL */
+    `level4` restarts : LEVEL 4 FAIL */
     if (state === `level4Fail`) {
       state = `level4`;
       // Call level 4 setup function
       setupLevel4();
       // Reset array
       let animals = [];
-      numMice = 0;
-      numRaccoons = 0;
+      let numMice = 0;
+      let numRaccoons = 0;
     }
   }
 

@@ -7,14 +7,6 @@ class FinalGiftL7 {
     this.image = finalGiftImage;
   }
 
-  // Displaying the final gift image
-  display() {
-    push();
-    imageMode(CENTER);
-    image(this.image, this.x, this.y, this.size, this.size);
-    pop();
-  }
-
   // When mouse is pressed on gift, it follows the mouse position
   mousePressed() {
     /* --> Used my 'dodge-em' exercise as reference <-- */
@@ -37,5 +29,13 @@ class FinalGiftL7 {
     if (this.x > width / 1.5) {
       state = `final`;
     }
+  }
+
+  // Displaying the final gift image
+  display() {
+    push();
+    imageMode(CENTER);
+    image(this.image, this.x, this.y, this.size, this.size);
+    pop();
   }
 }

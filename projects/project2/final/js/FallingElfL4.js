@@ -1,5 +1,5 @@
 class FallingElfL4 {
-  // Defining variables for falling elf in level 4
+  // Defining variables for falling elf in level 4 : LEVEL 4
   constructor(fallingElfImage) {
     this.x = width / 2;
     this.y = height / 2;

@@ -23,7 +23,7 @@ class FallingGiftL2 {
   /* When gifts reach the bottom of screen they will reappear at the starting
   point in a random position */
   wrap() {
-    /* --> Used video traffic example as reference <-- */
+    /* --> Used traffic example as reference <-- */
     if (this.y > height) {
       this.y -= height;
       this.x = random(0, width);
