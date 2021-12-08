@@ -2,7 +2,7 @@
 Project 2 Prototype
 Jessika Forster
 
-Project 2, final CART 253 project. View README.md for more details.
+Project 2, final CART 253 project. View README.md for artist's statement.
 */
 
 "use strict";
